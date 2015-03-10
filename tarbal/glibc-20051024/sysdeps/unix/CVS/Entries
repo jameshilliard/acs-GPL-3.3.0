@@ -1,0 +1,73 @@
+/Dist/1.8/Fri Feb 21 07:00:52 2003//
+/Implies/1.1/Sat Oct 26 00:58:05 1991//
+/Makefile/1.90/Fri May  2 02:20:58 2003//
+/Subdirs/1.1/Sun Aug 10 17:54:29 1997//
+/_exit.S/1.7/Sun Aug  4 01:28:10 2002//
+/alarm.c/1.6/Wed Dec 29 09:17:26 2004//
+/clock_gettime.c/1.14/Wed Jul 13 06:25:07 2005//
+/clock_nanosleep.c/1.11/Mon Dec  6 22:28:49 2004//
+/clock_settime.c/1.11/Thu Feb 19 09:00:43 2004//
+/closedir.c/1.15/Tue Jul 15 07:03:05 2003//
+/configure/1.19/Tue Jul  6 04:06:44 2004//
+/configure.in/1.26/Fri Oct 18 19:38:01 2002//
+/confstr.h/1.1/Mon Jul 23 21:24:43 1990//
+/dirfd.c/1.6/Fri Jul  6 04:56:07 2001//
+/dirstream.h/1.12/Fri Jul  6 04:56:07 2001//
+/errnos-tmpl.c/1.4/Fri Jul  6 04:56:07 2001//
+/errnos.awk/1.2/Fri May 14 21:13:24 1993//
+/execve.S/1.8/Fri Jul  6 04:56:07 2001//
+/fdopendir.c/1.5/Sat Oct 15 17:27:12 2005//
+/fork.S/1.11/Tue Dec 31 20:37:25 2002//
+/fxstat.c/1.7/Tue Aug 13 00:23:09 2002//
+/getdents.c/1.6/Fri Jul  6 04:56:07 2001//
+/getegid.S/1.10/Fri Jul  6 04:56:07 2001//
+/geteuid.S/1.10/Fri Jul  6 04:56:07 2001//
+/getlogin.c/1.11/Fri Jul  6 04:56:07 2001//
+/getlogin_r.c/1.12/Wed Oct 16 03:02:55 2002//
+/getpagesize.c/1.8/Sat Aug  3 06:57:48 2002//
+/getppid.S/1.8/Fri Jul  6 04:56:07 2001//
+/grantpt.c/1.18/Tue Sep 24 04:20:55 2002//
+/ioctls-tmpl.c/1.9/Thu Nov  3 23:33:45 1994//
+/ioctls.awk/1.1/Sat Jul  7 02:11:48 1990//
+/make-syscalls.sh/1.37/Sat Aug 16 06:13:21 2003//
+/make_errlist.c/1.14/Sun Jul  8 09:41:05 2001//
+/mk-local_lim.c/1.9/Fri Jul  6 04:56:07 2001//
+/mkdir.c/1.4/Fri Jul  6 04:56:07 2001//
+/mkfifo.c/1.5/Fri Jul  6 04:56:07 2001//
+/nice.c/1.6/Sat Sep 28 19:13:13 2002//
+/opendir.c/1.40/Fri Oct 14 21:04:33 2005//
+/readdir.c/1.21/Wed Aug 28 03:26:37 2002//
+/readdir_r.c/1.10/Wed Aug 28 03:26:37 2002//
+/rewinddir.c/1.9/Sun Jan 16 06:25:34 2005//
+/rmdir.c/1.4/Fri Jul  6 04:56:07 2001//
+/s-proto-bp.S/1.1/Wed Jan 15 22:10:08 2003//
+/s-proto-cancel.S/1.1/Mon Dec 30 00:12:47 2002//
+/s-proto.S/1.1/Fri Jan 19 00:32:06 1996//
+/seekdir.c/1.12/Wed Aug  8 02:46:24 2001//
+/setxid.h/1.1/Fri Nov 12 01:17:42 2004//
+/siglist.c/1.8/Sun Aug  4 23:26:50 2002//
+/snarf-ioctls/1.8/Fri Jul  6 04:56:07 2001//
+/sockatmark.c/1.4/Sat Sep 17 23:36:09 2005//
+/start.c/1.19/Mon Aug 16 04:51:03 2004//
+/stime.c/1.6/Fri Jul  6 04:56:07 2001//
+/syscall.S/1.5/Fri Jul  6 04:56:07 2001//
+/syscalls.list/1.31/Sun Jul 27 18:24:21 2003//
+/sysdep.h/1.20/Sun Aug 17 00:33:14 2003//
+/system.c/1.1/Tue Jun 25 01:13:25 1991//
+/telldir.c/1.10/Fri Jul  6 04:56:07 2001//
+/time.c/1.5/Sat Aug  3 12:08:55 2002//
+/utime.c/1.5/Thu Aug  8 06:42:30 2002//
+/xmknod.c/1.5/Sun Aug  4 09:23:45 2002//
+/xstat.c/1.6/Tue Aug 13 00:23:10 2002//
+D/alpha////
+D/bsd////
+D/common////
+D/i386////
+D/inet////
+D/mips////
+D/mman////
+D/powerpc////
+D/sh////
+D/sparc////
+D/sysv////
+D/x86_64////

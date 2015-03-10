@@ -1,0 +1,40 @@
+This file documents known limitations with the FreeS/WAN implementation of
+opportunistic encryption. 
+
+$Id: OE-KNOWN-LIMITATIONS.txt,v 1.1 2004/02/14 21:07:52 mcr Exp $
+
+ISSUE SUMMARY
+
+#     name					status
+1     no failover in TXT record			no test case
+2     equal precedence TXT record		no test case
+3     co-terminal of the far kind		test case exists
+4     automatic conns only work for one IP
+5     OE silently fails when behind NAT
+6     /proc/net/ipsec/eroute/all has proc-4k problem
+
+ISSUE 1 - no failover in TXT record
+
+If the gateway in the highest precedence TXT record does not respond, 
+or responds in an erroneous way (from port unreachable, to failure to
+authenticate), pluto does not failover to the next higher precedence
+TXT record.
+
+ISSUE 2 - equal precedence TXT record
+
+If two gateways are equal precedence, pluto picks one of them. This is
+not explicitely random, but also isn't completely deterministic. It should
+pick randomly. There is no test case for this.
+This may occur if a machine is multihomed. 
+
+ISSUE 3 - co-terminal of the far kind
+
+If an initiator-only OE machine (such as a laptop) finds itself behind a 
+gateway which also does OE for that network, then there is communication
+failure. The reason is because the responding machine (at the "far end")
+can not negotiate two layered tunnels for the traffic. The result is that
+a laptop that visits a location with a gateway has to turn off OE. This is
+really bad if the network if wireless, where OE would have helped a lot.
+
+ISSUE 4 - 
+

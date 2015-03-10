@@ -1,0 +1,939 @@
+; File written on Mon Oct  6 14:35:16 2003
+; dnssec_signzone version 9.3.0s20021115
+3.1.192.in-addr.arpa.	604800	IN SOA	3.1.192.in-addr.arpa. root.freeswan.org. (
+					200306021  ; serial
+					604800     ; refresh (1 week)
+					86400      ; retry (1 day)
+					2419200    ; expire (4 weeks)
+					604800     ; minimum (1 week)
+					)
+			604800	SIG	SOA 1 5 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ST7g2G6hxfCJ/T5uPvk7qf5dRnuQJj8gxhXv
+					yyge8gmZwRE3q1pXnEEn24yKXn/Bt/GdOLw4
+					Q5dGB0nVsM06YQ== )
+			604800	NS	nic.uml.freeswan.org.
+			604800	NS	beet.uml.freeswan.org.
+			604800	SIG	NS 1 5 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					IQ1eBD7eA+UdZih1q222Z5bDLhNd/DOYZqBD
+					75RyqsSwYALxIKd/k1188AMCka9Ygdo2fHiB
+					MfjEQL1usGK6SA== )
+			604800	KEY	256 3 1 (
+					AQPIB28nwfp98i6zPRUiyehbphJPirDctx2q
+					awNYH8t73LD+bwi5dRel3u6nJtiqvm7CAK3x
+					XSiGLwcvID6cmazt
+					) ; key id = 39340
+			604800	SIG	KEY 1 5 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					NTuGEjWHy+z2Ua55Kze2ZrqTz1RVH9UtE2aj
+					kpqxJR9yTPSbIZ3UyyStLp34KJ8Mc+swyila
+					BswYNZXDg29ykQ== )
+			604800	NXT	100.3.1.192.in-addr.arpa. NS SOA SIG KEY NXT
+			604800	SIG	NXT 1 5 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					tvJJF/gofpMKALD36g+0hMTIVkZywAO08ZNv
+					RpukwsJZkc9/J7sby99xTDI11zymT7EMR00r
+					V0hEWqvi9d7viA== )
+100.3.1.192.in-addr.arpa. 604800 IN CNAME 100.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					HO924wMsDWoZv9wflhRAR6k9xyXWcHrBHrhu
+					XGRVG80UM2sn7hBi7GQN1szIijiBq4lGZ2Ge
+					oWAFFYW4RLRoaw== )
+			604800	NXT	101.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Q2/LDX1HETmGL1A/6oD6hvLeT49K4ORArhjG
+					ZITL2Pa4VD2IZzxZ8ZyPID3UoEQbirNsTXZD
+					+hIgQmfxtGBI6A== )
+101.3.1.192.in-addr.arpa. 604800 IN CNAME 101.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					k+n6ZhMXC3I1hS6KrwZStw2okG/tOyWcO05d
+					gt3qfyImBb4nxtvC+7q48Ai/X6NBzIzlEy5z
+					ndEm5Wgev7zv9g== )
+			604800	NXT	102.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					UdwZvsv7tO8kWVaVpC2SeBGH/mz83ReHvPdm
+					sdj8LfkxW9hbuLznesliHpvJHhI/VRF74caS
+					Egyvtgi6nzeAJQ== )
+102.3.1.192.in-addr.arpa. 604800 IN CNAME 102.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					DbubAXX8hvl3DQxdxRDPAFu4xQnSG0JIbdAw
+					n96AZocIm8fY5acHCZY9zGz4yYfBrOWuBOqu
+					JZUXBj05VoGDow== )
+			604800	NXT	103.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					mvspdvrOB2IRgMk89hw2tgFI4KSxag2c6cvM
+					IfQnwVORfKp/9V7qX7JUYv+YHJOeQEmRz1lM
+					XlVtCX158lhFOg== )
+103.3.1.192.in-addr.arpa. 604800 IN CNAME 103.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					K3iXJYJGlLj0k7g17cClxPF+j+AFJANvj3RM
+					pmNtCdoliYRPKZXNGgHYcdMVqPam4Vd/QW1v
+					lz0TYJ/ez4oLjg== )
+			604800	NXT	104.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ja7Z9xJ8I7bXhb5gBk3OGI3aVJj7p29+cMnJ
+					x3tfERyMHN148lEwn2wGIGBzuwt15L7lNkYS
+					PskpmOi4E8eUbg== )
+104.3.1.192.in-addr.arpa. 604800 IN CNAME 104.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					DYa2DQsXVavz51U9suHz0qUlGWcFs/KeLTIq
+					qsX0On2DcC9HfauHsRoaUGB7JBPit6JyDwDc
+					GCP/xdVaLeIFoQ== )
+			604800	NXT	105.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					VpuubNhpndhhTUhVNSFPNRXRhyHAjLOQkN/D
+					2RWvthsRMP/6tT8xxwpDiodZciAKnKqDZKcO
+					kVLj0gtha5BZXA== )
+105.3.1.192.in-addr.arpa. 604800 IN CNAME 105.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					H0nELObJw4wFj+dxQUBesUmqe91EuKf3DKbJ
+					fKU9+TrUjC7Qyu0fjrcM4XECE04a3lBdBuYr
+					ziNS6DLOSBNy1Q== )
+			604800	NXT	106.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					UKNmFFzq/vVomX24jE1ysZMUKu6cCrWUDvQQ
+					y1xCNAB6vyDnzg3ix4yks24p80oWLSIVQ/JF
+					y3DDSmAJbpdKoA== )
+106.3.1.192.in-addr.arpa. 604800 IN CNAME 106.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					QUub3cru/H1jZVA2YlI7gZomgKJaFxnSwlJ/
+					qsmabGWmkCpcG8WG8YqwbjibaZh0xK/69c3P
+					6T7z0BLXwnnjwQ== )
+			604800	NXT	107.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					eAUWmHsoO5O2eVOahe14KdejH4RYGI7ld7+O
+					ydBgBNgy5fTQAiC5699MCAV66D7jZXD36O1u
+					3bW9+5kqLrx6Ug== )
+107.3.1.192.in-addr.arpa. 604800 IN CNAME 107.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					JaM8hj76xsUR9ou0keYMiRKKg/uCBst3ck1L
+					jzBBH6jMYqXC/a3AlsgyS5i+DbvaLryq6nj5
+					zYcBXw4PZclfsg== )
+			604800	NXT	108.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					cr6g9HMFQ2/lC/MHWxzXBlzHj8u6eJlS3XfJ
+					w6TGXgxrm9YWkEO112pTG0mucg//Tryu9yGJ
+					npyZBIzY642Vgg== )
+108.3.1.192.in-addr.arpa. 604800 IN CNAME 108.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					AUXuTvQ5LWR/51swsDG0JPB+hh/6aSam772A
+					JdmKl0DDds6pGsCc6b5qXRcGg4437+vJRNMw
+					rAX58v59gMnO7g== )
+			604800	NXT	109.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					e5Wymmp6HLcTIMEq5uLTPOZhM+frQ5pxGy0N
+					s16qTVopbuMEUfW2BdAt3JkB4f5ZWIWmWZF1
+					Ipr7ySqR0pvnkQ== )
+109.3.1.192.in-addr.arpa. 604800 IN CNAME 109.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					qaKe3z8I8w2dUOvz7NfneG3sMfddwlWFvqRy
+					7ns+lyvvvhUiVYJZSPq/J9ZRtxFMZrvPisfb
+					QQdyUE07k8+vWg== )
+			604800	NXT	110.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					HbSsBgENBn5lOStnh7Zen9wR3KcnRmxrw8o0
+					pOyzqBXRp2TP7SQiw/F1senqtfuReZYLPmka
+					hapNC/FJv2GNzA== )
+110.3.1.192.in-addr.arpa. 604800 IN CNAME 110.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ALL/lluCWB1v3/eQQ+rPeZLfAkM9GHHjtss+
+					InJ7thwLF2LLGeQzJlTOOtVknid/H+IkLsoN
+					ZsOYBf2t228E+A== )
+			604800	NXT	111.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					vzzdK/NjOyJM+lPnlN8qSfL1jkgzwXDw/wa9
+					V57Osh0SLC/gwVd0q2m5g/uChblZX4wBMi5H
+					fC319mG4kSd4jQ== )
+111.3.1.192.in-addr.arpa. 604800 IN CNAME 111.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					xZJobhVODP71Bhxwj+aJ6A/g/j1EjeC2eToU
+					5QB+oC85N8t+0J7JffLlzX1+2BEBuIPgmI9i
+					HqzMQTAd5XYSxw== )
+			604800	NXT	112.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					EbFitiCd6cJCyXzIxPOYO2nBGRaNblhqAd0d
+					Fs3hKPOch4XrOJO/ZpKS5vR/QTwerLpIyxMO
+					sFYGyCOQC+5AQA== )
+112.3.1.192.in-addr.arpa. 604800 IN CNAME 112.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					QiCncaaSvXi7WjQ52t17xSJVn3mdBuz/dItb
+					Oru+Zy7IPzvqenoEq02ROOoCpZqPgxrax81Q
+					r4PNPituLAPLIA== )
+			604800	NXT	113.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					sroTmrKdvcCVBMkuHFMsqciURPLOWyLVAPvN
+					y5RCD3uTNl5b/EhIfQApxK2NlKTNNxdM6yAT
+					ZCRW852um24JLg== )
+113.3.1.192.in-addr.arpa. 604800 IN CNAME 113.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					q1N+82oRavZrRKjgAFNnU0fgPRD9xvZ6uYIc
+					HI8gyN8ZRnhh/D6ZwRW8FkulTInZx5kDhQrs
+					W7hnf6gthvVgag== )
+			604800	NXT	114.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					VUnyTgWdV36qdGZ31qdo4u6Whn+7lHc6nUcE
+					4e4PjNreD4pGTfvXX7+AJGcUHcKlQx7Y1l9N
+					a75X6PZdj6GvgQ== )
+114.3.1.192.in-addr.arpa. 604800 IN CNAME 114.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					BbtOERhThs8iSAB/imv5getpLadk9kBuOjJc
+					RiOO+Q0mfqIL/hR94PAIR/vtNztSd+rMVQQf
+					BXI6Ir+7vWI8lQ== )
+			604800	NXT	115.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					WQY9bWjE8pcgglb7yUK6mzb2wB5f98PnyFGY
+					xBiwvzY9e8GjwxLmC6NbzcY4lCmetn45uA1Q
+					4rnL5jD5BFhyaQ== )
+115.3.1.192.in-addr.arpa. 604800 IN CNAME 115.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					HL/ecd0klxLm4EWEmmgsD9TPR+nihkJuKQ1C
+					rWd2fgR9yF8lnYsZbXqZCVzBPLDbThpXDkCF
+					g4yIQqvB+EpRBQ== )
+			604800	NXT	116.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					SpxTiqBiSUZBnzoa5ev7+2TsKajApnlSkXjJ
+					/WEyGNlV0ufC4soRV/mXxk7bxyJ1vAg25hwb
+					i8/T5GTs44ej2A== )
+116.3.1.192.in-addr.arpa. 604800 IN CNAME 116.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Vy8N3fe7c+Zbg5R319bO2xEO2XcqDUWrRaj4
+					YP+aITzdLHuA635NOxqIEvYZEs3a05d0L87V
+					YE/lxMrp29i5Og== )
+			604800	NXT	117.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					IUyG3uiSIY4wk+rIZJC+mtcm1x3yL7JLjllT
+					BBJOjgwyUeZDC9GePtitphK2+pXOu2r53eGv
+					jhMwXEqf2C6lbg== )
+117.3.1.192.in-addr.arpa. 604800 IN CNAME 117.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					I2Xb4mmLA//k5CdE+9amu8BowIWWSBmbJyYR
+					eNH/RkKH+afbmlUOgKILIvPHtZgksU4CKoYm
+					LmEDppBZoXelAA== )
+			604800	NXT	118.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					jEvrGx1ZZDsItQjYlga7SDY7IncSUrlv7ptq
+					dZWI4vDwlMTR+ebFnS8srkQhSkXefQWKk0jf
+					1FEVlkNLlvVUXA== )
+118.3.1.192.in-addr.arpa. 604800 IN CNAME 118.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					CSxZMqTiHaBEG3EMCLupob7ubW228Q0acFHF
+					pyMLVFWf01WEz4kFJtZzjCI1HvxuXlcFs9VO
+					zYBDx86s8TQ0jw== )
+			604800	NXT	119.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					h945PKG0f6m9KQYwy31/117qZxYGZ8MBQ2dK
+					qJYtsOgcRuIhwdXI/dEQQEYzcrVjwHlFHfKG
+					tzVMR4BkGDGk5Q== )
+119.3.1.192.in-addr.arpa. 604800 IN CNAME 119.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					pAZMxr8eh9HYyN8afXKkR9hhciy7Hp8y1C8v
+					bpVWd9bj+L4s1U5uvYwqx67RvUpkjhEj71Vl
+					f9YaSk/lS2XF/w== )
+			604800	NXT	120.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					sXyXCoyAHXhNz13t6ljuFXknfJuA/ZENRJDE
+					kEInHU/PXJcWw2Wg2TOyYK8WjeYyy6Uno0lj
+					PqCA+vVi34+CeA== )
+120.3.1.192.in-addr.arpa. 604800 IN CNAME 120.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					UecVCH/4fKDOZcSymgds7jko4d5VuHep0TVg
+					B33d1ooKpLvAqTiAe/3ODEEacfMEWuc2xmdp
+					ZZ0am4AcqIl42A== )
+			604800	NXT	121.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ocMBaf/2g/083Tamx0IzWhoZfEiDH58TcQXM
+					K092CDCqcbCgP5qUoFh5LDJQLyUK9g5r5xor
+					cFpIBF8vUsK58A== )
+121.3.1.192.in-addr.arpa. 604800 IN CNAME 121.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Rtj7NbDiSiKy5efGfcLtUUNStxbJ2TtsLrhc
+					pBonhI6uaRctr4lCg2/b9n0N8YUu17Ymxthr
+					L0M+gQeKnqFoMA== )
+			604800	NXT	122.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					oLLHVu5be5QgMevpUCEoZfzg121Y7GvFzuQb
+					0TYseaTyHraCPbM43ad8pcM7U4erxMQSEf0O
+					2xYI5th5MT2Vlw== )
+122.3.1.192.in-addr.arpa. 604800 IN CNAME 122.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					fDROw7jlO/Hkvwwkig91NVAJgbhz1Pfa4ODP
+					vhfV9PRbXpQDB2ZLQpXfxFd36Q4+0RFJNNR+
+					sEuinGRRSxmKxw== )
+			604800	NXT	123.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					QrZw3dEUzf74ff2G694fhO8mCJpsVbd4PFWq
+					2jx3WOm2kvtT2dajBFqnmlMIoMluwbD52JK0
+					TRLS6b1GJN3SMw== )
+123.3.1.192.in-addr.arpa. 604800 IN CNAME 123.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ahd08oOEGjCIZFNjk+N/wwfJXo/E4p6pqtNn
+					6rfmER0mKEUs3tIa1Qhe62uDetbHUxNc9JLB
+					jvZLAJzqr6rdpQ== )
+			604800	NXT	124.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					sKz/arDtyv6daHp7Pi5vp1oeJ0K4mssMrzTl
+					3NrZd7J0yKxmo34A1BsWC0qerpVVtGmzpJhU
+					ZpdlXUuI5Zu7Kw== )
+124.3.1.192.in-addr.arpa. 604800 IN CNAME 124.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					tTT7YShzCILSMZQTVZ80a9J4ylZEA5oMaJh9
+					TkoVaPfm7FSCl1YYO+K2J65c0JgaPzkQ1gXi
+					XHDfUIUIWsvXMw== )
+			604800	NXT	125.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					laQmQRM0+x3nZX/je5SFZOREtaukBHLi8ZSo
+					Kj6aWkd5m8kY1XF0Sv/ExodFoUZqd/0LnrVv
+					6vjG/Dgc01jl+A== )
+125.3.1.192.in-addr.arpa. 604800 IN CNAME 125.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					h+TtQOZppxUcHDxJkdIkazC9p6SiM9ScRj4a
+					gKrgybsRr+xz/IygyjYlTkKqDhfYBZM6yGWc
+					Aw08i5uDFWV7Rw== )
+			604800	NXT	126.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					JCjwdp4IbrHUBKnDKvcPlCOYhv5PtbSf6o/8
+					JqqUBmuHrupCa1QV3f/fynrGxBZmUakeqJTt
+					ctgD2TwoFG4yxw== )
+126.3.1.192.in-addr.arpa. 604800 IN CNAME 126.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					YmetN9yCuwFgWgXHITg0ZmRCdShecsTcLQJe
+					88AIsg3bMDEQSXfbxcB0GyAQWn/9Nua3lOm8
+					rQayNIkippojvw== )
+			604800	NXT	127.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					etf5v5ufdaeTf/sLiENl76nrIT1DLgc3HXK9
+					HjjiEWYxX2/TB7Of1Tf3tSI9b3eNNHEETonz
+					AFeg36g5tiq9JQ== )
+127.3.1.192.in-addr.arpa. 604800 IN CNAME 127.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Z7EByifdTDlxNqExoRZPz59nb7taVCXkwgvh
+					7OKl0UmBE16K5/fjBSzYvl1BC4zOqaWLIwDc
+					4mvJsRW+2C13Bg== )
+			604800	NXT	209.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					i9BjWYrnl5YdCJT7FEcP2LyWyILjFhyHFLwP
+					bfsN9lnJSmDQgxYjDj2DnMvlNMcn2+hHfOFM
+					T2ETw7Hyn5/eXA== )
+209.3.1.192.in-addr.arpa. 604800 IN PTR	road.uml.freeswan.org.
+			604800	SIG	PTR 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ZynI4TnvQwKY3WpUBhc4jVZJoqeV6oD+yF3M
+					+utsPeTHS9v47B7o2WhbL5B9sDfefmpg4WKY
+					B1OOtOn74vTqYQ== )
+			604800	NXT	213.3.1.192.in-addr.arpa. PTR SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					dqTP22D/23GkyR+WkDQbg6SDwZGNjDrUhANT
+					tKLAA7e0xbqoIbTijckttCX+N3sH5TTc23gr
+					DuXS1QV+iLXDBg== )
+213.3.1.192.in-addr.arpa. 604800 IN PTR	road.uml.freeswan.org.
+			604800	SIG	PTR 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					BTsYPM4qlDiU267M/3lcnSe2q6SjOHFvF4pR
+					FjyIidxL073KZMc8RSZaF6U13CmBje3B8bw5
+					wlY7NExouX5Akw== )
+			604800	TXT	"X-IPsec-Server(10)=192.1.3.213 " "AQNxbOBmDqiNrUmn5q4kzBQ6I6pW/g2c8iDh3Y/KDtELBC6G0dASaaa95lV0cZT2kla681hVLzRF4MUCmFkH5ih514Nrwc5aptte49/70WotqcbvAhXeBX0zbg78gUPaT7CcUEAYxHoqHubao4mmfWlSrOnpf4crE/q3J6zH+8Z3bfsTGnpThgfNCItHpH7jkHPUYDilHsk0Zfd5fxjVDbl8JbQoT3P1KrdmpK7M1sXQhug12ocq8HlrXa3smJI" "q5b4T0rF+MYrThrNytNIEn53phuj6S8qmONin4usCqpUw50i2VqaBNQSY++/B57AqThFZNqt7TjqqT0CQ7tPRELgXwRvWA04GDhqBHHWoOrLdsR0p"
+			604800	SIG	TXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					XXdtaC0UYeDNm52akOBFG+FXnTq4NIj2/w47
+					NJV9i3TIMVHApVBba/cCkwF68qVO9xzLVbkW
+					Zb3XptFZnlVP1w== )
+			604800	NXT	214.3.1.192.in-addr.arpa. PTR TXT SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					wIsHpNTziTUM1YG8NPyvUFYQsiSRBLGGjw/h
+					uUX/9yI07pcV6Srhx1uElOJNt7dd7CoMi85E
+					PyENXwVLo5wizQ== )
+214.3.1.192.in-addr.arpa. 604800 IN PTR	road.uml.freeswan.org.
+			604800	SIG	PTR 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					NBPf3+t7MqUrbqWuMrgLG5fGR44jPAwjAU9+
+					BtFcHHrBkHE4/zmbhHjsIKit+8gyQiyUbwLi
+					dr7Xaur+gcwOhw== )
+			604800	KEY	16896 4 1 (
+					AQNxbOBmDqiNrUmn5q4kzBQ6I6pW/g2c8iDh
+					3Y/KDtELBC6G0dASaaa95lV0cZT2kla681hV
+					LzRF4MUCmFkH5ih514Nrwc5aptte49/70Wot
+					qcbvAhXeBX0zbg78gUPaT7CcUEAYxHoqHuba
+					o4mmfWlSrOnpf4crE/q3J6zH+8Z3bfsTGnpT
+					hgfNCItHpH7jkHPUYDilHsk0Zfd5fxjVDbl8
+					JbQoT3P1KrdmpK7M1sXQhug12ocq8HlrXa3s
+					mJIq5b4T0rF+MYrThrNytNIEn53phuj6S8qm
+					ONin4usCqpUw50i2VqaBNQSY++/B57AqThFZ
+					Nqt7TjqqT0CQ7tPRELgXwRvWA04GDhqBHHWo
+					OrLdsR0p
+					) ; key id = 45341
+			604800	SIG	KEY 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					jYBqAdcf6poFILdEse3k9+ZTm7SA6HkBioiA
+					hAw5onyewZiBfhvp/dSKB5Z8uU0uTdKJK+UM
+					tib4x3hRWs234w== )
+			604800	NXT	254.3.1.192.in-addr.arpa. PTR SIG KEY NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					P+UovDtJDKEOaawrc7GU6wbvddA2ha2xMXI6
+					6Jq/Q9ETqcx20TjlrysFJIGgiyAsom5WyPLJ
+					MuwnuFT/TTT/YQ== )
+254.3.1.192.in-addr.arpa. 604800 IN PTR	nic.uml.freeswan.org.
+			604800	SIG	PTR 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					UCZaYyezF9bKcJa7yvKMgu0HrY5m+l4vDZhg
+					ryu7uUYfNkRslYaYLg/SMng7j3NPPS1WnMF8
+					l1uwmpN/0rGx7A== )
+			604800	NXT	33.3.1.192.in-addr.arpa. PTR SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					jQYc2ZUdITye8Uc0yt2eixu0AZX+0AXWPG/W
+					a4f5wxD7y+wpgOZHRT3AkR4ogaVnL2A45MrC
+					hftLgd2sRywWyg== )
+33.3.1.192.in-addr.arpa. 604800	IN PTR	north.uml.freeswan.org.
+			604800	SIG	PTR 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					KrObPsZSX4DcgI/VOYNiDSewdSy/2MgL6aWX
+					bnNfneWPhm7AcZplpl5oi5wStrqj+459DlZP
+					/FgIrni1025utw== )
+			604800	NXT	45.3.1.192.in-addr.arpa. PTR SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					DEtoN/H8rnXGVlmARYsJ4vwF/J4eNqoiQRCE
+					ZhDADg3sr/hkXU73Dp7NgAfJh/VDwklsjvOO
+					PFPQ7BaTzGqmEA== )
+45.3.1.192.in-addr.arpa. 604800	IN PTR	west.uml.freeswan.org.
+			604800	SIG	PTR 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					FF+O99SW6cxna0FabDFVH8wccdmWMEoDRgtM
+					HA3A5OvssafkGItaQQJyN9ggzU3aWOYO2EPe
+					uGp7kjRbXRdGYg== )
+			604800	TXT	"X-IPsec-Server(10)=192.1.3.45" "AQNzGEFs18VKT00sA+4p+GUKn9C55PYuPQca6C+9Qhj0jfMdQnTRTDLeI+lp9TnidHH7fVpq+PkfiF2LHlZtDwMurLlwzbNOghlEYKfQ080WlOTTUAmOLhAzH28MF70q3hzq0m5fCaVZWtxcV+LfHWdxceCkjBUSaTFtR2W12urFCBz+SB3+OM33aeIbfHxmck2yzhJ8xyMods5kF3ek/RZlFvgN8VqBdcFVrZwTh0mXDCGN12HNFixL6FzQ1jQ" "KerKBbjb0m/IPqugvpVPWVIUajUpLMEmi1FAXc1mFZE9x1SFuSr0NzYIu2ZaHfvsAZY5oN+I+R2oC67fUCjgxY+t7"
+			604800	SIG	TXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					OWbmRrwDa/tckjTNuf8grPnxWVdKXu6QUXNN
+					ikMTrQtb31pw2SIXI/uDtbvapXXiOEcHEDKS
+					0a6sITgh7ikQVg== )
+			604800	KEY	16896 4 1 (
+					AQNzGEFs18VKT00sA+4p+GUKn9C55PYuPQca
+					6C+9Qhj0jfMdQnTRTDLeI+lp9TnidHH7fVpq
+					+PkfiF2LHlZtDwMurLlwzbNOghlEYKfQ080W
+					lOTTUAmOLhAzH28MF70q3hzq0m5fCaVZWtxc
+					V+LfHWdxceCkjBUSaTFtR2W12urFCBz+SB3+
+					OM33aeIbfHxmck2yzhJ8xyMods5kF3ek/RZl
+					FvgN8VqBdcFVrZwTh0mXDCGN12HNFixL6FzQ
+					1jQKerKBbjb0m/IPqugvpVPWVIUajUpLMEmi
+					1FAXc1mFZE9x1SFuSr0NzYIu2ZaHfvsAZY5o
+					N+I+R2oC67fUCjgxY+t7
+					) ; key id = 25579
+			604800	SIG	KEY 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					fQTBA9E/fZFgnXGq1929ZnnTVsO3058h+1op
+					PpgzKWecTwLLaYgBEFRCnQAGfTF3BmrfqMVA
+					shUlMMwXgTZ0mA== )
+			604800	NXT	64.3.1.192.in-addr.arpa. PTR TXT SIG KEY NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					QvFm39RKMyId7kl29DJq31Xd0EepDsZmgkpU
+					xl4umaYoEMfIMnjHLBrDPN3nZtdfFDqCvbcY
+					6woR6sev/cWCnw== )
+64.3.1.192.in-addr.arpa. 604800	IN CNAME 64.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					gaN9z6vx1e4Eq7foOdcR0qzZvK+dMD1PIApT
+					xalVQkbEf5l23PGmvtOXW3xnnowxTgRQs8n+
+					hdFOKlQ07JRQQg== )
+			604800	NXT	64_26.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					lKbeQdIK/f/8GVbP6ABQuGxXYUl+zgr9sCRh
+					m7Z/RKSloBfJas//Hsano+heo6aa5eb5sHCa
+					kGSdfHNzpGwMlw== )
+64_26.3.1.192.in-addr.arpa. 604800 IN NS nic.uml.freeswan.org.
+			604800	NXT	65.3.1.192.in-addr.arpa. NS SIG NXT DS
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					v5L68MBjJZ+X+OtI9fHPy1zSpseV1lABepSs
+					O55NDCuQmkwTCV/p8ovPfNl/Ui67STsaNf4E
+					d8CDHQydTTqy/A== )
+			604800	DS	23704 1 1 (
+					F922ABA9603E0268E1DB506552D584DF0D94
+					DA97 )
+			604800	SIG	DS 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					UFYLZyCtai943IbVEdDt95qsK1vDffI4qcFT
+					hr3jlYokC7Lo9aXtxY8ZDtLe1mHsrLtP/+5q
+					foUGI5LTSZucqA== )
+65.3.1.192.in-addr.arpa. 604800	IN CNAME 65.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					WZYSL7jYv7xHY63/S9qFyA6vm9jJ+knnP57s
+					apwGPSDlvg1iczP3OYTCyWaYeobVG5PTMo7U
+					psyczewgRhLlpQ== )
+			604800	NXT	66.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Q60EmiK9nwVmo+Q4EZPMTiElStvbBzVwKpW9
+					/ewgV5JkqvK1qIC4cPPNzwhTGltT+0HqoX+/
+					qcatVwxKrWQURQ== )
+66.3.1.192.in-addr.arpa. 604800	IN CNAME 66.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					dcxU7xwXisYgUjxDCl0YGtx76Ahrif+FI/vQ
+					vsf7Jpn0bRYzEjwVRsjEKsbdGYg8aA1OWeSi
+					/IP3odIbo3XvhA== )
+			604800	NXT	67.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					LpWmUlU7SSIUom0aG1ruEfpS1Hz7awxRf3Tx
+					X63hjbyM6IG7iwtpuTaL+x2LzTOUcJN74nCi
+					JsNk3n2UGkBIeA== )
+67.3.1.192.in-addr.arpa. 604800	IN CNAME 67.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					HtA9adnHMJz+rrRLYR37CoemEQ1hAkTAXHcI
+					N+/H3XYySEgtrDhgGRQogqLieWh4QgoBhWEg
+					nRbHytRLnghYpA== )
+			604800	NXT	68.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					D2Y3EkxXFSgL3mrH9oEpdx3zKYAIBImorpVg
+					mHW8I3mFQYeDEkBNuNAdxef+Iq4MCfpBr3uR
+					wDrai09muoP1rA== )
+68.3.1.192.in-addr.arpa. 604800	IN CNAME 68.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					eNz3xhy7lwDuZLXmVSR3/AXzW7g2viNfte2h
+					RnQ/x9OmlnDTqS005mDpOkx5aGPvTC7dMv8l
+					YQFLFExBSgvvIw== )
+			604800	NXT	69.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					aswhmDKV0CuPSONNTa1fNknFmZs9Cu1vuLZu
+					66aARySPncsUTjJDOOAtSh01VB07kOkBtjnm
+					IAMX0mNsMS9wcQ== )
+69.3.1.192.in-addr.arpa. 604800	IN CNAME 69.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					nXNxPtdSmGSFcApnE+MGFVq6TXUcl6ACX6Xj
+					Ev2i0AgxfaqIUC3iG70w32f8MYiWcZJLzPYO
+					8JA2aEiIWZ49aA== )
+			604800	NXT	70.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Yh8Yszq3sj9Ygr4gZ5s3ra+Y5RPoaI6Eyu+Q
+					15sv7sfYB6gYIy2p2YALI0AdMc+eUvMFkIs0
+					Lat5BaQEdKy6bQ== )
+70.3.1.192.in-addr.arpa. 604800	IN CNAME 70.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					h76IR7W8hBP7k0CGuf09x4R72ztfYqL3TBFF
+					fQOwV2WEYDJqEe1fuEQ0iMkUGrVV1gyA+YLo
+					XdauogQf1mngig== )
+			604800	NXT	71.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Jqh54UwUj5JqMMVG8ZXqtMh8sejHSe9BDNpx
+					msW61hhdLd8Te14dIe8h/yY4Z6ra77yxI49K
+					OJoNB1PARVV4vQ== )
+71.3.1.192.in-addr.arpa. 604800	IN CNAME 71.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					NLiVq9W9IuCVJ9tS9oApupY3Ru1a5ffHMNI4
+					4kTY8Fskgwc65q9hHOpUi8ZW45kEKN8imb/2
+					tXc1qIHEnUE46Q== )
+			604800	NXT	72.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					bxDPmVXydKVL4EQyjcZkEhjoeASESFYpiKSC
+					DHjLTA8r3+BRP84e5Qe8fGSSVQclicHE6dqb
+					+CUnoQZFg8lNxQ== )
+72.3.1.192.in-addr.arpa. 604800	IN CNAME 72.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					wvQPA+VW8kqoCb9GTccfNBFX6Rtt/DHI53Is
+					n6btGA8Ki4MK7UwCrgSTBW40+JZGApvbd0zo
+					3rOuYL208RmjRA== )
+			604800	NXT	73.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					oNwnwcoWNRpgAW8Paigte1zX+Rv9YTi0REkr
+					Yz5On0OabA7zHPT7nMlSjLfxUyWGO3Zd8vKk
+					MXFU/zy1jKu41A== )
+73.3.1.192.in-addr.arpa. 604800	IN CNAME 73.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Wkr/0VLf/KqIfrS865AgvSfnRlXkisAKCv/F
+					7Qvo6gbbN7OpQbKQTVx8t8c17uFDvDZQAKcf
+					xxMpJ2JnfZ1Orw== )
+			604800	NXT	74.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					BdXvnPoOFGXNun1FnVijK5wwfuwbra3iL/T+
+					Nz8olkD4lt60ny7IEe6LZ9kLJKmw/CdTIK4A
+					eRTJjSYUb+2NKw== )
+74.3.1.192.in-addr.arpa. 604800	IN CNAME 74.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					VdjxeLNfrW4RK1hPWn26kn/AfNcpS62vNBF4
+					UQ20Z3xwF9u5YodU8S6qvVAxBX3jDrMHDAkG
+					ybuCX7YIgQoNog== )
+			604800	NXT	75.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					CPwZGOPg0C8xgs599TPTJ25cKmveO3QGqNhc
+					d64/D7O834Gfxc8jCW6heuj7TjkRo4rPxY6u
+					4Tas0n/NuRSCqw== )
+75.3.1.192.in-addr.arpa. 604800	IN CNAME 75.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					jyMTj9cZoEkxbUMo6K4p+Q4Wq6TNEZilaZB0
+					drI5ka5prT9OAmOrwNftHNhSZv48myz/kS2j
+					NrxvCfrsm/x6og== )
+			604800	NXT	76.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					xhGDMfkJ/liqNNtzJoyy/QJSKdXEveOb7Maj
+					VJXgHcXxD+yy2dHKU9LBSQ6+dZZjeGT9Ovil
+					KbZzUfqvWoTMlg== )
+76.3.1.192.in-addr.arpa. 604800	IN CNAME 76.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					kT6PrgCbtfPxxRShNBbDTP0elWwV8J8nUIkC
+					bBhOIppLJPjd/Wj4K++BnvWQXe9zZsDp/W4v
+					lLFrRzKIfByOOw== )
+			604800	NXT	77.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					qJeA9LCfDrIZ08L9Y7JbR3P8LcffjMxeNBb6
+					xc+vgBwWIWOfQ0dzWRF5BisdQgj7vMSCKfMB
+					roVZBkk91B2Ibw== )
+77.3.1.192.in-addr.arpa. 604800	IN CNAME 77.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					pR/buT45WRb1rorjCnQ3n40lAW3NpW9hRn0q
+					JNU9LZR5CXAIPQ6gRlCg+5G/h4sg/OIASJWL
+					2vr7uhv2crBIbw== )
+			604800	NXT	78.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					aTbkBAWChS+bWqcWkhOLUzgqeL1Knr7hbvW6
+					KUQOMfZE4zkyAanDHGTl2bVO0S40LiOB+wpR
+					qvH0//ewVeYFuQ== )
+78.3.1.192.in-addr.arpa. 604800	IN CNAME 78.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					fzC/Ht4wZAgZPE6slQs6Q7N+2E+58H5yq/yi
+					7b5vRsyQbaVmFfDhItTtqvnv538fVR78Zd5B
+					1jbsxzqZiEvOdQ== )
+			604800	NXT	79.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					I4CubT8/JFu2b9DhFXKD259q+0JyJr/EqEAR
+					1szfCi4U2bY8JqLrvBEtOAbEAXfr4rYSEzJm
+					B3C4atrnOdQ++Q== )
+79.3.1.192.in-addr.arpa. 604800	IN CNAME 79.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					dNzXdOIv4LWtCrddZVNCLqZ/bGho1V3GRxQh
+					joKtvOcjlrxA0xJu7LFFSxQJwsrMgZkGJXnk
+					r73SSWm340NY2w== )
+			604800	NXT	80.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					t9PiXtJlRRDl2IiGyjzWwjUuqQgyeXNd/VDd
+					/BR8LejrL03VfLrxlpHtWJMXyDc49DE2slUc
+					AeyAZEdtAfltAg== )
+80.3.1.192.in-addr.arpa. 604800	IN CNAME 80.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					DvHxcA3Su7lrcc6KeJdrjcNz9PAZ0ZGUIoYt
+					B1IRro4L3T9M42RRbrwdCxuKVv3Xs2IckNlo
+					MnkOdetX/s6MVA== )
+			604800	NXT	81.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					ezrEB70DfDq/JgEGSo5NZiZM1yFMjrVdWHot
+					QkmQGJWgOP5VIZ7E5sU8ViuDN3h8g+pZWWzI
+					VcLUr8268PHvWQ== )
+81.3.1.192.in-addr.arpa. 604800	IN CNAME 81.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					fzJ122WX9surKnUnGq9+zYM7CdiMBVbK0NzS
+					14Yipetcvhqiv+kwFDNIS1wIG2TUxwmW7nsW
+					NGe7KfmMf3psXA== )
+			604800	NXT	82.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					tkyja6QW1/GH+HBrQcKqBfmnIReLemCWz55i
+					dT6VuRHfXpdU1/re4XWRt907aG7l5HNV1rwq
+					vP/E/BBPeVohzA== )
+82.3.1.192.in-addr.arpa. 604800	IN CNAME 82.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					QYwFQod9cl95NO4alkqPKXUKdIrWFnib2Fge
+					wJE+4c04bNYNA7+NGOM3fmx9cjRU3dRinNnc
+					x8kxy+TNQ9sSIA== )
+			604800	NXT	83.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					f+AVIC4e9ffkNHsjtmlAwyTPUrY3Bpsen+45
+					x11rAvN18tbt7JHg1NoNPYO06JJZWchMNOsH
+					d9NXF0IyuSnKAA== )
+83.3.1.192.in-addr.arpa. 604800	IN CNAME 83.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					gJtRcqOb30wB+YVgAh6tq0LVA65sScuvJYqC
+					+3AAFEhCjAzbe6EB2lhE8vG8hVQ/dRBGZ42w
+					15RmIwM82kTpvA== )
+			604800	NXT	84.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					JgretTfYl8lWRYedFI1U3CPSIEAF/24dM8a/
+					WMrSGHbwfe11DHyJ5YG8V6/4OfmBcLjKtIC+
+					GToJG3gda7+rjg== )
+84.3.1.192.in-addr.arpa. 604800	IN CNAME 84.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					DWgWFAZnJ/3owmYklnXwaYHqUEIQI5Duzpr4
+					IJ0EgOnagrhYQn1F6++QAmC2N5vtsYAGScbn
+					WB+YUnTI1JMXlw== )
+			604800	NXT	85.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					k35tfe1h5BhjzbDmOdzJxeyoy3aJLh36sPbr
+					rr+vGwxbVw4CvSg5uHTVtoK9Yvhn3DKREpAn
+					RYCS9Hw/TYPGKw== )
+85.3.1.192.in-addr.arpa. 604800	IN CNAME 85.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					fYbKVC84PW2451Q+UkUXEUVdkSmabt/gMKij
+					2BKmf6xX4wCqee2dn3tVPWfcL0c0kp0+UUQH
+					arBLVrw48+tLng== )
+			604800	NXT	86.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					FETn5akCIl+YHkr/OmwQHFDApjTHPaVby67o
+					sDndIBsoODkyriNI5bzUf1q+L4R+ghuXR26I
+					PLAGwO3FWOK4Yg== )
+86.3.1.192.in-addr.arpa. 604800	IN CNAME 86.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					aQ3u0TNOfisyGzqwvNbIWPJqClLUJ3u5Lr3v
+					Swgx4fSSMi7vO6T5oanUtKYTcpgEfrKYBAi6
+					GctHtppvkKNBeQ== )
+			604800	NXT	87.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					kH1aPnqI0qSSt8VfvlgSnQCK/tvr+tU2WYvZ
+					oOshenx87ZjjTy4RVT7Ec+hylQiVaqkZbtBw
+					Yqb7WVStK1Bdww== )
+87.3.1.192.in-addr.arpa. 604800	IN CNAME 87.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					oNgOx1S4n7a5FTVDyQ5jv8O5UK//1WNi9xLc
+					7WUTy9lXaqVf/JjKsQhfN8+cQVs4eSEq0r8r
+					KPtaHh2QecBEfQ== )
+			604800	NXT	88.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					KMJcjpvymOhox/QZ5vaMlvgR589S6YqNXWlG
+					r+i3oHYMgrb7xD8+pq+MzOFCAdYSKbMUhoUX
+					0AA+eXEB7UuAkw== )
+88.3.1.192.in-addr.arpa. 604800	IN CNAME 88.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					F7PWfAFXzhJeLa4+YWn6YRe5X1m3QJpMkgGo
+					Lq3TGKQBtrwDCbusdubFufwLi4utjBWhdpgK
+					3MLzgbMr4N/OTQ== )
+			604800	NXT	89.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					tanFpx/MxrnrjrtVlJYuz6XL5i17/p/8vMph
+					XUumL4y4323X6pLRIvwsnKQrxPXFnl+g+flp
+					JqJyzIEUjYx3rA== )
+89.3.1.192.in-addr.arpa. 604800	IN CNAME 89.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Uo73YJU6tnNhUDKm899m3/MmqnBjsoWIKbwb
+					/4zwNrASFdecdXQsTuSczh+loHQqXn+Qhbaw
+					wlV14RgSVIzjRA== )
+			604800	NXT	90.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					TgFFQ37mrHhumDRhj17HKnJ68M6C5EpLrPk/
+					laM9j0G+1+NUA6BwAVoZ84bVOmoqWHCRtTo5
+					1pPENWEFg16Sfw== )
+90.3.1.192.in-addr.arpa. 604800	IN CNAME 90.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					KI6q9tyVrxO875AegLfByYGj38rgHavGxhhr
+					AYb/TTYXzDAFCf2AsJqcSsTrGLTewp1L8NKz
+					XrafeWm/qDZhOw== )
+			604800	NXT	91.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					MU0OMtOUsfUPfRPPhFlo751oC9R4jWaMHKyC
+					xvlBYNNbUSZSBn4fR9Jkm+d4pECUIEGwW1t7
+					drX13SE+xY1KCQ== )
+91.3.1.192.in-addr.arpa. 604800	IN CNAME 91.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					n38EAf9xTtnRl0dT5ffgcRmz+15lWLGt1u5r
+					8c1oceATRcGKjWR50z7QalEutOj5MDojlRga
+					n60Y2h349X2sug== )
+			604800	NXT	92.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					C9ZtALGOyXWBSWpugMA7yFAR55PZXDD3dsKH
+					OIr3S3KN0L39MCyVCS5xGg4HFovhFEuEcpkt
+					nzYRPvYBcP88Mw== )
+92.3.1.192.in-addr.arpa. 604800	IN CNAME 92.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					nYzvW1XvRxZk6L4H2wQ45fuyaLyj7Gq30t2G
+					LvxfCBtQe429nWb4xww6HM3LyYf92IIWyUvd
+					K1nF37kjk6I0Xw== )
+			604800	NXT	93.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					eHxirYUM4nb+tJ6gJleSkMuyU/WobWgwODMg
+					z+w1Dr7a4XBkdTmGxVODzyTob3BnkOVmbdya
+					Ln2aPCgAXSIvvQ== )
+93.3.1.192.in-addr.arpa. 604800	IN CNAME 93.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					bYa8AZsp9d+stHr9bfv+H23nF22KGd5ccm9o
+					ffa8aOTEL8RWhLBGv3bJm90RTd9OmM/tK1Hb
+					nK6Cl4erJ+n3XA== )
+			604800	NXT	94.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					VMCyRZDmxCOy3hH8us5VGzu+Lx+KmOSuY6j6
+					HiqRKj6KvloUZtH2WGT8kSdc/GPtVP99hOrn
+					sTbwzZ0uxy+G3A== )
+94.3.1.192.in-addr.arpa. 604800	IN CNAME 94.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					v5oEh/VKjXY5q+mpxuqTlnVfHRoQeYQKAIGa
+					bf3q/DFXX6IwTZ+OGZyzYrtnd3VDtW3VMt8k
+					Wu9a8ocQKORDsg== )
+			604800	NXT	95.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					SU+6ZGk881/o4ABbO7goJejkfSBNXGxOwFjE
+					Fc4mMD2kf12Qjzqd+dllZAACJoy7/S/hg2hy
+					zW7GjLnV7EB3rQ== )
+95.3.1.192.in-addr.arpa. 604800	IN CNAME 95.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					kLdllt+eXUACOJ37UyHCeu49D5CCNktfUd4+
+					UFCW1+wvu6hGwoZ2t7f9wf8plqbm0s1kg/JC
+					EqIreiWqjtYY3A== )
+			604800	NXT	96.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					tFWeIjRTdc1VSnUTJf/XPmUbVkBZs8ECg9pH
+					RfbNXHvfrMA7gjfJAMiYSwTkHBYlEqmafso5
+					w8KXB9NXLsa9Bg== )
+96.3.1.192.in-addr.arpa. 604800	IN CNAME 96.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					sMYlO+RicXp3WaBOqiw4VuFF7V424Ijq0Cw0
+					Y+W+6xR3tVPXr/4/EJBfoie88PSjeasUkoeo
+					T4bfc7C4l8oHzg== )
+			604800	NXT	97.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					AlOD/oIjgNQvs0uemO4K2hcFx2+sDXKF7qp3
+					RYfaM4/yf71DCRXUja3KoGATqRFgGkYHYPuo
+					jnkJXp2wNZxCBg== )
+97.3.1.192.in-addr.arpa. 604800	IN CNAME 97.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					bPiLrA8tFNGCQjgUdHbU2RgJqknlYE0tmZFh
+					wt0eO44hqyyrLJcMWYUFEXyPhoYkd8WuCKyz
+					s5X2DCWIkToQcQ== )
+			604800	NXT	98.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					Uq/ZPq8QNRF38JNzlPEdow8ATfLkdjxY/T0G
+					6WuDcuNkC/mO0+DaQe5rqUst23PaNFnS2xIs
+					yZLk5ipVtTVhkA== )
+98.3.1.192.in-addr.arpa. 604800	IN CNAME 98.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					osJDwoNgTbZ+x/ShNdZ+sU8przoMTgx+WLYV
+					4YJtca0UzdnmKLIopCK9MdnwwWdQoqRBtvUd
+					kBLZNJ6bVYCqRg== )
+			604800	NXT	99.3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					itQDl9QLFxh1MOqFrnxPGwSxMr+EhGBcKgbx
+					+x54KyaYDsKX/NFO4aRTnkymaK5jdF1D3oAC
+					8tuIUHczd4z/Lw== )
+99.3.1.192.in-addr.arpa. 604800	IN CNAME 99.64_26.3.1.192.in-addr.arpa.
+			604800	SIG	CNAME 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					VO47WrFJuYaVB5XldSa4kRBlNJyQc+6n1R2W
+					bh5unI3mo8sqI8zG0nVoL4xFdf/rXsSll+jt
+					Z0xqGDHHpMKvCQ== )
+			604800	NXT	3.1.192.in-addr.arpa. CNAME SIG NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 39340 3.1.192.in-addr.arpa.
+					WnvLjlyEdKqFQxkg7JN+PGtJIrfMoKKKSJaf
+					iUaCook65GGVdCvckqLqMUXCcYi6dvzM3vGY
+					ETBKa3v6fl9bdQ== )

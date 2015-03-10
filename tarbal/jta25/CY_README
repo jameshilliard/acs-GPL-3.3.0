@@ -1,0 +1,36 @@
+CYCLADES README
+*****************************************
+Jen		04.23.03	Initial readme file
+Regina		09.16.03	Upgrade Java 2 SDK
+*****************************************
+
+Java Applet Directory
+
+This directory contains the sources used to create the telnet/ssh
+java applet that is used to connect to the serial ports from the
+Cyclades web services. 
+
+To create generate the java applet, you must have java development
+kit installed in your environment. The following packages were installed
+in genesis in order to build the java applet.
+1.  Java 2 SDK, Standard Edition 1.4.2_01. I got it from
+the download section of www.sun.com. 
+(Specifically, http://java.sun.com/j2se/1.4.2/download.html. 
+Linux RPM, self-extracting file) The rpm installed the java directory
+in /usr. 
+2. Jdom Build System. Installed in /usr/jdom-b8.
+3. Gnu.regexp. Installed in /usr/gnu.regexp-1.1.4.  
+
+All of the above packages (.tar, .rpm) are saved in /usr/local/src. 
+You can obtain them and install them in your environment. 
+
+After installing these packages and creating the appropriate linkages, 
+you, modified the main Makefile ($PROJ/Makefile). Specify the path of some 
+of these packages in the CLASSPATH.
+ 
+The main source codes are in the /de/mud. After modifying the sources, 
+you can return to the main directory ($PROJ) and 'make javaApplet'. This
+will create a jar file that also gets copied into the /appl directory.
+Then when you generate a zImage, the jar file in /appl will get saved
+into the image. 
+

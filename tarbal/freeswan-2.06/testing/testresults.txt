@@ -1,0 +1,203 @@
+
+Here is a summary of test results for 2.06; if you run the tests 
+yourself, you should find something similar. 
+
+You can find more info on FreeS/WAN's test suite in doc/makecheck.html.
+
+2.06 testing results for Mar 17 9:42:04 2004
+
+                               Regression tests
+               Test name                      Result             Detail      
+   bad-updown-01                      passed                 PR#267          
+   barf-01                            passed                 
+   barf-02                            passed                 
+   basic-pluto-01                     passed                 
+   basic-pluto-02                     passed                 
+   delete-sa-01                       passed                 
+   east-ah-icmp-01                    passed                 
+   east-ah-icmp-01-module             passed                 
+   east-ah-icmp-02                    passed                 
+   east-ah-icmp-02-module             passed                 
+   east-des-parity-01                 skipped                
+   east-des-parity-01-module          skipped                
+   east-dns-01                        FAILED {1} pkt         
+   east-dns-01-module                 FAILED {1} pkt         
+   east-drop-01                       passed                 
+   east-drop-01-module                passed                 
+   east-drop-02                       passed                 
+   east-drop-02-module                passed                 
+   east-hold-01                       passed                 
+   east-hold-01-module                passed                 
+   east-hold-02                       passed                 
+   east-hold-02-module                FAILED {1} pkt cons    
+   east-icmp-01                       passed                 
+   east-icmp-01-module                passed                 
+   east-icmp-03                       passed                 
+   east-icmp-03-module                passed                 
+   east-icmp-04                       passed                 PR#252          
+   east-icmp-04-module                passed                 PR#252          
+   east-lifetime-02                   FAILED {2} cons        
+   east-lifetime-02-module            FAILED {2} cons        
+   east-lifetime-03                   FAILED {2} cons        
+   east-lifetime-03-module            FAILED {2} cons        
+   east-lifetime-04                   skipped                
+   east-lifetime-04-module            skipped                
+   east-none-01                       passed                 
+   east-none-01-module                passed                 
+   east-none-02                       passed                 
+   east-none-02-module                passed                 
+   east-pass-01                       passed                 
+   east-pass-01-module                FAILED {1} pkt cons    
+   east-pass-02                       passed                 
+   east-pass-02-module                passed                 
+   east-reject-01                     passed                 
+   east-reject-01-module              passed                 
+   east-reject-02                     passed                 
+   east-reject-02-module              passed                 
+   east-saref-pfkey-01                passed                 
+   east-saref-pfkey-01-module         passed                 
+   east-trap-01                       passed                 
+   east-trap-01-module                passed                 
+   east-trap-02                       passed                 
+   east-trap-02-module                passed                 
+   east-trapsubnet-01                 passed                 
+   east-trapsubnet-01-module          passed                 
+   east-trapsubnet-02                 passed                 
+   east-trapsubnet-02-module          passed                 
+   food-groups-bug-01                 passed                 
+   food-groups-clear-01               passed                 
+   food-groups-clear-or-oe-01         passed                 
+   food-groups-never-01               passed                 
+   food-groups-oe-or-clear-01         passed                 
+   food-groups-oe-or-die-01           passed                 
+   ipsec.conf-alsoflip-01             passed                 
+   ipsec.conf-migration-01            FAILED {2} cons        
+   ipsec.conf-migration-02            FAILED {2} cons        
+   ipsec.conf-migration-03            FAILED {2} cons        
+   ipsec.conf-migration-04            FAILED {2} cons        
+   ipsec.conf-myid-01                 passed                 
+   ipsec.conf-restart-01              passed                 
+   keygen-01                          passed                 
+   keygen-02                          passed                 
+   keygen-03                          passed                 
+   lib-addrtoa                        skipped AWOL           
+   lib-addrtot                        skipped AWOL           
+   lib-addrtypeof                     skipped AWOL           
+   lib-anyaddr                        skipped AWOL           
+   lib-atoaddr                        skipped AWOL           
+   lib-atoasr                         passed                 
+   lib-atosubnet                      passed                 
+   lib-atoul                          skipped AWOL           
+   lib-copyright                      skipped AWOL           
+   lib-datatot                        skipped AWOL           
+   lib-incompletemask                 skipped AWOL           
+   lib-initaddr                       skipped AWOL           
+   lib-initsaid                       skipped AWOL           
+   lib-initsubnet                     skipped AWOL           
+   lib-keyblobtoid                    passed                 
+   lib-optionsfrom                    skipped AWOL           
+   lib-parityofbuffer                 passed                 
+   lib-pfkey_v2_build                 skipped AWOL           
+   lib-pfkey_v2_debug                 skipped AWOL           
+   lib-pfkey_v2_ext_bits              skipped AWOL           
+   lib-pfkey_v2_parse                 skipped AWOL           
+   lib-portof                         skipped AWOL           
+   lib-prng                           FAILED {127}           
+   lib-rangetoa                       skipped AWOL           
+   lib-rangetosubnet                  passed                 
+   lib-sameaddr                       skipped AWOL           
+   lib-satoa                          skipped AWOL           
+   lib-satot                          skipped AWOL           
+   lib-subnetof                       skipped AWOL           
+   lib-subnettoa                      skipped AWOL           
+   lib-subnettot                      skipped AWOL           
+   lib-subnettypeof                   skipped AWOL           
+   lib-ttoaddr                        skipped AWOL           
+   lib-ttodata                        passed                 
+   lib-ttosa                          passed                 
+   lib-ttosubnet                      FAILED {1}             
+   lib-ttoul                          skipped AWOL           
+   lib-ultoa                          skipped AWOL           
+   lib-ultot                          skipped AWOL           
+   modtest-rh-alpha-01                FAILED {missing parts} 
+   oe-fail-without-private-key-01     passed                 
+   oe-fail-without-resp-client-txt-01 passed                 
+   oe-flood-deadlock-01               passed                 
+   pluto-dontreky-expiry-01           passed                 
+   pluto-ipcmp-01                     passed                 
+   pluto-rekey-01                     FAILED {1} cons        PR#249          
+   pluto-unit-01                      passed                 
+   pluto-unit-02                      FAILED {2} cons        
+   proc-fs-01                         passed                 
+   proc-fs-01-module                  passed                 
+   saref-alloc-01                     passed                 
+   saref-alloc-01-module              passed                 
+   vpn-dns-01                         passed                 PR#233          
+   west-ah-icmp-01                    passed                 
+   west-ah-icmp-01-module             passed                 
+   west-ah-icmp-02                    passed                 
+   west-ah-icmp-02-module             passed                 
+   west-drop-02                       passed                 
+   west-drop-02-module                passed                 
+   west-esp-short-01                  passed                 
+   west-esp-short-01-module           passed                 
+   west-esp-short-02                  passed                 
+   west-esp-short-02-module           passed                 
+   west-hold-02                       passed                 
+   west-hold-02-module                passed                 
+   west-icmp-01                       passed                 
+   west-icmp-01-module                passed                 
+   west-icmp-03                       passed                 
+   west-icmp-03-module                passed                 
+   west-icmp-04                       FAILED {1} pkt cons    
+   west-icmp-04-module                passed                 
+   west-none-02                       FAILED {2} cons        
+   west-none-02-module                passed                 
+   west-pass-02                       passed                 
+   west-pass-02-module                passed                 
+   west-rcv-nfmark-set-01             FAILED {2} cons        
+   west-rcv-nfmark-set-01-module      FAILED {2} cons        
+   west-reject-02                     passed                 PR#89           
+   west-reject-02-module              passed                 PR#89           
+   west-trap-02                       passed                 
+   west-trap-02-module                FAILED {2} cons        
+   west-trapsubnet-02                 passed                 
+   west-trapsubnet-02-module          passed                 
+   whack-status-01                    passed                 
+                                  Goal tests
+               Test name                      Result             Detail      
+   basic-docmake-01                   FAILED {1} pkt         Requirement 000 
+   basic-install-01                   FAILED {1} pkt         Requirement 000 
+   basic-uninstall-01                 passed                 Requirement 000 
+   co-terminal-02                     passed                 Requirement 000 
+   co-terminal-03                     passed                 Requirement 000 
+   dns-key-01                         passed                 Requirement 000 
+   east-icmp-02                       passed unexpected      Requirement 160 
+   east-icmp-02-module                passed unexpected      Requirement 160 
+   kernpatch-suse-two-four            FAILED {1} cons        Requirement 000 
+   kernpatch-two-four-01              FAILED {1} cons        Requirement 000 
+   kernpatch-two-oh-01                FAILED {1} cons        Requirement 000 
+   kernpatch-two-two-01               FAILED {1} cons        Requirement 000 
+   modtest-noipcomp-01                FAILED {2}             Requirement 000 
+   modtest-suse-two-four              FAILED {2}             Requirement 000 
+   myid-road-01                       passed                 Requirement 000 
+   myid-road-02                       passed                 Requirement 000 
+   myid-road-03                       passed                 Requirement 000 
+   myid-road-04                       FAILED {1} cons        Requirement 000 
+   myid-road-05                       passed                 Requirement 000 
+   oe-road-01                         passed                 Requirement 000 
+   oe-road-02                         passed                 Requirement 000 
+   oe-road-03                         passed                 Requirement 000 
+   oe-road-04                         passed                 Requirement 000 
+   oe-snat-01                         passed                 Requirement 204 
+   overwrite-install-01               FAILED {1} pkt         Requirement 000 
+   rpm-rh73-install-01                FAILED {1} pkt pkt     Requirement 000 
+   west-icmp-02                       passed unexpected      Requirement 160 
+   west-icmp-02-module                passed unexpected      Requirement 160 
+   xisp-install-01                    FAILED {1} pkt         Requirement 000 
+                                   Exploits
+               Test name                      Result             Detail      
+   east-espiv-01                      passed                 
+   east-espiv-01-module               passed                 
+
+ TOTAL tests: 187   PASSED: 119   FAILED: 34   MISSED: 0  SUCCESS RATE: 63%

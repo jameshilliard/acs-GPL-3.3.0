@@ -1,0 +1,18 @@
+/Dist/1.8/Wed Aug 28 23:51:16 2002//
+/Makefile/1.20/Wed Dec  1 19:44:33 2004//
+/_G_config.h/1.3/Mon Nov  8 23:15:48 2004//
+/errlist-compat.awk/1.8/Tue Mar  8 20:44:46 2005//
+/errlist.awk/1.23/Sun Mar  6 00:07:09 2005//
+/errlist.c/1.32/Sun Mar  6 00:34:12 2005//
+/getutmp.c/1.3/Fri Jul  6 04:55:51 2001//
+/getutmpx.c/1.1/Thu May 13 19:54:49 1999//
+/glob64.c/1.4/Thu Jul  1 17:39:25 2004//
+/ifaddrs.c/1.4/Thu Apr 24 23:40:31 2003//
+/siglist.c/1.10/Tue Apr  1 05:51:02 2003//
+/updwtmp.c/1.2/Fri Jul  6 04:55:51 2001//
+/utmp_file.c/1.3/Fri Jul  6 04:55:51 2001//
+/utmpx.h/1.7/Sat Apr 19 16:48:35 2003//
+D/bits////
+D/net////
+D/netinet////
+D/sys////

@@ -1,0 +1,46 @@
+; File written on Mon Oct  6 14:35:16 2003
+; dnssec_signzone version 9.3.0s20021115
+64_26.3.1.192.in-addr.arpa. 604800 IN SOA 64_26.3.1.192.in-addr.arpa. root.freeswan.org. (
+					200310021  ; serial
+					604800     ; refresh (1 week)
+					86400      ; retry (1 day)
+					2419200    ; expire (4 weeks)
+					604800     ; minimum (1 week)
+					)
+			604800	SIG	SOA 1 6 604800 20131003183516 (
+					20031006173516 23704 64_26.3.1.192.in-addr.arpa.
+					iB112asRRYy0+qVRU8fqNtrO/TXNIi8cbLlQ
+					ipaFll0q3YbzHQmFB0dCICBJkW8AtpxajcFN
+					qAlW0pPEJTYWNx1NjTAhtr0z+jloClEti76m
+					6l50yf0D2A1IJ4vaQjVR0EjZayNZK68ni91+
+					wEVh+WiyLiqlbZwp0Sag0VE1E/4= )
+			604800	NS	nic.uml.freeswan.org.
+			604800	SIG	NS 1 6 604800 20131003183516 (
+					20031006173516 23704 64_26.3.1.192.in-addr.arpa.
+					j7bj3SN8z9j6/vXqhhZua4uWWCEr7+T2fl4u
+					/YTspUCL7AfzdEpX4ulkzSX+ipATQKhQQUMp
+					OwrRie7UEo28fxPiZ7XTDTgnnEWt8PcvWt6y
+					AvFqcoH/b9xZGxAvTe2V5aLp7FLzmSjldWRi
+					+tQHePEK5jfiDZaMt4cLDe0BKz8= )
+			604800	KEY	256 3 1 (
+					AQOc0Ti09oQO0A4UfaYcTxhLGoKgXykpsS+3
+					x9iwgspbKfVzxwoFimC7V8Y0G3AOiiSA8Z4m
+					r8wxM1DVaexmA3r/a+YWAr8q4CIcGtCDI+7V
+					/MZJ1b954iX1x7AgDLkKeyhdI8WZXS9oZ++0
+					LLNXYR8PBR6hjmyj+4LFbsO8O1yYJw==
+					) ; key id = 23704
+			604800	SIG	KEY 1 6 604800 20131003183516 (
+					20031006173516 23704 64_26.3.1.192.in-addr.arpa.
+					L4OPLF95i4ep+QgMz+Q2gZdsd01QSngWBb4T
+					8TIUWLCOI+Ojhusuy5+O+WMOSrnYZG+fo301
+					m8DDZYOpuf25Ns03Dm1VQz5DVEgb4q0rUKeC
+					ot6bdUrq1S5RpT6aI0UU/LeqJR7mhADGdbaQ
+					lVCgF1zYiqUdiqben2O3O6urKLA= )
+			604800	NXT	64_26.3.1.192.in-addr.arpa. NS SOA SIG KEY NXT
+			604800	SIG	NXT 1 6 604800 20131003183516 (
+					20031006173516 23704 64_26.3.1.192.in-addr.arpa.
+					GzdG9f78/uZqohfFecGklQdZkFmue35ZHd/Y
+					haUNjNExGj688Q4QDztHz3rlPnZH9uFsZ5ID
+					18HVsz/f4CD82c+rCKi3gRx4f8qrtHKdACW+
+					O3E6dtkalNKxzcNzWFL51SZAwp4uafrvjPHm
+					jlA1AlPr8XiQuxakmMk/PbAODyU= )

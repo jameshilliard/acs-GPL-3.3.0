@@ -1,0 +1,11 @@
+--- /distros/kernel/linux-2.6.3-rc4/net/Kconfig	Tue Feb 17 18:08:44 2004
++++ ref26/net/Kconfig	Tue Feb 17 18:11:34 2004
+@@ -635,6 +635,8 @@
+ 
+ endmenu
+ 
++source "net/ipsec/Kconfig"
++
+ menu "Network testing"
+ 
+ config NET_PKTGEN

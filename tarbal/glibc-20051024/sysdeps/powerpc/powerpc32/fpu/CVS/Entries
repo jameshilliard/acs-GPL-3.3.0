@@ -1,0 +1,26 @@
+/Dist/1.1/Thu Sep 19 05:52:10 2002//
+/Makefile/1.1/Thu Sep  5 09:57:11 2002//
+/__longjmp-common.S/1.6/Fri Jun 17 23:09:36 2005//
+/__longjmp.S/1.4/Wed Mar 17 17:26:10 2004//
+/fprrest.S/1.1/Thu Sep  5 08:59:21 2002//
+/fprsave.S/1.1/Thu Sep  5 08:59:40 2002//
+/s_ceil.S/1.5/Fri Jun 17 23:09:36 2005//
+/s_ceilf.S/1.4/Fri Jun 17 23:09:36 2005//
+/s_copysign.S/1.2/Thu May 26 14:30:44 2005//
+/s_copysignf.S/1.1/Thu Sep  5 09:00:36 2002//
+/s_floor.S/1.5/Fri Jun 17 23:09:36 2005//
+/s_floorf.S/1.4/Fri Jun 17 23:09:36 2005//
+/s_llrint.c/1.1/Fri Feb 13 04:31:43 2004//
+/s_llrintf.c/1.1/Fri Feb 13 04:32:19 2004//
+/s_lrint.S/1.1/Wed Jun 30 22:28:05 2004//
+/s_lround.S/1.4/Fri Jun 17 23:09:36 2005//
+/s_lroundf.S/1.1/Wed Jun 30 22:28:37 2004//
+/s_rint.S/1.5/Fri Jun 17 23:09:36 2005//
+/s_rintf.S/1.4/Fri Jun 17 23:09:36 2005//
+/s_round.S/1.5/Fri Jun 17 23:09:36 2005//
+/s_roundf.S/1.5/Fri Jun 17 23:09:36 2005//
+/s_trunc.S/1.5/Fri Jun 17 23:09:36 2005//
+/s_truncf.S/1.4/Fri Jun 17 23:09:36 2005//
+/setjmp-common.S/1.7/Fri Jun 17 23:09:36 2005//
+/setjmp.S/1.4/Wed Mar 17 17:26:10 2004//
+D

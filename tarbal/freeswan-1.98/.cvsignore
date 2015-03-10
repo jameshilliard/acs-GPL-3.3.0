@@ -1,0 +1,11 @@
+Makefile.ver
+UMLPOOL
+out.kbuild
+out.kpatch
+out.rpmkinstall
+rpm.build.out
+rpm.spec
+rpms
+tmp.rpmbuild
+tmp.rpmkernel
+umlsetup.sh

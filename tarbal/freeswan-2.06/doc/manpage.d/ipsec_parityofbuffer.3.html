@@ -1,0 +1,60 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of IPSEC_PARITYOFBUFFER</TITLE>
+</HEAD><BODY>
+<H1>IPSEC_PARITYOFBUFFER</H1>
+Section: C Library Functions (3)<BR>Updated: 07 Dec 2003<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+ipsec parityofbuffer - return difference of counts of 0-bits and 1-bits in a buffer
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>#include &lt;<A HREF="file:/usr/include/freeswan.h">freeswan.h</A>&gt;</B>
+
+<P>
+<B>int parityofbuffer(const unsigned char *buf, size_t len)</B>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<I>parityofbuffer</I>
+
+counts the number of 0-bits and the number 1-bits in the bytes of the buffer.
+<P>
+
+The difference between the two counts is then computed, ones minus zeros.
+The result is returned.
+<P>
+
+This function may be of utility in discovering non-randomess in supposedly
+random sources.
+<A NAME="lbAE">&nbsp;</A>
+<H2>DIAGNOSTICS</H2>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>HISTORY</H2>
+
+Written for the FreeS/WAN project by Michael Richardson.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAF">HISTORY</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 19:04:25 GMT, April 17, 2004
+</BODY>
+</HTML>

@@ -1,0 +1,19 @@
+/Dist/1.14/Thu Feb 20 22:20:55 2003//
+/Makefile/1.8/Wed Oct 16 03:02:48 2002//
+/Versions/1.1/Wed Aug 28 23:56:02 2002//
+/a.out.h/1.1/Fri Jul 25 09:04:58 2003//
+/dl-cache.h/1.1/Wed Jun 25 08:03:35 2003//
+/fork.S/1.9/Tue Dec 31 20:37:31 2002//
+/getsysstats.c/1.2/Fri Jul  6 04:56:21 2001//
+/kernel_termios.h/1.2/Fri Jul  6 04:56:21 2001//
+/ldd-rewrite.sed/1.2/Wed Jul 14 15:20:00 1999//
+/readelflib.c/1.4/Fri Jul  6 04:56:21 2001//
+/syscalls.list/1.5/Wed Sep  3 02:55:44 2003//
+/sysdep.S/1.5/Fri Oct 11 10:51:32 2002//
+/sysdep.h/1.11/Thu Sep 23 05:16:32 2004//
+/system.c/1.1/Sun Aug 31 17:23:57 2003//
+/vfork.S/1.4/Tue Dec 31 20:37:31 2002//
+D/bits////
+D/sparc32////
+D/sparc64////
+D/sys////

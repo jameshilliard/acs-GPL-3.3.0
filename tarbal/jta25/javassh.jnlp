@@ -1,0 +1,21 @@
+<jnlp spec="1.0+" href="javassh.jnlp" codebase="http://javassh.org/download/">
+  <information>
+    <title>The Java SSH Application</title>
+    <vendor>Matthias L. Jugel / Marcus Meissner</vendor>
+    <homepage href="http://javassh.org/" />
+    <description kind="one-line">A sophisticated Java SSH Terminal</description>
+    <description kind="tooltip">The Java SSH Application</description>
+    <offline-allowed />
+  </information>
+  <security>
+    <all-permissions />
+  </security>
+  <resources>
+    <j2se version="1.4 1.3 1.2" />
+    <jar href="http://javassh.org/download/jta.jar" />
+  </resources>
+  <application-desc main-class="de.mud.jta.Main">
+    <argument>-plugins</argument>
+    <argument>Status,Socket,SSH,Terminal</argument>
+  </application-desc>
+</jnlp>

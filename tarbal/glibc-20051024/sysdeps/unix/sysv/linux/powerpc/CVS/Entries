@@ -1,0 +1,34 @@
+/Dist/1.20/Thu Feb 20 22:19:51 2003//
+/Makefile/1.10/Mon Apr 19 06:18:35 2004//
+/chown.c/1.8/Wed Sep  3 03:21:27 2003//
+/dl-brk.S/1.1/Sat Apr  6 01:34:07 2002//
+/dl-cache.h/1.1/Wed Jun 25 08:03:30 2003//
+/dl-sysdep.c/1.19/Sun Mar 16 00:40:44 2003//
+/getdents64.c/1.1/Sat Aug 12 05:08:58 2000//
+/getmsg.c/1.2/Tue Dec 21 16:00:13 1999//
+/getrlimit.c/1.1/Thu Jan 27 23:40:48 2000//
+/getrlimit64.c/1.1/Thu Jan 27 23:40:48 2000//
+/ioctl.c/1.5/Thu Apr  1 21:24:22 2004//
+/ipc_priv.h/1.1/Mon Sep 18 00:39:57 2000//
+/kernel_termios.h/1.6/Fri Jul  6 04:56:19 2001//
+/lchown.S/1.3/Sat Sep 28 04:15:02 2002//
+/ldconfig.h/1.1/Sat Sep 14 09:00:26 2002//
+/ldd-rewrite.sed/1.1/Thu Sep  5 10:04:14 2002//
+/oldgetrlimit64.c/1.1/Wed Aug 16 01:38:42 2000//
+/profil-counter.h/1.3/Mon Aug 24 16:43:30 1998//
+/putmsg.c/1.2/Tue Dec 21 16:00:13 1999//
+/readdir64.c/1.1/Sat Aug 12 05:09:24 2000//
+/readdir64_r.c/1.1/Sat Aug 12 05:09:35 2000//
+/readelflib.c/1.1/Sat Sep 14 09:00:27 2002//
+/rt-sysdep.c/1.1/Mon Apr 19 06:18:21 2004//
+/scandir64.c/1.1/Sat Aug 12 05:09:43 2000//
+/setrlimit.c/1.1/Thu Jan 27 23:40:48 2000//
+/sigcontextinfo.h/1.5/Fri Jul  6 04:56:19 2001//
+/syscall.S/1.7/Sun Jan 12 19:37:36 2003//
+/syscalls.list/1.29/Wed Sep  3 02:55:30 2003//
+/sysdep.c/1.4/Fri Oct 11 10:51:16 2002//
+D/aix////
+D/bits////
+D/powerpc32////
+D/powerpc64////
+D/sys////

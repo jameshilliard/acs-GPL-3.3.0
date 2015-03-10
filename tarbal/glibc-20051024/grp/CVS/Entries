@@ -1,0 +1,19 @@
+/.cvsignore/1.2/Tue May 14 18:14:28 1996//
+/Makefile/1.20/Thu Sep 30 02:19:22 2004//
+/Versions/1.4/Sat Jun 16 19:05:43 2001//
+/compat-initgroups.c/1.2/Tue Oct  5 15:36:26 2004//
+/fgetgrent.c/1.18/Fri Nov  1 20:43:39 2002//
+/fgetgrent_r.c/1.13/Fri Jul  6 04:54:46 2001//
+/getgrent.c/1.6/Fri Jul  6 04:54:46 2001//
+/getgrent_r.c/1.4/Fri Jul  6 04:54:46 2001//
+/getgrgid.c/1.7/Fri Jul  6 04:54:46 2001//
+/getgrgid_r.c/1.7/Fri Jul  6 04:54:46 2001//
+/getgrnam.c/1.7/Fri Jul  6 04:54:46 2001//
+/getgrnam_r.c/1.5/Fri Jul  6 04:54:46 2001//
+/grp.h/1.32/Fri Jul 23 06:52:51 2004//
+/initgroups.c/1.34/Tue Mar 29 23:39:59 2005//
+/putgrent.c/1.5/Wed Jan 12 03:11:17 2005//
+/testgrp.c/1.6/Sun Dec 31 10:52:30 2000//
+/tst_fgetgrent.c/1.5/Fri Jul  6 04:54:46 2001//
+/tst_fgetgrent.sh/1.2/Fri Jul  6 04:54:46 2001//
+D

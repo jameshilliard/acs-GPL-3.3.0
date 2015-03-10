@@ -1,0 +1,11 @@
+This tests "ipsec rsasigkey" functionality.
+
+This tests stock functionality of generating a single key that is 
+randomly chosen in size, using the --vary option.
+
+The random device is a file, since UMLs have poor randomness, and
+repeatability is important.
+
+devrandom.bin created with:
+      dd if=/dev/random ibs=1 obs=512 count=3072 of=devrandom.bin
+

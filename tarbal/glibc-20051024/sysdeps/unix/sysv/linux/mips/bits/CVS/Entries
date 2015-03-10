@@ -1,0 +1,21 @@
+/endian.h/1.2/Wed Nov 26 04:09:48 1997//
+/errno.h/1.6/Sat Jul 20 01:02:01 2002//
+/fcntl.h/1.21/Wed Nov 24 04:37:34 2004//
+/ioctl-types.h/1.6/Fri Jul  6 04:56:18 2001//
+/ipc.h/1.10/Fri Jul  6 04:56:18 2001//
+/mman.h/1.9/Wed Dec 15 01:00:48 2004//
+/msq.h/1.1/Mon Aug 26 01:49:55 2002//
+/poll.h/1.5/Tue Jul 31 07:46:05 2001//
+/resource.h/1.8/Mon Jun 20 15:07:34 2005//
+/sem.h/1.2/Fri Jul  6 04:56:18 2001/-ko/
+/shm.h/1.8/Wed Jul 16 07:39:07 2003//
+/sigaction.h/1.12/Tue Mar 25 21:51:52 2003//
+/sigcontext.h/1.3/Wed Nov 24 04:37:34 2004//
+/siginfo.h/1.12/Mon Mar 28 09:17:43 2005//
+/signum.h/1.4/Fri Jul  6 04:56:18 2001//
+/sigstack.h/1.2/Fri Jul  6 04:56:18 2001//
+/socket.h/1.23/Wed Dec 15 01:00:55 2004//
+/stat.h/1.15/Wed Nov 24 04:37:34 2004//
+/statfs.h/1.5/Fri Jul  6 04:56:18 2001//
+/termios.h/1.8/Wed Mar 31 08:53:29 2004//
+D

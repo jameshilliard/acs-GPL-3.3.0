@@ -1,0 +1,41 @@
+east:~#
+ ipsec rsasigkey --help
+Usage:	rsasigkey [--verbose] [--random device] nbits
+          [--vary]
+          [--rounds X]
+          [--oldkey X]
+          [--range [X:]Y]    make keys > X <= Y
+          [--hostname FQDN]
+          [--version]
+
+	or
+	rsasigkey [--verbose] --oldkey filename
+east:~#
+ ipsec rsasigkey --verbose --random=/testing/scripts/keygen-01/devrandom.bin 2192
+getting 137 random bytes from /testing/scripts/keygen-01/devrandom.bin...
+looking for a prime starting there (can take a while)...
+still looking after 256 tries.
+found it after 438 tries.
+getting 137 random bytes from /testing/scripts/keygen-01/devrandom.bin...
+looking for a prime starting there (can take a while)...
+found it after 117 tries.
+swapping primes so p is the larger...
+computing modulus...
+computing lcm(p-1, q-1)...
+computing d...
+computing exp1, exp1, coeff...
+output...
+
+	# RSA 2192 bits   east   Sun Dec  7 15:43:45 2003
+	# for signatures only, UNSAFE FOR ENCRYPTION
+	#pubkey=0sAQPHkGfAH5m+JzkJZZSZ2wDojnseNS8Vue2gC6GW22l1Tl3ZjfjJ8X4fSMtKdbs2VA/lYh44Lm3FEHCydy8hhrMBb081zpcWZ2cEIZy9dWAvIpTde5fyHVn5+CdPeG6jaajTZcCH+u6faDziCBdAQNh/ATiP248JIX3syV/9B32sp9UTInhqHX5Hu1uPPxsUCpCLBuScS1rQjPsnSYZhE4vASKm2UhtMoMuYwEeGTvi5fusW7UjL/FN6BbREepgMG0yuYEFjQtY8bIxDK/nvPBLxK2ATo9I5hP4PEwrP09Gfzqgpz0mAl4aTUuVXiWI3MbyhrfuGG80qq5dY7oPPfWEIURehEfkBKbuW6vY5cj3S0G9F
+	Modulus: 0xc79067c01f99be273909659499db00e88e7b1e352f15b9eda00ba196db69754e5dd98df8c9f17e1f48cb4a75bb36540fe5621e382e6dc51070b2772f2186b3016f4f35ce9716676704219cbd75602f2294dd7b97f21d59f9f8274f786ea369a8d365c087faee9f683ce208174040d87f01388fdb8f09217decc95ffd077daca7d51322786a1d7e47bb5b8f3f1b140a908b06e49c4b5ad08cfb27498661138bc048a9b6521b4ca0cb98c047864ef8b97eeb16ed48cbfc537a05b4447a980c1b4cae60416342d63c6c8c432bf9ef3c12f12b6013a3d23984fe0f130acfd3d19fcea829cf498097869352e55789623731bca1adfb861bcd2aab9758ee83cf7d61085117a111f90129bb96eaf639723dd2d06f45
+	PublicExponent: 0x03
+	# everything after this point is secret
+	PrivateExponent: 0x2142bbf55a999fb1342c3b98c44f2ad16d148508dd2e49a79aac9aee79e6e8e264f997a976fd950536cc8c68f4890e02a63b05095d124b82bd7313dd30411dd5928d33a26e83bbe680b044ca3e3ab285c37a3f43fdaf8efefeb137e967c5e6f17890f56bff27c53c0a25ac03e00acebfd5896d4f42818594fccc3aaa2bea47714e2ddb1411af950bf443e8fbb8bb1865aa2db8563d77958f1bd816f48f795cafbaab44d70b66a858e3a8fffffb7591e9db9afdfb97247749b04e7803d5ad3c9829237e23ef17ac9324fe5c4ac2857877e92aef06a2fef750e7fd8a449a77a9d82d9e6b40858634872245f281933a05ce9a40a2d020783f372dc0a5cfab968e81c8f511a66d09290eff8765924d64023c728b
+	Prime1: 0xe53525fff8e013aa368841af4ec801d7ac76252165e366b29bc8b6a0f18ceccd88c2484c584f2dd2d08c59c8c25182415e454ab63cca8c530775783a8e4274332fd789a39fb15b45bc81976537134d8d90e07c88df7aedd4fa56a7f8de51703974a7e844f1c770119c73919cbe4a567d7f57bc98f9c4be6d5a82cd379e2385960dd2109b34b97db3f5
+	Prime2: 0xdee432c6b8981ae3be0a552b3e87307c6a49a5e2d57c3b360a509135f321c97541853e1ddefed5f2a46d09785f363da27f2f18dfbfe52f6483d7136db9ee857b1d2aafbc7b8ec66ea1f7e49b08a5cb1190ecb7ac2429cfc178f51e6693f9f84bcd0097a9e94774f28db713bc3d650a0755b3e930fc453f2dfeb45e332c0fdc03b0c2bb06b10be80c11
+	Exponent1: 0x98ce19555095627179b02bca3485568fc84ec36b994244771285cf15f65df333b08185883adf73e1e05d9130818bac2b942e31ced331b2e204f8fad1b42c4d77753a5bc26a763cd9285664ee24b789090b405305ea51f3e3518f1aa5e98ba0264dc545834bda4ab6684d0bbdd4318efe54e52865fbd87ef391ac88cfbec2590eb3e16067787ba922a3
+	Exponent2: 0x949821d9d06567427eb18e1cd45a2052f1866e9738fd7cceb18b0b794cc130f8d658d413e9ff394c6d9e06503f797e6c54ca10952a98ca43028f6249269f03a768c71fd2fd09d99f16a5431205c3dcb6609dcfc8181bdfd650a36999b7fbfadd3355ba71462fa34c5e7a0d2828ee06af8e77f0cb52d8d4c954783eccc80a92ad2081d2047607f0080b
+	Coefficient: 0x30d3c3b458c3a2f4a78964e4234511643fe553622d89a3d779ceaf7c986adc006c461b5886568f1ad0eac7252954e1bd11e5765e965ae743f4f02f1dcf348fa59f1e2dc345d24376de3bd70ef2e73070080ad5eb6abf5a9a3f4703c3bc5c42681338b159aeec1eab4411099e00157788b1058ebcbfc0f45b72285fb7d03dd699f00e4974b79e330933
+

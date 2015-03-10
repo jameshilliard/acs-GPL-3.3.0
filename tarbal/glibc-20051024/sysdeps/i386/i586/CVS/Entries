@@ -1,0 +1,18 @@
+/Implies/1.1/Sat Oct 14 02:44:47 1995//
+/add_n.S/1.11/Wed May  4 06:21:50 2005//
+/addmul_1.S/1.13/Wed May  4 17:52:10 2005//
+/bzero.S/1.3/Mon Jun 26 22:15:00 2000//
+/lshift.S/1.11/Wed May  4 06:21:50 2005//
+/memcopy.h/1.8/Fri Jul  6 04:55:53 2001//
+/memcpy.S/1.9/Wed May  4 17:52:10 2005//
+/mempcpy.S/1.4/Fri May 28 06:39:37 2004//
+/memset.S/1.10/Wed May  4 06:21:50 2005//
+/mul_1.S/1.11/Wed May  4 17:52:09 2005//
+/rshift.S/1.12/Wed May  4 17:52:09 2005//
+/stpcpy.S/1.3/Fri May 28 06:39:37 2004//
+/strchr.S/1.13/Wed May  4 06:21:50 2005//
+/strcpy.S/1.6/Wed May  4 06:21:50 2005//
+/strlen.S/1.13/Tue Apr 29 22:47:20 2003//
+/sub_n.S/1.12/Wed May  4 17:52:09 2005//
+/submul_1.S/1.11/Wed May  4 17:52:09 2005//
+D

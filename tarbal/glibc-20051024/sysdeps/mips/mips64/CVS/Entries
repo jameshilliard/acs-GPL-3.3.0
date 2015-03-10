@@ -1,0 +1,21 @@
+/Dist/1.3/Sat Jul 28 05:53:37 2001//
+/Implies/1.4/Mon Mar 17 16:20:44 2003//
+/Versions/1.1/Mon Mar 28 20:42:43 2005//
+/__longjmp.c/1.7/Wed Nov 24 04:36:10 2004//
+/add_n.S/1.4/Fri Mar 14 03:59:37 2003//
+/addmul_1.S/1.3/Fri Mar 14 03:59:37 2003//
+/bsd-_setjmp.S/1.8/Wed Nov 24 04:36:10 2004//
+/bsd-setjmp.S/1.4/Wed Nov 24 04:36:10 2004//
+/gmp-mparam.h/1.5/Mon Mar 17 15:47:12 2003//
+/lshift.S/1.4/Fri Mar 14 03:59:37 2003//
+/memcpy.S/1.4/Tue Apr 29 22:47:19 2003//
+/memset.S/1.4/Tue Apr 29 22:47:19 2003//
+/mul_1.S/1.4/Fri Mar 14 03:59:37 2003//
+/rshift.S/1.4/Fri Mar 14 03:59:37 2003//
+/setjmp.S/1.6/Wed Nov 24 04:36:10 2004//
+/setjmp_aux.c/1.6/Wed Nov 24 04:36:10 2004//
+/sub_n.S/1.4/Fri Mar 14 03:59:37 2003//
+/submul_1.S/1.4/Fri Mar 14 03:59:37 2003//
+D/n32////
+D/n64////
+D/soft-fp////

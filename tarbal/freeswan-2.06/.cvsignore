@@ -1,0 +1,14 @@
+CVSROOT
+Makefile.inc
+Makefile.ver
+UMLPOOL
+UMLPOOL2419
+cvs.datemark
+out.kbuild
+out.kpatch
+out.rpmkinstall
+rpm.spec
+rpms
+tmp.rpmbuild
+tmp.rpmkernel
+umlsetup.sh

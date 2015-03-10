@@ -1,0 +1,23 @@
+/Makefile/1.36/Tue Sep  2 04:42:29 2003//
+/Versions/1.3/Tue Jan  9 01:57:26 2001//
+/forkpty.c/1.2/Fri Jul  6 04:55:34 2001//
+/getutent.c/1.8/Fri Nov  1 20:43:44 2002//
+/getutent_r.c/1.17/Wed Jan 14 18:40:02 2004//
+/getutid.c/1.8/Fri Nov  1 20:43:44 2002//
+/getutid_r.c/1.14/Wed Jan 14 18:40:02 2004//
+/getutline.c/1.8/Fri Nov  1 20:43:44 2002//
+/getutline_r.c/1.15/Wed Jan 14 18:40:02 2004//
+/lastlog.h/1.2/Sat Jun 21 01:23:36 1997//
+/login.c/1.19/Thu Feb 28 20:11:54 2002//
+/login_tty.c/1.4/Sun Oct 24 21:20:21 2004//
+/logout.c/1.13/Wed Oct 23 23:49:21 2002//
+/logwtmp.c/1.12/Wed Oct 23 23:49:21 2002//
+/openpty.c/1.7/Tue Oct 26 02:36:47 2004//
+/pty.h/1.7/Fri Jul  6 04:55:34 2001//
+/tst-grantpt.c/1.1/Wed Dec 19 00:06:45 2001//
+/tst-utmp.c/1.6/Thu Jan  2 20:16:16 2003//
+/tst-utmpx.c/1.1/Tue Jun  2 12:52:36 1998//
+/utmp-private.h/1.9/Wed Jan 14 18:34:43 2004//
+/utmp.h/1.17/Fri Jul  6 04:55:34 2001//
+/utmpname.c/1.6/Wed Mar 13 05:09:36 2002//
+D/programs////

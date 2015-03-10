@@ -1,0 +1,55 @@
+/Banner/1.12/Mon Nov  2 21:45:30 1998//
+/Depend/1.1/Mon Nov 30 16:41:01 1998//
+/Makefile/1.31/Wed Sep  8 15:26:01 2004//
+/Versions/1.7/Fri Feb  1 23:11:22 2002//
+/nis_add.c/1.11/Sun Oct 24 20:28:28 2004//
+/nis_addmember.c/1.7/Mon Oct 25 03:15:59 2004//
+/nis_call.c/1.32/Tue Oct 26 01:14:11 2004//
+/nis_callback.c/1.17/Thu Feb 17 01:15:45 2005//
+/nis_checkpoint.c/1.10/Fri Jul  6 04:55:36 2001//
+/nis_clone_dir.c/1.4/Thu Feb 17 01:17:24 2005//
+/nis_clone_obj.c/1.7/Thu Feb 17 01:17:24 2005//
+/nis_clone_res.c/1.4/Thu Feb 17 01:17:24 2005//
+/nis_creategroup.c/1.10/Fri Jul  6 04:55:36 2001//
+/nis_defaults.c/1.7/Sun Oct 24 20:28:28 2004//
+/nis_destroygroup.c/1.5/Fri Jul  6 04:55:36 2001//
+/nis_domain_of.c/1.3/Fri Jul  6 04:55:36 2001//
+/nis_domain_of_r.c/1.5/Wed Dec 15 17:40:54 2004//
+/nis_error.c/1.11/Sun Oct 24 20:28:28 2004//
+/nis_file.c/1.15/Thu Jul 28 07:09:43 2005//
+/nis_findserv.c/1.12/Thu Dec 13 03:38:42 2001//
+/nis_free.c/1.9/Sun Oct 24 20:28:28 2004//
+/nis_getservlist.c/1.8/Fri Jul  6 04:55:36 2001//
+/nis_hash.c/1.1/Wed Sep  8 15:25:11 2004//
+/nis_intern.h/1.20/Thu Dec 13 03:38:06 2001//
+/nis_ismember.c/1.6/Fri Jul  6 04:55:36 2001//
+/nis_local_names.c/1.9/Sun Oct 24 20:28:28 2004//
+/nis_lookup.c/1.14/Sun Oct 24 20:28:28 2004//
+/nis_mkdir.c/1.9/Fri Jul  6 04:55:36 2001//
+/nis_modify.c/1.10/Sun Oct 24 20:28:28 2004//
+/nis_ping.c/1.12/Fri Jul  6 04:55:36 2001//
+/nis_print.c/1.17/Sun Oct 24 20:28:28 2004//
+/nis_print_group_entry.c/1.9/Thu Mar 25 03:51:53 2004//
+/nis_remove.c/1.8/Sun Oct 24 20:28:28 2004//
+/nis_removemember.c/1.11/Fri Apr 29 09:18:00 2005//
+/nis_rmdir.c/1.9/Fri Jul  6 04:55:36 2001//
+/nis_server.c/1.13/Fri Jul  6 04:55:36 2001//
+/nis_subr.c/1.14/Tue Aug 16 15:59:46 2005//
+/nis_table.c/1.24/Fri Apr 29 09:16:12 2005//
+/nis_util.c/1.11/Sun Oct 24 20:28:28 2004//
+/nis_verifygroup.c/1.6/Fri Jul  6 04:55:36 2001//
+/nis_xdr.c/1.9/Tue Aug 16 16:01:06 2005//
+/nis_xdr.h/1.3/Fri Jul  6 04:55:36 2001//
+/nisplus-parser.h/1.4/Sun Oct 24 21:22:48 2004//
+/nss/1.2/Fri Apr  2 09:14:48 2004//
+/nss-nis.c/1.5/Tue Apr 20 18:52:12 2004//
+/nss-nis.h/1.5/Fri Apr  2 09:15:04 2004//
+/nss-nisplus.c/1.2/Fri Jul  6 04:55:36 2001//
+/nss-nisplus.h/1.6/Fri Jul  6 04:55:36 2001//
+/yp_xdr.c/1.4/Sun Oct 24 20:28:28 2004//
+/ypclnt.c/1.51/Thu Mar 24 00:16:58 2005//
+/ypupdate_xdr.c/1.3/Sun Oct 24 20:28:28 2004//
+D/nss_compat////
+D/nss_nis////
+D/nss_nisplus////
+D/rpcsvc////

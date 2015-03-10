@@ -1,0 +1,25 @@
+/abi-versions.awk/1.3/Fri Dec  1 23:12:34 2000//
+/abilist.awk/1.13/Wed Apr  2 04:00:03 2003//
+/begin-end-check.pl/1.1/Sat Sep 17 17:15:23 2005//
+/check-c++-types.sh/1.3/Mon Sep  8 23:54:34 2003//
+/config.guess/1.16/Thu Apr 28 15:31:24 2005//
+/config.sub/1.23/Thu Apr 28 15:31:24 2005//
+/cpp/1.3/Fri Aug 30 10:36:11 2002//
+/documented.sh/1.2/Mon Apr  9 23:15:45 2001//
+/extract-abilist.awk/1.3/Tue Aug 31 06:17:13 2004//
+/firstversions.awk/1.6/Thu Aug 22 07:21:49 2002//
+/gen-FAQ.pl/1.1/Fri May  8 20:54:49 1998//
+/gen-as-const.awk/1.2/Wed Jan 15 08:04:32 2003//
+/gen-sorted.awk/1.1/Thu Nov 19 11:23:08 1998//
+/install-sh/1.1/Fri May  8 20:54:56 1998//
+/lib-names.awk/1.3/Thu Feb 10 21:16:48 2005//
+/merge-abilist.awk/1.5/Mon Mar  3 07:11:44 2003//
+/mkinstalldirs/1.1/Fri May  8 20:55:06 1998//
+/move-if-change/1.1/Fri May  8 20:55:22 1998//
+/output-format.sed/1.3/Sat Aug 14 06:54:39 2004//
+/rellns-sh/1.2/Sat Dec 18 23:40:25 1999//
+/rpm2dynsym.sh/1.1/Thu Mar 27 22:48:49 2003//
+/soversions.awk/1.4/Tue Feb 15 00:05:41 2005//
+/test-installation.pl/1.8/Sun Sep 26 12:49:33 2004//
+/versions.awk/1.12/Wed Mar 23 01:46:29 2005//
+D/data////

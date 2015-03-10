@@ -1,0 +1,13 @@
+This tests "ipsec rsasigkey" functionality.
+
+This tests failures to generate a key. Specifically two tests are done:
+     1) when there aren't enough random bits.
+     2) when the bits just aren't random.
+
+The random device is a file, since repeatability is important.
+
+devrandom.bin created with:
+      dd if=/dev/random ibs=1 obs=512 count=128 of=devrandom.bin
+
+/dev/zero is used for "non-random" bits.
+

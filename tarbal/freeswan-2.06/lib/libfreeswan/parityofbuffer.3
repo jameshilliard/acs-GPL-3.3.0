@@ -1,0 +1,20 @@
+.TH IPSEC_PARITYOFBUFFER 3 "07 Dec 2003"
+.\" RCSID $Id: parityofbuffer.3,v 1.2 2004/01/17 03:16:15 dhr Exp $
+.SH NAME
+ipsec parityofbuffer \- return difference of counts of 0-bits and 1-bits in a buffer
+.SH SYNOPSIS
+.B "#include <freeswan.h>"
+.sp
+.B "int parityofbuffer(const unsigned char *buf, size_t len)"
+.SH DESCRIPTION
+.I parityofbuffer
+counts the number of 0-bits and the number 1-bits in the bytes of the buffer.
+.PP
+The difference between the two counts is then computed, ones minus zeros.
+The result is returned.
+.PP
+This function may be of utility in discovering non-randomess in supposedly
+random sources.
+.SH DIAGNOSTICS
+.SH HISTORY
+Written for the FreeS/WAN project by Michael Richardson.

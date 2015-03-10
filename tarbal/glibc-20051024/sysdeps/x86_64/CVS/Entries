@@ -1,0 +1,50 @@
+/Dist/1.2/Wed Aug 28 09:16:48 2002//
+/Implies/1.1/Wed Sep 19 10:10:03 2001/-ko/
+/Makefile/1.4/Mon Aug 16 06:46:14 2004/-ko/
+/Versions/1.3/Mon Mar 28 20:42:42 2005/-ko/
+/__longjmp.S/1.2/Sun Jan 11 12:23:01 2004/-ko/
+/_mcount.S/1.5/Thu May 26 14:30:51 2005/-ko/
+/abort-instr.h/1.1/Wed Sep 19 10:12:07 2001/-ko/
+/backtrace.c/1.1/Sun Oct  5 19:30:25 2003//
+/bp-asm.h/1.1/Wed Sep 19 10:12:07 2001/-ko/
+/bsd-_setjmp.S/1.6/Thu Mar 31 10:00:13 2005/-ko/
+/bsd-setjmp.S/1.2/Thu Mar 31 10:00:13 2005/-ko/
+/bzero.S/1.1/Sat Aug 31 17:30:07 2002//
+/dl-machine.h/1.33/Sun Jul 31 17:49:44 2005/-ko/
+/dl-tls.h/1.1/Sun Sep 29 10:38:20 2002//
+/dl-trampoline.S/1.2/Thu Jul  7 02:20:36 2005//
+/ffs.c/1.2/Mon Jul  5 17:36:14 2004/-ko/
+/ffsll.c/1.1/Wed Sep 19 10:12:08 2001/-ko/
+/fpu_control.h/1.1/Mon May  5 13:25:31 2003/-ko/
+/hp-timing.c/1.1/Wed Sep 19 10:12:08 2001/-ko/
+/hp-timing.h/1.4/Tue Mar 15 22:31:24 2005/-ko/
+/htonl.S/1.1/Wed Sep 19 10:12:08 2001/-ko/
+/machine-gmon.h/1.1/Wed Aug 21 07:52:27 2002/-ko/
+/memcpy.S/1.5/Mon Oct 18 04:17:08 2004//
+/memcpy_chk.S/1.1/Mon Oct 18 04:17:08 2004//
+/mempcpy.S/1.3/Mon Oct 18 04:17:08 2004//
+/mempcpy_chk.S/1.1/Mon Oct 18 04:17:08 2004//
+/memset.S/1.5/Thu Mar 31 10:00:13 2005//
+/memset_chk.S/1.3/Tue Mar  1 00:13:36 2005//
+/memusage.h/1.1/Wed Sep 19 10:12:08 2001/-ko/
+/setjmp.S/1.3/Wed Aug 27 23:59:57 2003/-ko/
+/stackinfo.h/1.1/Wed Sep 19 10:12:08 2001/-ko/
+/stpcpy.S/1.2/Fri May 28 06:39:37 2004//
+/stpcpy_chk.S/1.1/Mon Oct 18 04:17:08 2004//
+/strcat.S/1.3/Tue Apr 29 22:47:18 2003//
+/strchr.S/1.4/Thu Mar 31 10:00:13 2005//
+/strcmp.S/1.3/Thu Mar 31 10:00:13 2005//
+/strcpy.S/1.2/Tue Apr 29 22:47:18 2003//
+/strcpy_chk.S/1.1/Mon Oct 18 04:17:08 2004//
+/strcspn.S/1.5/Thu Mar 31 10:00:13 2005//
+/strlen.S/1.2/Tue Apr 29 22:47:18 2003//
+/strpbrk.S/1.1/Sat Aug 31 17:41:24 2002//
+/strspn.S/1.4/Thu Mar 31 10:00:13 2005//
+/strtok.S/1.3/Thu Mar 31 10:00:13 2005//
+/strtok_r.S/1.2/Sat Jul 10 19:58:12 2004//
+/sysdep.h/1.5/Wed May 21 09:25:52 2003/-ko/
+/tst-stack-align.h/1.1/Wed Sep 17 18:15:58 2003//
+D/bits////
+D/elf////
+D/fpu////
+D/soft-fp////

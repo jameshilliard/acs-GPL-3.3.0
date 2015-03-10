@@ -1,0 +1,11 @@
+/errno.h/1.4/Wed Aug 28 23:58:20 2002//
+/fcntl.h/1.7/Mon Aug 23 07:28:44 2004//
+/ioctls.h/1.2/Fri Jul  6 04:56:16 2001//
+/ipc.h/1.1/Sat Sep 28 04:02:56 2002//
+/mman.h/1.3/Thu Sep 25 16:39:38 2003//
+/msq.h/1.1/Sat Sep 28 04:03:54 2002//
+/sem.h/1.1/Sat Sep 28 04:04:44 2002//
+/shm.h/1.3/Fri Dec 20 10:31:09 2002//
+/sigaction.h/1.3/Fri Jul  6 04:56:16 2001//
+/signum.h/1.4/Tue Apr  1 06:16:53 2003//
+D

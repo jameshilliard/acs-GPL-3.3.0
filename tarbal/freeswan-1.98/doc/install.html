@@ -1,0 +1,564 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>Introduction to FreeS/WAN</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso-8859-1">
+<STYLE TYPE="text/css"><!--
+BODY { font-family: serif }
+H1 { font-family: sans-serif }
+H2 { font-family: sans-serif }
+H3 { font-family: sans-serif }
+H4 { font-family: sans-serif }
+H5 { font-family: sans-serif }
+H6 { font-family: sans-serif }
+SUB { font-size: smaller }
+SUP { font-size: smaller }
+PRE { font-family: monospace }
+--></STYLE>
+</HEAD>
+<BODY>
+<A HREF="toc.html">Contents</A>
+<A HREF="adv_config.html">Previous</A>
+<A HREF="config.html">Next</A>
+<HR>
+<H1><A name="install">Installing FreeS/WAN from source</A></H1>
+<H2><A name="who.install">Not everyone needs to install from source</A></H2>
+<P>Some Linux distributions,<A href="intro.html#distwith"> listed in the
+ introduction</A>, ship with FreeS/WAN included. If you are using one of
+ them, you need not perform a FreeS/WAN installation. That should all be
+ done for you already. All you have to do is:</P>
+<UL>
+<LI>include FreeS/WAN in your installation choices, or add it to your
+ configuration later</LI>
+<LI>if you install kernel source, be sure to use a version which
+ includes the FreeS/WAN patches. This should be available from your CDs
+ or from the web site for your distribution.</LI>
+</UL>
+<P>For other distributions, you may be able to find pre-packaged RPMs
+ and use the<A href="quickstart.html"> simple installation</A> we
+ describe in our quickstart document.</P>
+<P>If either of those methods works for you, we recommend you use it.
+ Once that is done, continue at<A href="quickstart.html#enable">
+ enabling FreeS/WAN</A> in our quickstart document.</P>
+<H2><A NAME="15_2">Some people do need to install from source</A></H2>
+<P>Unfortunately, due to<A href="politics.html#exlaw"> export laws</A>
+ restricting distribution of strong cryptography, not all distributions
+ include FreeS/WAN. Moreover, the standard kernel does not include the
+ kernel parts of FreeS/WAN.</P>
+<P>Also, if you need to add patches to the FreeS/WAN code (see<A href="web.html#patch">
+ this list</A>), you need to do that and then install FreeS/WAN from the
+ patched source.</P>
+<P>Many people will need to install FreeS/WAN from source, including
+ patching and rebuilding their kernel.</P>
+<P>Information on<A href="#not-install"> re-installing or un-installing</A>
+ is provided near the end of this document.</P>
+<H2><A name="before">Before starting the install</A></H2>
+<P>Configure, compile, install, and test a Linux kernel, without
+ FreeS/WAN.</P>
+<P>If you have not done this before, you will need to read the<A href="http://metalab.unc.edu/LDP/HOWTO/Kernel-HOWTO.html">
+ Kernel HowTo</A>. You might also look at this<A href="http://www.techtv.com/screensavers/print/0,23102,2433297,00.html">
+ magazine article</A>.</P>
+<H3><A name="choosek">Choosing a kernel</A></H3>
+<P>The general rule is choose a current release of a production kernel
+ -- the latest 2.2 or 2.4.</P>
+<P>For specific information on which kernels a FreeS/WAN release
+ supports, see the<A href="../README"> README</A> file in that release.</P>
+<H4><A name="2.2">2.2.x for many users</A></H4>
+<P>Many users can continue to run kernels from the 2.2 series of Linux
+ production<A href="glossary.html#kernel"> kernels</A>.</P>
+<P>We recommend using the latest release in that series. At time of
+ writing (Feb 2002), that is 2.2.20.</P>
+<P>If you need to use an older 2.2.x kernel for some reason, be warned
+ that recent versions of FreeS/WAN will not compile out-of-the-box on a
+ kernel earlier than 2.2.19. A workaround is described in the FreeS/WAN
+ 1.91 section of our<A href="../CHANGES"> CHANGES</A> file. See the<A href="mail.html">
+ mailing list archives</A>, around June 2001, for more details if
+ needed.</P>
+<H4><A name="2.4">2.4.x is possible</A></H4>
+ The 2.4 series of kernels are currently (Feb 2002) at 2.4.18.
+<P>2.4 has new firewalling code called<A href="http://www.netfilter.org">
+ nefilter</A>. This may provide good reasons to move to 2.4, especially
+ on for gateway machines.</P>
+<P><STRONG>Do not use 2.4.15</STRONG>; it has a bug that causes file
+ system corruption.</P>
+<H4><A name="2.0">2.0.x may still work</A></H4>
+<P>If you must use the older 2.0.x kernel series -- for example because
+ you need some driver that has not been ported to later kernels -- you
+ may be in luck. When last tested, FreeS/WAN worked fine on 2.0.39.</P>
+<P>On the other hand, you may have problems in the future. Recent
+ versions of FreeS/WAN are not heavily tested on 2.0 kernels -- most of
+ both the development team and the user community are on 2.2, or even
+ 2.4, by now -- and<STRONG> we are almost certain to drop 2.0 support</STRONG>
+ whenever some problem crops up that would mean retaining it required
+ significant work from our team.</P>
+<H4><A name="devkernel">Development kernels</A></H4>
+ Development kernels are a separate series, work-in-progress versions
+ for use by kernel developers. By convention, production kernels have an
+ even second digit in the version number (2.0, 2.2, 2.4) and development
+ kernels have an odd digit there (2.1, 2.3, 2.5).
+<P><STRONG>Development kernels are not intended for production use</STRONG>
+. They change often and include new code which has not yet been
+ thoroughly tested.<STRONG> These changes often break things, including
+ FreeS/WAN</STRONG>. The FreeS/WAN team does not have the resources to
+ chase the moving target; our priority is developing FreeS/WAN on stable
+ kernels. If you encounter a problem on a development kernel, please
+ solve it (you are a developer, aren't you?) and send us a patch. Of
+ course, we will happily discuss problems and solutions on the<A href="mail.html">
+ mailing list</A>, but we are unlikely to do much work on actually
+ implementing a solution.</P>
+<P>Fortunately we have a user who regularly fixes problems with
+ FreeS/WAN on development kernels (merci, Marc), and we do fix some
+ ourselves. FreeS/WAN often works just fine on a development kernel;
+ it's just that there's no guarantee.</P>
+<P>If you are going to test FreeS/WAN with a development kernel, we
+ recommend you<STRONG> use our latest snapshot</STRONG>. This is the
+ FreeS/WAN version most likely to have the patches required to work on a
+ recent development kernel. The released version of FreeS/WAN is likely
+ to be out of date for your purposes.</P>
+<H3><A name="getkernel">Things you must have installed</A></H3>
+<P>If you have a CD distribution of Linux, it should include everything
+ you need.</P>
+<H4><A name="tool.lib">Tools and libraries</A></H4>
+<P> Use your distribution's tools to load:</P>
+<UL>
+<LI>tools
+<UL>
+<LI>a GNU C compiler (gcc or egcs)</LI>
+<LI>assembler and linker for your architecture (the bin86 package on
+ PCs)</LI>
+<LI>miscellaneous development tools such as make(1) and patch(1)</LI>
+</UL>
+</LI>
+<LI>libraries, both headers and object modules
+<UL>
+<LI>standard compiler libraries such as glibc</LI>
+<LI>the GMP (<STRONG>G</STRONG>NU<STRONG> M</STRONG>ulti-<STRONG>P</STRONG>
+recision) library, required for Pluto's public key calculations.</LI>
+<LI>ncurses library if you want to use menuconfig (recommended)</LI>
+</UL>
+</LI>
+</UL>
+<P>There are some<STRONG> common slips</STRONG> worth avoiding here:</P>
+<UL>
+<LI>not installing the GMP library. Pluto will not compile without it.
+ See the FreeS/WAN FAQ for<A href="faq.html#gmp.h_missing"> more detail</A>
+ if required.</LI>
+<LI>not installing patch(1). Our scripts need it to apply our patches to
+ the kernel.</LI>
+</UL>
+<H4><A name="kernel.">Kernel source code</A></H4>
+<P> You need the source code for the kernel because you must patch and
+ re-compile it to install FreeS/WAN. There are several places you can
+ get this:</P>
+<UL>
+<LI>off your distribution CDs</LI>
+<LI>from your ditribution vendor's website</LI>
+<LI>from kernel.org</LI>
+</UL>
+<H5><A name="kernel.cd">Kernel from CD</A></H5>
+ You can install the kernel from your distribution CD. It may be in two
+ packages.
+<UL>
+<LI>kernel source</LI>
+<LI>kernel headers</LI>
+</UL>
+ However, if your CD is not recent, it may have an older kernel, in
+ which case we suggest getting more recent kernel source from the net.
+<H5>Vendor kernels</H5>
+<P>All the major distribution vendors provide kernel source. See for
+ example:</P>
+<UL>
+<LI>Red Hat's list of<A href="http://www.redhat.com/mirrors.html">
+ mirror sites</A></LI>
+<LI>SuSE's<A href="http://www.suse.com/us/support/download/index.html">
+ download page</A></LI>
+</UL>
+<P>Using a kernel from your distribution vendor may save you some
+ annoyance later.</P>
+<P>Different distributions put the kernel in different places (/vmlinuz,
+ /boot/vmlinuz, /boot/vmlinuz-2.2.15 ...) and set lilo (the<STRONG> Li</STRONG>
+nux<STRONG> lo</STRONG>ader) up differently. With a kernel from your
+ distribution vendor, everything should work right. With other
+ combinations, a newly compiled kernel may be installed in one place
+ while lilo is looking in another. You can of course adjust the kernel
+ Makefile and/or /etc/lilo.conf to solve this problem, but we suggest
+ just avoiding it.</P>
+<P>Also, distributions vendors may include patches or drivers which are
+ not part of the standard kernel. If you install a standard kernel, you
+ must either do without those features or download those patches and add
+ them yourself.</P>
+<H5>Kernels from kernel.org</H5>
+ For kernels direct from Linus, without any distribution vendor's
+ modifications, see the<A href="http://www.kernel.org/mirrors/">
+ kernel.org</A> mirror list, or go directly to<NOBR><VAR>
+ ftp.&lt;country&gt;.kernel.org</VAR>,with the appropriate two-letter country
+ code inserted.
+<H4>Once you've found a kernel</H4>
+<P>Once you have found suitable kernel source, choose a mirror that is
+ close to you and bookmark it.</P>
+<P>Kernel source normally resides in<VAR> /usr/src/linux</VAR>, whether
+ you load it from a distribution CD or download a tar file into<VAR>
+ /usr/src</VAR> and untar it there. Unless you both have unusual
+ requirements and know exactly what you're doing, we recommend you put
+ it there.</P>
+<P><STRONG>Note:</STRONG> Some recent distributions (certainly Redhat
+ 7.2 and Mandrake 8.1, perhaps others) put kernel source code in a
+ directory named<VAR> linux-2.4</VAR> while FreeS/WAN expects to find it
+ in<VAR> linux</VAR>, which is where all distributions used to put it
+ and the kernel.org kernels still do. If your distribution uses<VAR>
+ linux-2.4</VAR>, then<STRONG> you must create a symbolic link to<VAR>
+ linux</VAR></STRONG> before proceeding with your FreeS/WAN install. See
+ the man page for ln(1) for details of how to do this if required.</P>
+<H3><A NAME="15_3_3">Getting FreeS/WAN</A></H3>
+<P>You can download FreeS/WAN from our<A href="ftp://ftp.xs4all.nl/pub/crypto/freeswan/">
+ primary site</A> or one of our<A href="intro.html#sites"> mirrors</A>.</P>
+<P>Put the tarfile under<VAR> /usr/src</VAR> and untar it there. The
+ command to use is:</P>
+<UL>
+<LI>tar -xzf freeswan*.gz</LI>
+</UL>
+<P>This will give you a directory<VAR> /usr/src/freeswan&lt;version&gt;</VAR>.</P>
+<P>Note that<STRONG> these methods don't work:</STRONG></P>
+<UL>
+<LI>putting freeswan under<VAR> /usr/src/linux</VAR>. The links become
+ confused.</LI>
+<LI>untarring in one place, then using<VAR> cp -R</VAR> to move it where
+ you want it. Some necessary symbolic links are not copied.</LI>
+</UL>
+<H3><A name="kconfig">Kernel configuration</A></H3>
+<P>The gateway kernel must be configured before FreeS/WAN is added
+ because some of our utilities rely on the results of configuration.</P>
+<P><STRONG>Note for Redhat 7.1 users</STRONG>: If you are using the
+ Redhat-supplied kernel, then you<STRONG> must do a<NOBR><VAR> make
+ mrproper</VAR></STRONG> command before starting the kernel
+ configuration. This prevents some unpleasant interactions between
+ Redhat's config and our patches.</P>
+<P>On some distributions, you can get the configuration files for the
+ vendor's standard kernel(s) off the CD, and use that. This allows you
+ to skip this step; you need not configure the kernel if the vendor has<EM>
+ and you have the vendor's config file installed</EM>. Here is a mailing
+ list message describing the procedure for Redhat:</P>
+<PRE>Subject: Re: [Users] Do I need to recompile kernel 2.2.17-14?
+   Date: Wed, 6 Jun 2001 08:38:38 -0500
+   From: &quot;Corey J. Steele&quot; &lt;csteele@mtron.com&gt;
+
+if you install the corresponding kernel-source-*.rpm, you can actually find
+the config file used to build that kernel in /usr/src/linux/Configs, just
+copy the one you want to use (based solely on architecture) to
+/usr/src/linux/.config, and proceed!  It should work.</PRE>
+ If you have ever configured the kernel yourself on this machine, you
+ can also skip this step.
+<P>If the kernel has not been configured, do that now. This is done by
+ giving one of the following commands in<VAR> /usr/src/linux</VAR>:</P>
+<DL>
+<DT>make config</DT>
+<DD>command-line interface</DD>
+<DT>make menuconfig</DT>
+<DD>text menus (requires curses(3) libraries)</DD>
+<DT>make xconfig</DT>
+<DD>using the X window system (requires X, not recommended for gateways)</DD>
+</DL>
+<P>Any of these wiil do the job. If you have no established preference,
+ we suggest trying<VAR> menuconfig</VAR>.</P>
+<P>For more information on configuring your kernel, see our<A href="kernel.html">
+ section</A> on that topic.</P>
+<H3><A name="inst-test">Install and test a kernel before adding
+ FreeS/WAN</A></H3>
+<P>You should compile, install and test the kernels as you have
+ configured them, so that you have a known stable starting point. The
+ series of commands involved is usually something like:</P>
+<DL>
+<DT>make menuconfig</DT>
+<DD>choose kernel options, set up a kernel for your machine</DD>
+<DT>make dep</DT>
+<DD>find<STRONG> dep</STRONG>endencies between files</DD>
+<DT>make bzImage</DT>
+<DD>build a loadable kernel image, compressed with bzip(1)</DD>
+<DT>make install</DT>
+<DD>install it</DD>
+<DT>make modules</DT>
+<DD>build modules which can be added to a running kernel</DD>
+<DT>make modules_install</DT>
+<DD>install them</DD>
+<DT>lilo</DT>
+<DD>ensure that the boot loader sees your changes</DD>
+</DL>
+<P>Doing this first means that if there is a problem after you add
+ FreeS/WAN, tracking it down is<EM> much</EM> simpler.</P>
+<P>If you need advice on this process, or general Linux background
+ information, try our<A href="web.html#linux.link"> Linux web references</A>
+. The most directly relevant document is the<A href="http://metalab.unc.edu/LDP/HOWTO/Kernel-HOWTO.html">
+ Kernel HowTo</A>.</P>
+<H2><A name="building">Building and installing the software</A></H2>
+<P>There are several ways to build and install the software. All require
+ that you have kernel source, correctly configured for your machine, as
+ a starting point. If you don't have that yet, see the<A href="#before">
+ previous section</A></P>
+<P>Whatever method you choose, it will do all of the following:</P>
+<UL>
+<LI>add FreeS/WAN code to the kernel
+<UL>
+<LI>insert patches into standard kernel code to provide an interface</LI>
+<LI>add additional files which use that interface</LI>
+</UL>
+</LI>
+<LI>re-configure and re-compile the kernel to activate that code</LI>
+<LI>install the new kernel</LI>
+<LI>build the non-kernel FreeS/WAN programs and install them
+<UL>
+<LI><A href="manpage.d/ipsec.8.html">ipsec(8)</A> in<VAR>
+ /usr/local/sbin</VAR></LI>
+<LI>others in<VAR> /usr/local/lib/ipsec</VAR></LI>
+</UL>
+</LI>
+<LI>install FreeS/WAN<A href="manpages.html"> man pages</A> under<VAR>
+ /usr/local/man</VAR></LI>
+<LI>create the configuration file<A href="manpage.d/ipsec.conf.5.html">
+ ipsec.conf(5)</A>. Editing this file to configure your IPsec gateway is
+ described in the<A href="config.html"> next section</A>.</LI>
+<LI>create an RSA public/private key pair for your system and place it
+ in<A href="manpage.d/ipsec.secrets.5.html"> ipsec.secrets(5)</A></LI>
+<LI>install the initialisation script<VAR> /etc/rc.d/init.d/ipsec</VAR></LI>
+<LI>create links to that script from the<VAR> /etc/rc.d/rc[0-6].d</VAR>
+ directories so that each run level starts or stops IPsec. (If the
+ previous sentence makes no sense to you, try the<A href="http://www.linuxdoc.org/HOWTO/From-PowerUp-To-Bash-Prompt-HOWTO.html">
+ From Power-up to Bash Prompt HowTo</A>).</LI>
+</UL>
+<P>You can do the whole install with two commands (recommended in most
+ cases) or get into as much of the detail as you like.</P>
+<H3><A name="build.rpm">Building RPMs</A></H3>
+ As of version 1.93, we provide a facilty to build FreeS/WAN RPMs.
+<P>Go to the FreeS/WAN directory and do whichever of the following
+ commands you prefer:</P>
+<DL>
+<DT>make orpm</DT>
+<DD>uses command-line kernel configuration</DD>
+<DT>make menurpm</DT>
+<DD>uses menu kernel configuration (requires ncurses library)</DD>
+<DT>make xrpm</DT>
+<DD>use X Window kernel configuration (requires X)</DD>
+</DL>
+<P>After the Makefile does the software and kernel build, it will make
+ some RPMs and leave them in the<VAR> rpms</VAR> directory. The RPMs
+ are:</P>
+<DL>
+<DT>freeswan</DT>
+<DD>the userland utilities</DD>
+<DT>freeswan-module</DT>
+<DD>the ipsec.o kernel module, built only if your kernel configuration
+ sets klips as a module</DD>
+<DT>freeswan-kernel</DT>
+<DD>the Linux kernel and its modules</DD>
+<DT>freeswan-userkernel</DT>
+<DD>all of the above</DD>
+</DL>
+<P>Once you have the RPMs, you can install FreeS/WAN from them with<VAR>
+ rpm -i</VAR> commands. For a more detailed procedure, go to our<A href="quickstart.html">
+ quickstart document</A>.</P>
+<P>This makes it much easier to build FreeS/WAN on one system for
+ installation on another.</P>
+<P>This facility is based on work by Paul Lahaie at<A href="http://www.steamballoon.com">
+ Steamballoon</A>.</P>
+<H3><A name="build.module">Building IPsec as a module</A></H3>
+<P>With the full procedure described in the<A href="#non-rpm"> next
+ section</A>, you can either build the kernel parts of FreeS/WAN into
+ your kernel or build them as a kernel module, depending on how you set
+ the kernel configuration options.</P>
+<P>Since 1.91, we also provide an option to build only the FreeS/WAN
+ module, without re-compiling the rest of your kernel.</P>
+<P>Note, however, that this requires:</P>
+<UL>
+<LI>kernel source in<VAR> /usr/src/linux</VAR></LI>
+<LI>kernel has been configured</LI>
+<LI>source matches the kernel you are actually running</LI>
+</UL>
+<P>To do the module install, give two commands in the FreeS/WAN
+ directory:</P>
+<UL>
+<LI>one of<VAR> make omod</VAR>,<VAR> make menumod</VAR> or<VAR> make
+ xmod</VAR></LI>
+<LI><VAR>make minstall</VAR></LI>
+</UL>
+<P>You can now start FreeS/WAN with</P>
+<PRE>service ipsec start</PRE>
+<P>then choose<A href="#postinstall"> what to do next</A>.</P>
+<P>N.B.: This is relatively new code and not yet tested on a wide range
+ of systems. If it does not work for you, please report the problem. In
+ the meanwhile, fall back to the older procedure described next..</P>
+<H3><A name="non-rpm">Installing directly from source</A></H3>
+ You can also install FreeS/WAN directly from the source, without
+ building RPMs as an intermediate step.
+<P>There are two steps here. First you do everything else, then you
+ install the new FreeS/WAN-enabled kernel.</P>
+<H4><A name="allbut">Everything but kernel installation</A></H4>
+<P>To do everything except install the new kernel,<VAR> cd</VAR> into
+ the freeswan directory and become root. Give<STRONG> any one</STRONG>
+ of the following commands:</P>
+<DL>
+<DT>make oldgo</DT>
+<DD>Uses FreeS/WAN's default settings for some kernel configuration
+ options. Leaves all other options unchanged from your last kernel
+ configuration.</DD>
+<DT>make ogo</DT>
+<DD>Invokes<VAR> config</VAR> so you can configure the kernel from the
+ command line.</DD>
+<DT>make menugo</DT>
+<DD>Invokes<VAR> menuconfig</VAR> so you can configure the kernel with
+ text-mode menus.</DD>
+<DT>make xgo</DT>
+<DD>Invokes<VAR> xconfig</VAR> so you can configure the kernel in an X
+ window.</DD>
+</DL>
+<P>You must<STRONG> save the new configuration even if you make no
+ changes</STRONG>. This ensures that the FreeS/WAN changes are actually
+ seen by the system.</P>
+<P>There are few options in the FreeS/WAN part of kernel configuration.
+ For most of them, we recommend that you make no changes.</P>
+<UL>
+<LI>In particular,<STRONG> please do not disable FreeS/WAN debugging
+ during kernel configuration</STRONG>. This code has no effect unless
+ you turn it on with<VAR> klipsdebug</VAR> in your<A href="manpage.d/ipsec.conf.5.html">
+ ipsec.conf(5)</A> file, and therefore no cost other than a modest
+ increase in kernel size. However, if you disable it and then run into
+ problems, we may not be able to help you.</LI>
+<LI>One thing you can change is whether KLIPS is compiled into the
+ kernel or as a module. The FreeS/WAN intialisation scripts work with
+ either configuration, automatically loading the module if required, so
+ it is your choice.</LI>
+</UL>
+<P> Our scripts save the output of<VAR> make</VAR> commands they call in
+ files with names like<VAR> out.kbuild</VAR> or<VAR> out.kinstall</VAR>.
+ The last command of each script checks the appropriate<VAR> out.*</VAR>
+ file for error messages.</P>
+<UL>
+<LI>If the last output you see is<VAR> make</VAR> saying it is calling
+ our<VAR> errcheck</VAR> script, then all is well. There were no errors.</LI>
+<LI>If not, an error has occurred. Check the appropriate<VAR> out.*</VAR>
+ file for details.</LI>
+</UL>
+<P>For the above commands, the error files are<VAR> out.kpatch</VAR> and<VAR>
+ out.kbuild</VAR>.</P>
+<P>These scripts automatically build an<A href="glossary.html#RSA"> RSA</A>
+ authentication key pair (a public key and the matching private key) for
+ you, and put the result in<VAR> /etc/ipsec.secrets</VAR>. For
+ information on using RSA authentication, see our<A href="config.html">
+ configuration section</A>. Here, we need only note that generating the
+ key uses random(4) quite heavily and if random(4) runs out of
+ randomness,<STRONG> it will block until it has enough input</STRONG>.
+ You may need to provide input by moving the mouse around a lot, or
+ going to another window and typing random characters, or using some
+ command such as<VAR> du -s /usr</VAR> to generate disk activity.</P>
+<H4><A name="newk">Installing the new kernel</A></H4>
+<P>To install the kernel the easy way, just give this command in the
+ FreeS/WAN directory:</P>
+<DL>
+<DT>make kinstall</DT>
+<DD>Installs the new kernel and, if required, the modules to go with it.
+ Errors, if any, are reported in<VAR> out.kinstall</VAR></DD>
+</DL>
+<P>Using<VAR> make kinstall</VAR> from the FreeS/WAN directory is
+ equivalent to giving the following sequence of commands in<VAR>
+ /usr/src/linux</VAR>:</P>
+<UL>
+<LI>make</LI>
+<LI>make install</LI>
+<LI>make modules</LI>
+<LI>make modules_install</LI>
+</UL>
+<P>If you prefer that sequence, use it instead.</P>
+<P>Reboot to enable your new FreeS/WAN-enabled kernel.</P>
+<P>If you have some unusual setup such that the above sequence of
+ commands won't work on your system, then our<VAR> make kinstall</VAR>
+ will not work either. Use whatever method does work on your system. See
+ our<A href="impl.notes"> implementation notes</A> file for additional
+ information that may help in such situations.</P>
+<H2><A name="postinstall"></A>Where to go from here</H2>
+<P>At this point, you are finished the install. Go to the quickstart
+ document section on<A href="quickstart.html#testinstall"> testing your
+ FreeS/WAN install</A> and continue from there.</P>
+<P>Alternately, you might want to look at background material on the<A href="ipsec.html">
+ protocols used</A> before trying configuration.</P>
+<H2><A name="not-install">Re-install or un-install</A></H2>
+<P> If you have FreeS/WAN installed from source on this machine, and
+ need to install a newer version or un-install FreeS/WAN, this section
+ is for you.</P>
+<P>If you have FreeS/WAN installed from RPMs, use<VAR> rpm -e</VAR> or<VAR>
+ rpm -u</VAR> to uninstall or upgrade.</P>
+<H3><A name="re-install">Re-install</A></H3>
+<P>The scripts are designed so that a re-install -- to upgrade to a
+ later FreeS/WAN version or to a later kernel version -- can be done in
+ exactly the same way as an original install.</P>
+<P>The scripts know enough, for example, not to apply the same kernel
+ patch twice and not to overwrite your<VAR> ipsec.conf</VAR> or<VAR>
+ ipsec.secrets</VAR> files. However, they will overwrite the _updown
+ script. If you have modified that, save your version under another name
+ before doing the install.</P>
+<P>Also, they may not always work exactly as designed. Check the<A href="../BUGS">
+ BUGS</A> file for any caveats in the current version.</P>
+<DL>
+<DT>to install a new version of FreeS/WAN, with your current kernel</DT>
+<DD>Download and untar the new FreeS/WAN. Since kernel source has
+ already been installed and configured, you can skip a few steps in the
+ procedure below. Go to<A href="#building"> Building FreeS/WAN</A>, and
+ follow normal install-from-source procedures from there.</DD>
+<DT>to install a new kernel, on a machine which already has FreeS/WAN
+ installed</DT>
+<DD>Download and untar the new kernel source. Since this kernel is not
+ yet configured, that is the next thing to do.Go to<A href="#kconfig">
+ Kernel configuration</A>, and follow normal procedures from there.</DD>
+<DT>to upgrade both kernel and FreeS/WAN</DT>
+<DD>You need both new kernel source and new FreeS/WAN source. Follow the
+ full FreeS/WAN install procedure. See<A href="#before"> above</A>.</DD>
+</DL>
+<H3><A name="un-install">Un-install</A></H3>
+<H4><A name="disable">Disabling FreeS/WAN</A></H4>
+<P>In many Linux distributions, you can easily disable FreeS/WAN with
+ the command:</P>
+<PRE>    chkconfig --del ipsec</PRE>
+<P>This removes the symlinks in<VAR> /etc/rc.d/rc?.d</VAR> which cause<VAR>
+ ipsec(8)</VAR> to be called at boot time or when switching run levels.
+ If the kernel part of IPsec,<A href="glossary.html#KLIPS"> KLIPS</A>,
+ has been compiled as a module, then this also prevents loading that
+ module, so IPsec is completely disabled.</P>
+<P>Other distributions may use another version of<VAR> init(8)</VAR>, or
+ may not provide the<VAR> chkconfig(8)</VAR> command. For these, you
+ will have to use other tools, or manually edit the init scripts, to
+ achieve the same effect.</P>
+<H4><A name="remove.files">Removing FreeS/WAN files</A></H4>
+<P>If you installed FreeS/WAN from RPMs, then just use<VAR> rpm -e</VAR>
+ to uninstall it. This section is for those who have installed from
+ source.</P>
+<P>To entirely remove the user-level FreeS/WAN components from your
+ system, go to the FreeS/WAN install directory and give the command:</P>
+<PRE>     make uninstall_freeswan</PRE>
+<P>If that doesn't work for you -- for example, if FreeS/WAN was built
+ on another system and copied here -- then you can do it manually. First
+ disable FreeS/WAN as described above (to avoid problems with symlinks
+ pointing to things you are about to remove), and then use these
+ commands:</P>
+<PRE>        rm -f /etc/ipsec.* /usr/local/sbin/ipsec /etc/rc.d/init.d/ipsec
+        rm -rf /usr/local/lib/ipsec
+        rm -f /usr/local/man/man?/ipsec[._]*</PRE>
+<P> You may need to vary the commands slightly if you, or whoever
+ packaged your distribution, changed the install directories when
+ building FreeS/WAN.</P>
+<H4><A name="remove.kernel">Removing FreeS/WAN from the kernel</A></H4>
+<P>If you compiled<A href="glossary.html#KLIPS"> KLIPS</A> as a module,
+ then just disabling FreeS/WAN as described<A href="#disable"> above</A>
+ prevents loading the module.</P>
+<P>If<A href="glossary.html#KLIPS"> KLIPS</A> is compiled into your
+ kernel, then you can disable it by turning off IPsec in your kernel
+ configuration (or by making it a module) and recompiling.</P>
+<P>You can remove the FreeS/WAN patches from your kernel source by going
+ to the FreeS/WAN install directory and giving the command:</P>
+<PRE>     make unpatch</PRE>
+<P>This does not remove all FreeS/WAN changes; some are not done with
+ patch(1) and cannot be reversed in this way.</P>
+<P>To remove all trace of IPsec in your kernel, you should revert to an
+ unpatched version, or download fresh kernel source.</P>
+<HR>
+<A HREF="toc.html">Contents</A>
+<A HREF="adv_config.html">Previous</A>
+<A HREF="config.html">Next</A>
+</BODY>
+</HTML>

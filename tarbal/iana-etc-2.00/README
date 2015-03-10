@@ -1,0 +1,104 @@
+
+
+THE IANA /etc FILES PACKAGE
+
+
+ABOUT
+
+    The iana-etc package installs services(5) and protocols(5) using data from
+    the Internet Assigned Numbers Authority <http://www.iana.org/>.  In future,
+    other such files may be added.
+
+    Included are snapshots of the data from the IANA, scripts to transform that
+    data into the needed formats, and scripts to fetch the latest data.
+
+    Maintainer: Seth W. Klein <sk@sethwklein.net>
+    Home Page: http://www.sethwklein.net/projects/iana-etc/
+
+    Bug reports and patches are welcome.
+
+PORT ALIASES
+
+    Please report any additional port aliases that you need. The port-aliases
+    file contains the current list.  To minimize cruft, it includes only
+    aliases for which there has been reported need. 
+
+    If you need an alias that isn't included, you may see the error:
+
+	getaddrinfo: Servname not supported for ai_socktype
+
+    Some useful things for finding out what alias is needed:
+      * strace from <http://www.wi.leidenuniv.nl/~wichert/strace/>
+      * grep -r 'getaddrinfo' in the appropriate source tree
+
+    The various RFCs and such usually list the number for an alias but it may
+    be faster to just check the FreeBSD services file at
+    <http://www.freebsd.org/cgi/cvsweb.cgi/src/etc/services>.
+
+    Bug reports and patches are welcome at the maintainer address listed above.
+
+DEPENDENCIES
+
+    GNU Awk 3.1.0 or Later
+	Numerous GNU Awk extensions are used.  Awk was chosen over Perl for
+	its smaller size and more flexible installation process both of which
+	are important in a bootstrap environment.
+
+	Version 3.1.0 or later is required for support of the third argument
+	to match().  The workaround to support older versions would be less
+	readable and slower so I'd rather not include it without good reason.
+
+	Like GNU Awk before 3.1.0, Mawk doesn't support three argument match().
+	It also doesn't support network extensions.
+
+	Using GNU Bash for network fetching and sh/sed for filtering might
+	achieve greater portability. If you're interested, feel free to contact
+	the maintainer.
+
+    Make
+	Testing is only done with GNU Make but incompatibilities with other
+	make implementations are probably bugs. Please send patches.
+
+INSTALLATION
+
+    The installation process is flexible and friendly to unattended install-
+    ation even though, due to its simplicity, it does not use Autoconf.
+
+    For basic installation run:
+
+	make
+	su
+	make install
+
+    This creates /etc/services and /etc/protocols without using internet
+    access.
+
+    To install to a temporary location as package managers often do, use
+    DESTDIR like this:
+
+	make DESTDIR=/mnt/tmp install
+
+    This will create /mnt/tmp/etc/services and /mnt/tmp/etc/protocols.
+
+    PREFIX is also supported but currently does the same thing as DESTDIR.
+
+    For unusual installations,
+
+	make DESTDIR=/tmp PREFIX=/foo ETC_DIR=/bar install
+
+    will create /tmp/foo/bar/services and /tmp/foo/bar/protocols.
+
+GETTING FRESH DATA
+
+    If you fetch the latest data from the IANA, make sure to check the files
+    produced from it for breakage.  There is little to be gained from the
+    latest data unless you're using experimental applications, but if you
+    really want it, "make get" fetches it.
+
+DOCUMENTATION
+
+    Man pages are provided by the man-pages package. See
+    http://ftp.kernel.org/pub/linux/docs/manpages/ and
+    http://freshmeat.net/projects/man-pages/
+
+

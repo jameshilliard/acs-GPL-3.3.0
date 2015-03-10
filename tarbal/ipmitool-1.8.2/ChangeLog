@@ -1,0 +1,118 @@
+version 1.8.2
+	* Fix FRU reading for large (>255 bytes) areas.
+	* Overhaul to ipmievd to support SEL polling in addition to OpenIPMI.
+	* Fix LAN parameter segfault when no Ciphers supported by BMC.
+	* Fix IPMIv2 support on Intel v2 BMCs (use -o intelplus).
+	* Separate option parsing code from main ipmitool source file.
+	* Add raw I2C support with IPMI Master Read-Write command.
+	* Add support for new 'sdr elist' extended output format.
+	* Add support for listing sensors by type with 'sdr type' command.
+	* Add support for new 'sel elist' extended output format that
+	  cross-references events with sensors.
+	* Add support for sending dynamically generated platform events
+	  based on existing sensor information.
+	* New '-S' argument to read local SDR cache created with 'sdr dump'.
+	* Updated manpage for ipmitool and ipmievd.
+
+version 1.8.1
+	* ipmievd installs in /usr/sbin
+
+version 1.8.0
+	* Fix IPMIv2.0 issues
+	* Fix chassis boot parameter support
+	* Add support for linear sensors
+
+version 1.7.1
+	* Update bmc plugin to work with new Solaris bmc driver (new ioctl
+	  for interface detection and new STREAMS message-based interface)
+
+version 1.7.0
+	* Propogate errors correctly so exit status will be useful
+	* More consistent display of errors including completion code text
+	* Errors and debug is send to stderr now
+	* New "sel get" command that will print details about SEL entry
+	  and corresponding SDR records as well as FRUs via entity association
+	* Improved event generator, now supports reading events from text file
+	* New "-o oemtype" option for specifying OEM boards
+	  exsting types are "supermicro" and "intelwv2"
+	* New PEF subsystem from Tim Murphy at Dell
+	* New "bmc" plugin for Solaris 10 x86
+	* Many bugfixes and contributed patches
+
+version 1.6.2
+	* Support for Supermicro BMC OEM authentication method
+
+version 1.6.1
+	* Fix minor problem with LAN parameter setting
+
+version 1.6.0
+	* Add a README file
+	* Add Solaris x86 interface plugin
+	* Add support for building Solaris packages
+	* Fix segfault when doing "sel list" (from Matthew Braithwaite)
+	* Fix "chassis identify" on some BMCs (from ebrower@sourceforge)
+	* Add command "bmc info" and related output (from ebrower@sourceforge)
+	* Add support for IPMIv2 and Serial-over-LAN from Jeremy at Newisys
+	* Add support for building RPMs as non-root user
+	* Add new "shell" and "exec" commands
+	* Lots of other contributed patches
+
+version 1.5.9
+	* Add ability to get a particular sensor by name
+	* Add ability to set a particular sensor threshold
+	* Add support for displaying V2 channel authentication levels
+	* Add README for rrdtool scripts in contrib directory
+	* Improve lan interface retry handling
+	* Support prompting for password or reading from environment
+	* Move chaninfo command into channel subcommand
+	* Fix reservation ID handling when two sessions open to BMC
+	* Fix reading of large FRU data
+	* Add configure option for changing binary to ipmiadm for Solaris
+	* Fix compile problem on Solaris 8
+
+version 1.5.8
+	* Enable static compilation of interfaces
+	* Fix types to be 64-bit safe
+	* Fix compilation problems on Solaris
+	* Fix multiple big-endian problems for Solaris/SPARC
+	* Fix channel access to save settings to NVRAM
+	* Set channel privilege limit to ADMIN during "access on"
+	* Enable gratuitous ARP in bmcautoconf.sh
+	* Add support for Linux kernel panic messages in SEL output
+	* Add support for type 3 SDR records
+
+version 1.5.7
+	* Add IPMIv1.5 eratta fixes
+	* Additions to FRU printing and FRU multirecords
+	* Better handling of SDR printing
+	* Contrib scripts for creating rrdtool graphs
+
+version 1.5.6
+	* Fix SEL event decoding for generic events
+	* Handle empty SEL gracefully when doing "sel list"
+	* Fix sdr handling of sensors that do not return a reading
+	* Fix for CSV display of sensor readings/units from Fredrik Öhrn
+
+version 1.5.5
+	* Add -U option for setting LAN username
+	* Fix -v usage for plugin interfaces
+
+version 1.5.4
+	* Put interface plugin API into library
+	* Fix ipmievd
+
+version 1.5.3
+	* Add -g option to work with grizzly bmc
+
+version 1.5.2
+	* Add support for setting gratuitous arp interval
+
+version 1.5.1
+	* Better SEL support
+	* Fix display bug in SDR list
+
+version 1.5.0
+	* More robust UDP packet handling
+	* Add Intel IMB driver support
+	* Use autoconf/automake/libtool
+

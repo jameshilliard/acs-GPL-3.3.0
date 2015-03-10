@@ -1,0 +1,11 @@
+/brk.S/1.8/Mon Mar 17 15:47:12 2003//
+/dl-brk.S/1.1/Sat Apr  6 01:34:06 2002//
+/fork.S/1.8/Sat Jan 11 15:26:35 2003//
+/pipe.S/1.8/Sat Jan 11 15:26:35 2003//
+/rt-sysdep.S/1.1/Mon Dec 20 08:34:02 2004/-ko/
+/sigreturn.S/1.6/Fri Jul  6 04:56:11 2001//
+/sysdep.S/1.17/Wed Apr  9 02:51:04 2003//
+/sysdep.h/1.16/Wed Nov 24 04:36:10 2004//
+/wait.S/1.8/Fri Mar 14 03:59:37 2003//
+D/mips32////
+D/mips64////

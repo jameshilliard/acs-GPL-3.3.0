@@ -1,0 +1,13 @@
+
+This test is a variation of oe-road-01.
+It involves having a road warrior at a non-fixed location talking to a 
+non-mobile host. The non-mobile crashes. (We arrange this by killing
+pluto with SIGSEGV, and then restarting). 
+
+This results in a non-functional system. This is shown with a ping.
+
+This can be fixed with "ipsec whack --crash east", causing road to 
+forget all the state that it has for east, and re-initializating everything.
+
+{eventually, we'd like to have this kind of thing occur automatically}
+

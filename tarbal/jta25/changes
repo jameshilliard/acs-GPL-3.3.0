@@ -1,0 +1,1767 @@
+2002-07-16  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* build.xml, de/mud/jta/Applet.java: hopefully fixed Applet biugs
+
+2002-07-10  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshWrapper.java, de/mud/ssh/SshWrapperExample.java:
+	SshWrapper and example for using it.
+
+		DOES NOT WORK YET. (some hanging input problems)
+
+2002-06-25  marcus  <marcus@zalure.first.gmd.de>
+
+	* tools/.cvsignore: ignore .class and compiled binaries
+
+	* contrib/hc/net/.cvsignore: ignore .class
+
+	* jar/.cvsignore: ignore .jars put here (they dont belong in CVS)
+
+	* contrib/de/mud/jta/plugin/.cvsignore, contrib/de/mud/bsx/.cvsignore:
+	ignore .class
+
+2002-06-24  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: backported backspace fix from HEAD.
+
+2002-06-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/SSH.java: set pos to 0 after handleSSH.
+
+	* de/mud/ssh/NONE.java, de/mud/ssh/SshCrypto.java, de/mud/ssh/SshIO.java, de/mud/ssh/SshPacket.java, de/mud/ssh/SshPacket1.java, de/mud/ssh/SshPacket2.java:
+	- abstracted packethandling to a large degree into SshPacket, subclassed
+	  by SshPacket1, SshPacket2.
+	- rewrote payload handling to be done by SshPacket objects.
+	  SSH v1 Payloader verified working.
+	- implemented first revision of SSH v2 payload handler. Needs to be rewritten
+	  with decryption in mind.
+	- First SSH v2 commands implemented.
+
+	TODO: DH key exchange, correct MAC, all other commands.
+
+2002-06-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/flash/.cvsignore: ignore
+
+2002-06-06  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java, de/mud/ssh/SshPacket.java:
+	begun SSH v2 proto support.
+
+	* de/mud/ssh/SshPacket1.java, de/mud/ssh/SshPacket2.java:
+	For splitting v1 and v2 packets.
+
+2002-06-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* build.xml: ignore flash components on compilation
+
+2002-05-26  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/flash/FlashTerminal.java, de/mud/flash/FlashTerminalServer.java:
+	*** empty log message ***
+
+2002-05-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/flash/FlashTerminalServer.java, de/mud/jta/FlashTest.java, de/mud/terminal/FlashTerminal.java, de/mud/terminal/VDUBuffer.java:
+	moved Flash Terminal to another package
+
+2002-05-22  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/FlashTest.java, de/mud/terminal/FlashTerminal.java:
+	working on flash terminal
+
+2002-05-17  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* build.xml, de/mud/jta/FlashTest.java, de/mud/terminal/FlashTerminal.java, de/mud/terminal/VDUInput.java, de/mud/terminal/vt320.java:
+	Flash Terminal (needs another package name)
+
+2002-05-15  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	special case \b for backspace (send \b \b so the last char visible gets
+	overwritten)
+
+	* de/mud/terminal/vt320.java: echo backspace to terminal.
+
+2002-05-08  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/FlashTest.java, de/mud/jta/SmallApplet.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/FlashTerminal.java, de/mud/terminal/SwingTerminal.java, de/mud/terminal/VDUDisplay.java, de/mud/terminal/VDUInput.java, de/mud/terminal/VDUSwing.java, de/mud/terminal/vt320.java:
+	flash terminal (xml output) started
+
+	* de/mud/terminal/VDUBuffer.java:
+	splitted the terminal package to aid implementation of Java2ME and FlashTerminal
+
+	* de/mud/terminal/VDU.java, de/mud/terminal/VDUDisplay.java, de/mud/terminal/VDUSwing.java, de/mud/terminal/vt320.java:
+	split the VDU into different parts to aid adding new visualizations.
+
+2002-05-07  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* build.xml, de/mud/terminal/vt320.java:
+	fixed focus (tab key) bug for java 1.4
+
+	* build.xml, de/mud/jta/Applet.java, de/mud/jta/Build.java.tmpl, de/mud/terminal/VDU.java:
+	adapted build.xml to include timestamp
+
+2002-05-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java, contrib/de/mud/jta/plugin/BSX.java, contrib/de/mud/jta/plugin/EInput01.java, de/mud/jta/Applet.java, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Help.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginBus.java, de/mud/jta/PluginConfig.java, de/mud/jta/PluginListener.java, de/mud/jta/PluginLoader.java, de/mud/jta/PluginMessage.java, de/mud/jta/SmallApplet.java, de/mud/jta/Version.java, de/mud/jta/VisualPlugin.java, de/mud/jta/VisualTransferPlugin.java, de/mud/jta/default.conf, de/mud/jta/event/AppletListener.java, de/mud/jta/event/AppletRequest.java, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/event/EndOfRecordListener.java, de/mud/jta/event/EndOfRecordRequest.java, de/mud/jta/event/FocusStatus.java, de/mud/jta/event/FocusStatusListener.java, de/mud/jta/event/LocalEchoListener.java, de/mud/jta/event/LocalEchoRequest.java, de/mud/jta/event/OnlineStatus.java, de/mud/jta/event/OnlineStatusListener.java, de/mud/jta/event/ReturnFocusListener.java, de/mud/jta/event/ReturnFocusRequest.java, de/mud/jta/event/SocketListener.java, de/mud/jta/event/SocketRequest.java, de/mud/jta/event/SoundListener.java, de/mud/jta/event/SoundRequest.java, de/mud/jta/event/TelnetCommandListener.java, de/mud/jta/event/TelnetCommandRequest.java, de/mud/jta/event/TerminalTypeListener.java, de/mud/jta/event/TerminalTypeRequest.java, de/mud/jta/event/WindowSizeListener.java, de/mud/jta/event/WindowSizeRequest.java, de/mud/jta/plugin/ButtonBar.java, de/mud/jta/plugin/Capture.java, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Script.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Sink.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/plugin/Timeout.java, de/mud/jta/plugin/URLFilter.java, de/mud/jta/ssh.conf, de/mud/telnet/ScriptHandler.java, de/mud/telnet/TelnetProtocolHandler.java, de/mud/telnet/TelnetWrapper.java, de/mud/terminal/SoftFont.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, html/applet.conf, html/simple.conf, html/ssh.conf, jni/linux/Makefile, jni/solaris/Makefile, jni/win32/Makefile, license/README, tools/UploadServlet.java, tools/mrelayd.c, tools/relayd.c:
+	new license statement
+
+2002-05-05  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java:
+	dropped 2 synchronized which cause hangs on Java 1.3
+
+2002-05-04  marcus  <marcus@zalure.first.gmd.de>
+
+	* Makefile: No COPYING.LIB here.
+
+	* de/mud/ssh/SshIO.java: do not print "login successful."
+
+	* de/mud/terminal/vt320.java:
+	trying to work around windows issue. on keycode 10, send \r
+
+2002-04-29  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetWrapper.java: transpose sent string too.
+
+	* de/mud/ssh/.cvsignore, de/mud/telnet/.cvsignore: -*.class
+
+	* de/mud/jta/.cvsignore: Build.java is autogened
+
+	* de/mud/jta/event/.cvsignore: ignore
+
+	* de/mud/jta/.cvsignore: -.class
+
+	* de/mud/ssh/SshIO.java: --debug
+
+2002-04-24  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* README, bin/users.pl, build.xml, license/COPYING.LIB:
+	corrected url in README
+
+	* contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java, contrib/de/mud/jta/plugin/BSX.java, contrib/de/mud/jta/plugin/EInput01.java, de/mud/jta/Applet.java, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Help.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginBus.java, de/mud/jta/PluginConfig.java, de/mud/jta/PluginListener.java, de/mud/jta/PluginLoader.java, de/mud/jta/PluginMessage.java, de/mud/jta/SmallApplet.java, de/mud/jta/Version.java, de/mud/jta/VisualPlugin.java, de/mud/jta/VisualTransferPlugin.java, de/mud/jta/default.conf, de/mud/jta/event/AppletListener.java, de/mud/jta/event/AppletRequest.java, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/event/EndOfRecordListener.java, de/mud/jta/event/EndOfRecordRequest.java, de/mud/jta/event/FocusStatus.java, de/mud/jta/event/FocusStatusListener.java, de/mud/jta/event/LocalEchoListener.java, de/mud/jta/event/LocalEchoRequest.java, de/mud/jta/event/OnlineStatus.java, de/mud/jta/event/OnlineStatusListener.java, de/mud/jta/event/ReturnFocusListener.java, de/mud/jta/event/ReturnFocusRequest.java, de/mud/jta/event/SocketListener.java, de/mud/jta/event/SocketRequest.java, de/mud/jta/event/SoundListener.java, de/mud/jta/event/SoundRequest.java, de/mud/jta/event/TelnetCommandListener.java, de/mud/jta/event/TelnetCommandRequest.java, de/mud/jta/event/TerminalTypeListener.java, de/mud/jta/event/TerminalTypeRequest.java, de/mud/jta/event/WindowSizeListener.java, de/mud/jta/event/WindowSizeRequest.java, de/mud/jta/plugin/ButtonBar.java, de/mud/jta/plugin/Capture.java, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Script.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Sink.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/plugin/Timeout.java, de/mud/jta/plugin/URLFilter.java, de/mud/jta/ssh.conf, de/mud/telnet/ScriptHandler.java, de/mud/telnet/TelnetProtocolHandler.java, de/mud/telnet/TelnetWrapper.java, de/mud/terminal/SoftFont.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, html/applet.conf, html/simple.conf, html/ssh.conf, jni/linux/Makefile, jni/solaris/Makefile, jni/win32/Makefile, tools/UploadServlet.java, tools/mrelayd.c, tools/relayd.c:
+	corrected Rights line
+
+	* Makefile: *** empty log message ***
+
+2002-04-21  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, build.xml, contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java, contrib/de/mud/jta/plugin/BSX.java, contrib/de/mud/jta/plugin/EInput01.java, de/mud/jta/Applet.java, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Help.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginBus.java, de/mud/jta/PluginConfig.java, de/mud/jta/PluginListener.java, de/mud/jta/PluginLoader.java, de/mud/jta/PluginMessage.java, de/mud/jta/SmallApplet.java, de/mud/jta/Version.java, de/mud/jta/VisualPlugin.java, de/mud/jta/VisualTransferPlugin.java, de/mud/jta/default.conf, de/mud/jta/event/AppletListener.java, de/mud/jta/event/AppletRequest.java, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/event/EndOfRecordListener.java, de/mud/jta/event/EndOfRecordRequest.java, de/mud/jta/event/FocusStatus.java, de/mud/jta/event/FocusStatusListener.java, de/mud/jta/event/LocalEchoListener.java, de/mud/jta/event/LocalEchoRequest.java, de/mud/jta/event/OnlineStatus.java, de/mud/jta/event/OnlineStatusListener.java, de/mud/jta/event/ReturnFocusListener.java, de/mud/jta/event/ReturnFocusRequest.java, de/mud/jta/event/SocketListener.java, de/mud/jta/event/SocketRequest.java, de/mud/jta/event/SoundListener.java, de/mud/jta/event/SoundRequest.java, de/mud/jta/event/TelnetCommandListener.java, de/mud/jta/event/TelnetCommandRequest.java, de/mud/jta/event/TerminalTypeListener.java, de/mud/jta/event/TerminalTypeRequest.java, de/mud/jta/event/WindowSizeListener.java, de/mud/jta/event/WindowSizeRequest.java, de/mud/jta/plugin/ButtonBar.java, de/mud/jta/plugin/Capture.java, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Script.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Sink.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/plugin/Timeout.java, de/mud/jta/plugin/URLFilter.java, de/mud/jta/ssh.conf, de/mud/telnet/ScriptHandler.java, de/mud/telnet/TelnetProtocolHandler.java, de/mud/telnet/TelnetWrapper.java, de/mud/terminal/SoftFont.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, html/applet.conf, html/simple.conf, html/ssh.conf, jni/linux/Makefile, jni/solaris/Makefile, jni/win32/Makefile, jta.manifest, tools/UploadServlet.java, tools/mrelayd.c, tools/relayd.c:
+	Port to Swing ...
+
+2002-04-16  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/plugin/Timeout.java, de/mud/jta/plugin/URLFilter.java, de/mud/terminal/VDU.java, contrib/de/mud/jta/plugin/BSX.java, contrib/de/mud/jta/plugin/EInput01.java, contrib/de/mud/jta/plugin/MUDColorizer.java, de/mud/jta/Applet.java, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Help.java, de/mud/jta/HelpFrame.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginConfig.java, de/mud/jta/PluginLoader.java, de/mud/jta/SmallApplet.java, de/mud/jta/VisualPlugin.java, de/mud/jta/VisualTransferPlugin.java, de/mud/jta/default.conf, de/mud/jta/event/AppletListener.java, de/mud/jta/event/AppletRequest.java, de/mud/jta/plugin/ButtonBar.java, de/mud/jta/plugin/Capture.java, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Script.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Sink.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java:
+	Ported to Swing and Java 2
+
+2002-03-20  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: escape fix, next try.
+
+	* de/mud/terminal/vt320.java: don't send escape twice.
+
+2002-03-19  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Capture.java:
+	fixed bug in params handling added input field for save as file
+
+	* index.html: *** empty log message ***
+
+2002-03-01  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Common.java, de/mud/jta/PluginLoader.java, de/mud/terminal/VDU.java:
+	fixed a probelm with IE6 preventing the plugin Terminal to work
+	(IE6 is not 1.2 compatible)
+
+2002-02-27  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/Main.java, de/mud/jta/default.conf, de/mud/jta/plugin/Capture.java, de/mud/jta/plugin/Terminal.java:
+	*** empty log message ***
+
+	* de/mud/jta/HelpFrame.java: added help window
+
+2002-02-26  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf, de/mud/jta/plugin/Capture.java:
+	*** empty log message ***
+
+	* de/mud/jta/Common.java, de/mud/jta/plugin/Capture.java, tools/UploadServlet.java:
+	added a capture plugin
+
+2002-02-17  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	s.getBytes() converts locales, added workaround.
+	Added ESC <
+	Added GR mapping for <
+	Fixed ESC [ ? 2 l and ESC [ ? 2 h.
+
+2002-02-15  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	- Added support for ESC [ ... " <letter> (VT conformance)
+	- Added support for 8bit control output.
+	- Rewrote parts of the Key input handling.
+	- Fixed some bugs.
+	- Added some vt52 support (incomplete).
+
+2002-02-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	More on vt52 emulation. Not vttest complete.
+
+	Poked around in keyboard handling. Broke and fixed it at several places.
+	It is still a mess.
+
+2002-02-04  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, doc/plugins/Terminal.html:
+	added colors configuration for BOLD and INVERT
+
+2002-01-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/SSH.java: *** empty log message ***
+
+2002-01-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: no more debug on esc[d
+
+	* de/mud/terminal/vt320.java: Keep color on ESC[0m for SCOANSI.
+	Handle SCOANSI ESC[2;F;Bm colors.
+
+	* de/mud/terminal/VDU.java: brighten should not swap green and blue.
+	shifted colors so that LOW is not conflicting.
+
+	* de/mud/terminal/vt320.java: Added SCO color hack mode.
+
+2002-01-10  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: missing break;
+
+	* de/mud/terminal/VDU.java:
+	changed the color handling to support bright and lower attribute correctly.
+
+	* de/mud/terminal/VDU.java:
+	If we fill up the line with spaces, we must not fill it with the same attribute.
+	Fill it with '0', the default attribute instead.
+
+	* de/mud/terminal/vt320.java:
+	add more reports to ESC [ c, to identifz vt320, vt220, vt100.
+
+2002-01-09  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	generate keypad-decimal/keypad-plus in the correct switch()
+
+2002-01-07  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/Socket.html: link to tools/relayd.html here.
+
+2001-12-17  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	Fixed ESC[S and ESC[T, they scroll the whole screen regardless of cursor
+	position.
+
+	* de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	We need to able to delete areas with the new background color.
+
+	* de/mud/jta/Applet.java:
+	if we start immediately detached we should connect immediately too.
+	(from Mario Ivankovits)
+
+	* de/mud/terminal/vt320.java: lastwaslf is not static either.
+
+	* de/mud/terminal/vt320.java:
+	Some of the variables should not have been static, especially not the
+	characterset ones.
+
+2001-12-14  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Terminal.java: added darkgray.
+
+	* de/mud/terminal/VDU.java:
+	added 'LOW' attribute. The color handling in here still sucks.
+
+	* de/mud/terminal/vt320.java:
+	made ESC[%dX faster. Added 'LOW' intensity attribute.
+
+	* de/mud/terminal/vt320.java:
+	ESC[%dX - erase character. reported by Mario Ivankovits.
+
+	* doc/plugins/Terminal.html: mention scoansi in Terminal.id too
+
+	* doc/plugins/Terminal.html: added brief mention of SCOANSI.
+
+	* de/mud/terminal/vt320.java: scoansi is also ansi
+
+	* de/mud/terminal/vt320.java:
+	actually scoansi also support IBM PC style box drawing.
+
+	* de/mud/terminal/vt320.java: support SCOANSI linedrawing set.
+
+	Just set terminal id to 'scoansi' and have fun.
+
+2001-12-13  marcus  <marcus@zalure.first.gmd.de>
+
+	* tools/mrelayd.c: No more relayheader. It breaks the SSH protocol ;)
+
+2001-12-12  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: Large DEC characterset rework done.
+	- GL/GR handling now done better. character set < is the latin1 supplemental set
+	- Verified against a VMS/DCL application.
+	ESC <space> added as stub.
+
+	* de/mud/jta/plugin/ButtonBar.java, doc/plugins/ButtonBar.html:
+	merged Pauls documentation.
+
+	* de/mud/jta/plugin/Script.java, doc/plugins/Script.html:
+	If the first matching string is empty, the answer string is sent upon connect.
+	Contributed by Paul Sandwell.
+
+	* de/mud/jta/plugin/ButtonBar.java, doc/plugins/ButtonBar.html:
+	added "choice" for choice boxes, contributed by Paul Sandwell, aps at
+	tel.bnsf.com.
+
+2001-12-10  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	Implemented GR (right shifted swappable charset) handling.
+	Fixed some comments.
+	Init DCEvars for CSI too.
+
+2001-12-07  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	0x9b aka CSI of course changes state to TSTATE_CSI , not TSTATE_DCEQ.
+
+2001-11-05  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java: trim spaces from end of cut&pasted lines
+
+2001-11-04  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/Terminal.html:
+	added some warning notes to 'beep', as suggested by Dan Cradler.
+
+	* de/mud/telnet/TelnetWrapper.java:
+	added waitfor() that allows to wait for a variable number of strings.
+	Supplied by Jay Dickon of Nortel Networks.
+
+	* de/mud/terminal/VDU.java:
+	we were not copying the last character on lines when cut&pasting.
+	spotted by Masahiro Adegawa.
+
+	* html/b1.conf: added label example here too.
+
+	* de/mud/jta/plugin/ButtonBar.java, doc/plugins/ButtonBar.html:
+	added 'label', as suggested by Masahiro Adegawa
+
+	* de/mud/jta/plugin/Terminal.java: gray is gray, not white. Hmm.
+
+	* de/mud/terminal/vt320.java:
+	added wraparound (or better notwraparound mode). fixes one more vttest.
+	fixed strange 'leading character vanishes' problem.
+
+	* de/mud/terminal/VDU.java:
+	insertLine(): make sure we do not scroll below the scrolling region.
+	this copies xterm behaviour
+
+2001-11-02  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	Major scrolling region fixes, vttests 1 and 2 now look much better.
+	Thanks to John Griffith and James Knight for forcing me to fix this ;)
+
+	- RI was wrong and always scrolling down
+	- topmargins were honored where they shouldn't have been.
+
+2001-10-10  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/DES.java: if we want 3DES we need DES too
+
+2001-10-07  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	implemented binary option after an idea by Alison Winters.
+
+	* de/mud/ssh/SshIO.java: added 3DES note.
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	for some reason we overrund nbuf in negotiate() sometimes (TAPPMud startup).
+	Fixed.
+
+2001-09-26  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/DES3.java:
+	Triple DES encryption. Some routers only support this one.
+
+2001-08-19  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java:
+	privileges might be null, faults on Netscape 4.77
+
+2001-08-14  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	We MUST not initiate Telnet Option handling. As a 'client' we need to wait
+	for the server to start it.
+
+	Also break after receiving IAC EOR.
+
+2001-08-14  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* build.xml, tools/relayd.c: *** empty log message ***
+
+2001-08-13  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* html/download.html: *** empty log message ***
+
+2001-07-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java:
+	background colors MUST NOT be the same color as foreground!
+	so we do .darker() to the color got from the table.
+
+	And who would guessed ... the BBS look better again!
+
+	* de/mud/terminal/vt320.java:
+	display characters below 32 , so BBS can use hearts and diamonds :/
+
+2001-07-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* doc/Main.html, html/download.html, index.html:
+	*** empty log message ***
+
+2001-07-10  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	DCEvars is now 30. dunno why people need so long strings
+
+2001-07-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java, jta.manifest:
+	corrected bug that prevented screen resize
+
+2001-06-28  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Status.java: corrected misspelled <unknown host>
+
+2001-06-04  marcus  <marcus@zalure.first.gmd.de>
+
+	* tools/mrelayd.c, tools/relayd.c: no daemonize on win32
+
+2001-06-02  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: FormFeed also has to clear the screen
+
+2001-05-22  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/index.html: warning about Script position
+
+	* doc/plugins/Script.html:
+	added a warning about plugin position to avoid FAQs
+
+2001-05-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: added ESC[ 10m and ESC[11/12m
+
+2001-05-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/SSH.java: reentered Dialog
+
+	* de/mud/jta/plugin/SSH.java: dialog removed
+
+2001-05-09  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: implemented Terminal.answerback
+
+	* de/mud/jta/plugin/Terminal.java: Terminal.answerback option added
+
+	* doc/plugins/Terminal.html: documentation for Terminal.answerback
+
+2001-05-01  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* bin/users.pl, de/mud/jta/plugin/SSH.java:
+	have to make a dialog in SSH.java
+
+2001-04-09  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: some 97801 special codes
+
+2001-03-27  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/Shell.html: added
+
+2001-03-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java:
+	changed 80/132 switch so the terminal adapts anew each time
+
+2001-03-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/Sink.html: fixed titles
+
+2001-03-10  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Main.java, de/mud/terminal/VDU.java, html/users.db:
+	added maximize functionality to application
+
+2001-03-09  marcus  <marcus@zalure.first.gmd.de>
+
+	* html/users.db: dfixed wunderland
+
+2001-03-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/Common.java, de/mud/jta/default.conf:
+	added ability to use more than one privilege target for Netscape
+
+2001-02-27  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: fixed off by one error in delete line
+
+	* de/mud/terminal/vt320.java:
+	fixed off by one bug in delete area above cursor		ESC [2J
+	fixed off by one bug in delete line before and including cursor ESC [1K
+
+	* de/mud/terminal/SoftFont.java: upper and lower half softfont
+
+	* de/mud/terminal/VDU.java: removed the yellow boldness code.
+
+	I am not sure why we did it, but it originated from v1 where I added it
+	and we now have brighter/darker calls anyway.
+
+	* de/mud/terminal/vt320.java:
+	the cursor position reports is NOT offseting coordinates by 1.
+	fixed both implementation and code after verifying against resize.c from xterm.
+
+	* de/mud/terminal/vt320.java:
+	Do not do s.getBytes() if s is a NULL ptr (happened for shift-cursorkey)
+	On ESC7/ESC8 save/restore characterset indices and charactersets too.
+	(fixes vttest characterset vs. save/restore cursor test)
+
+	* de/mud/terminal/VDU.java:
+	don't handle COLOR_FG_BOLD specifically. I don't know why it got added,
+	but it makes bold yellow????
+
+2001-02-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	tabs are not destructive or inserting, they are just movement!
+	save margins on restore/save
+
+	Spotted and fixed by: <John_Ternent@HomeDepot.com>
+
+2001-02-14  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshMisc.java:
+	the byte wrap logic was not taking 0 into account (the padding character
+	used by terminals). Reported by Walter Fedden.
+
+2001-02-12  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/ssh.conf:
+	added so .jar has it (and can be referenced later)
+
+	* de/mud/jta/Applet.java:
+	fix for https loading (from webmin) by Wynn Wilkes <wynnw@calderasystems.com>.
+
+2001-01-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/index.html: added Sink
+
+	* doc/plugins/Sink.html: documentation for sink plugin
+
+	* de/mud/jta/plugin/Sink.java: datasink plugin if you don't need output
+
+2001-01-01  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/SSH.html:
+	added a security note for the latest man in the middle attacks
+
+	* html/download.html: removed cryptix download link (no longer needed)
+
+	* html/SSHTest.html: removed cryptix
+
+	* doc/plugins/SSH.html: updated cipherlist and comments
+
+2001-01-01  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetProtocolHandler.java, doc/plugins/URLFilter.html, html/users.db:
+	removed debug print out from handler
+
+2000-12-22  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Telnet.java: don't loop forever in read()
+
+2000-12-20  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: actually handle tabkey magic ;)
+
+	* doc/plugins/Terminal.html: added doc for tabulator mapping
+
+	* de/mud/terminal/vt320.java:
+	we are now able to redefine 'tab' and its shifted variations
+
+	* de/mud/telnet/TelnetWrapper.java: fixed call to negotiate
+
+	* Makefile: no more cryptix
+
+	* bin/ssh, html/ssh.conf: fixed ssh.conf
+	removed cryptix stuff from bin/ssh
+
+	* de/mud/ssh/Blowfish.java, de/mud/ssh/Cipher.java, de/mud/ssh/IDEA.java, de/mud/ssh/MD5.java, de/mud/ssh/SshCrypto.java, de/mud/ssh/SshIO.java, de/mud/ssh/SshMisc.java, de/mud/ssh/SshPacket.java:
+	- Got rid of cryptix library dependence.
+
+	- Merged all crypto stuff here (partially from MindBright impl.):
+
+		- Blowfish (truly free, GPL)
+		- IDEA (free impl., but patented alg.)		[could be removed]
+		- MD5 (truly free)
+
+	- fixed 32 bit session keys
+	- cleaned up a lot of stuff.
+
+2000-12-05  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetWrapper.java: new negotiate method
+
+	* de/mud/jta/SmallApplet.java: changed to new negotiation method
+
+2000-12-03  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/terminal/vt320.java:
+	Now send IAC BREAK on Shift-Break and Control-Break too.
+	(This is the rightmost key on the 3 key block with printscreen/scroll
+	lock/pause)
+
+	* doc/plugins/ButtonBar.html: Put buttonbar functions into a new table.
+	Documented \\$break().
+
+	* de/mud/telnet/TelnetProtocolHandler.java: made public
+
+	* de/mud/jta/plugin/ButtonBar.java:
+	added break() function to send telnet break
+
+	* de/mud/jta/event/TelnetCommandRequest.java: fxied IOException mess
+
+	* html/b1.conf: clarified telnet break
+
+	* html/b1.conf: added Break
+
+	* de/mud/jta/plugin/Telnet.java: added sendTelnetCommand Listener
+
+	* de/mud/jta/event/TelnetCommandListener.java, de/mud/jta/event/TelnetCommandRequest.java:
+	compile fixes :)
+
+	* de/mud/jta/event/TelnetCommandRequest.java: added
+
+	* de/mud/jta/event/TelnetCommandListener.java:
+	send telnet commands over the bus!
+
+	* doc/plugins/Telnet.html: documented Telnet.cr, Telnet.crlf
+
+	* de/mud/jta/plugin/Telnet.java:
+	added support for setting CR and CRLF by:
+	Telnet.cr	= ...
+	Telnet.crlf	= ...
+	for those BBS users
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	added modifyable crlf/cr for non telnet compliant thingies
+
+	* de/mud/jta/plugin/Telnet.java:
+	the telnet plugin part of the inband telnet control fix. (for KRiegel@Wunderland)
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	negotiate() no longer processes the whole chunk
+	this fixes in band the IAC EOR inband problem Kriegel@wunderland reported
+
+2000-11-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* jni/linux/Makefile:
+	made slight changes to accommodate debian linux + j2sdk1.3
+
+2000-11-21  marcus  <marcus@zalure.first.gmd.de>
+
+	* Makefile: added JAVAH
+
+	* Makefile: generalised a bit
+	clean jni/
+
+	* jni/Makefile: added
+
+	* bin/terminal: terminal test
+
+	* de/mud/jta/plugin/HandlerPTY.java: new file for shell plugin
+
+	* README: adde4d jni/
+
+	* de/mud/jta/plugin/Shell.java:
+	redesign to use lowlevel JNI class for pty handling (by Pete Zaitcev)
+
+	some fixes by me. use /bin/sh as default.
+
+	* jni/linux/.cvsignore: weg
+
+	* jni/linux/Makefile, jni/solaris/Makefile, jni/src/HandlerPTY.c, jni/win32/Makefile:
+	files for the HandlyPty.c lowlevel class
+
+2000-11-12  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	cast some chars to real bytes (need for some jdk version)
+
+2000-11-08  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetWrapper.java: fixed exception handling a bit
+
+2000-11-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Main.java: fixed bug that prevented closing the window
+
+2000-11-05  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java: cleanups, reindents
+	fixed ssh-1.5 problem by removing \r from ident string
+
+	* de/mud/ssh/SshIO.java: This fixes 2 openssh problems
+	- We can now connect to openssh servers (missing \n in id string)
+	- We now say when remote does not support IDEA key exchange
+	  (most don't :()
+
+2000-10-26  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/Applet.java:
+	fixed a bug that prevented the use of the clipboard
+
+2000-09-28  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java, html/applet.conf, html/simple.conf, html/ssh.conf:
+	fixed a bug that appeared on some windows systems. the selecting of text
+	did no hilite the text until the mouse was released. thanks to
+	Joyce J. Liu from Nortel Networks this is fixed now.
+
+2000-09-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetWrapper.java: better wording
+
+2000-09-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf: *** empty log message ***
+
+2000-09-08  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf: don't say Socket.host = <empty>
+
+2000-09-08  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* html/applet.conf, html/simple.conf: configuration file additions
+
+	* de/mud/jta/default.conf, html/AppletEnhanced.html, html/AppletTest.html:
+	made changes to the test pages so they get the right jar files
+
+	* html/download.html: download location modified
+
+	* de/mud/jta/default.conf, de/mud/jta/plugin/Terminal.java, html/ssh.conf:
+	It looks like most of the browser runtimes do not work correctly with
+	character encodings. The value ISO8859_1 will result in no text displayed
+	at all.
+
+2000-09-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf:
+	added Socket.host to make it usable for PARAM tags
+
+	* Makefile, bin/users.pl: removed the netscape caps api.
+
+	* de/mud/jta/default.conf, doc/plugins/Terminal.html:
+	UTF-8 is not good as default encoding. changed it to ISO8859_1 which
+	works.
+
+2000-09-04  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/default.conf, doc/Applet.html:
+	made Netscape privilege enabling dynamic so it does not need the api
+	anymore.
+	added comment about codebase principals to the extra info in Applet doc.
+
+	* Makefile, de/mud/jta/Applet.java, de/mud/jta/default.conf, de/mud/jta/event/SoundListener.java, de/mud/jta/event/SoundRequest.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, doc/Applet.html, doc/index.html, doc/plugins/Status.html, doc/plugins/Terminal.html, doc/tools/relayd.html, html/applet.conf:
+	included special character support for UNICODE capable systems
+	added sound support for the applet to use an audio bell
+	adjusted plugin configuration
+
+2000-09-02  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java: allow empty password logins
+
+	* doc/plugins/Terminal.html: documented localecho option
+
+	* de/mud/jta/plugin/Terminal.java:
+	use class private localecho_overridden var
+
+	* de/mud/jta/plugin/Terminal.java: add localecho option
+
+	* de/mud/terminal/vt320.java:
+	Event.mods unhappily still has the button pressed in them, so we just
+	send "no button pressed"
+
+	* de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	This implements the first of XTERM mouse tracking support.
+	- button press / release (but no motion tracking)
+	- normal and x10 compat mode
+	- cursor background and foreground colors (not finished yet)
+
+	The original patch was contributed by Christian.Werner@t-online.de, and has
+	been adapted and partially rewritten for JTA v2.
+
+	It also fixes some ESC[? ... l/h/r/s handling problems in regard to multiple
+	values.
+
+2000-09-01  marcus  <marcus@zalure.first.gmd.de>
+
+	* html/users.db: fixed agrishare
+
+2000-08-31  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: fixed ESC[6n report, added FormFeed
+
+2000-08-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	made character conversion latin1
+	Status can now display contents of a URL
+
+2000-08-09  marcus  <marcus@zalure.first.gmd.de>
+
+	* html/users.db: added space odyssey bbs
+
+2000-08-03  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/Applet.java: *** empty log message ***
+
+2000-08-02  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java: trying to fix
+
+2000-07-28  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, license/README: include opmized jar for distribution
+
+2000-07-27  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile: added make small for superslim applet
+
+	* html/SmallApplet.html: *** empty log message ***
+
+	* de/mud/jta/SmallApplet.java: first working version
+
+	* de/mud/jta/SmallApplet.java, html/SmallApplet.html:
+	superslim version for simple tasks
+
+2000-07-27  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java:
+	we can send data starting from success request_pty cmsg
+
+2000-07-27  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, de/mud/terminal/keyCodes.conf:
+	now the Applet also has cut&paste, code was missing
+
+2000-07-21  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java: made the selection code less complex
+
+2000-07-18  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/URLFilter.java, de/mud/terminal/VDU.java:
+	corrected bug that prevented the usage of URLFilter.protocols
+
+2000-07-12  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java:
+	do not send stuff before we have execed the shell.
+
+	This should fix the protocol problems
+
+2000-07-07  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/ButtonBar.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, doc/plugins/Timeout.html, doc/plugins/index.html, doc/tools/relayd.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/template.html, html/users.html, de/mud/jta/Applet.java, de/mud/jta/Main.java, de/mud/terminal/VDU.java, doc/Applet.html, index.html:
+	moved on to final 2.0
+
+2000-07-03  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: comments
+
+	* de/mud/terminal/VDU.java: added show/hide cursor functionality
+
+	* de/mud/terminal/vt320.java: added cursor show/hide
+
+2000-06-28  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/jta/plugin/MUDColorizer.java:
+	Chaned format of configfile to properties.
+
+2000-06-28  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	much more debug output for unimplemented features
+
+2000-06-28  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* doc/Main.html, de/mud/jta/Applet.java, de/mud/jta/Main.java, de/mud/jta/event/ReturnFocusListener.java, de/mud/jta/event/ReturnFocusRequest.java, de/mud/jta/plugin/Terminal.java:
+	Added the ReturnFocus message (by david@mirrabooka.com) so the applet/app
+	returns the focus to the Terminal in any case. Plugins should send a
+	ReturnFocusRequest if they want to return the focus.
+
+2000-06-27  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/jta/plugin/MUDColorizer.java:
+	Konfiguration jetzt in MUDColorizer.regexpSet
+
+2000-06-27  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf: added the Terminal.print.color entry
+
+	* doc/plugins/Terminal.html, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java:
+	Printing is now optionally in color. The default is b&w.
+	The Terminal plugin now lets you set fore/background colors.
+
+2000-06-27  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java:
+	Added eMail address to @author, made BSXScene public.
+
+2000-06-22  marcus  <marcus@zalure.first.gmd.de>
+
+	* html/users.db: added Ground Zero BBS
+
+	* de/mud/terminal/SoftFont.java: added superscript n and superscript 2
+
+	* doc/tools/relayd.html: wrote documentation
+
+	* tools/mrelayd.c, tools/relayd.c: added proper daemonization.
+
+	you now don't need & at the end of the commandline.
+
+	* de/mud/terminal/SoftFont.java:
+	added bottom interval sign, changed upper interval sign to use fillrect
+
+	* de/mud/terminal/vt320.java: added ESC[!
+	added ESC[s, ESC[u
+
+	* de/mud/terminal/SoftFont.java:
+	added equavilence, infinity and bullet operator signs
+
+2000-06-16  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, html/download.html: added optimized version of binary jar
+
+	* Makefile: using optimization flags
+
+	* contrib/Makefile, contrib/de/mud/jta/plugin/EInput01.java:
+	Added a simple VisualPlugin/FilterPlugin example. It is contained in the
+	examples.jar file together with other (future) examples.
+
+2000-06-14  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	localecho backspace function key, so we see backspacing again.
+	VK_ENTER and keyCode 10 are handled
+
+2000-06-13  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: added request focus again
+
+2000-06-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, contrib/Makefile, contrib/de/mud/jta/plugin/MUDColorizer.java, de/mud/jta/Common.java:
+	Made plugin loading less vulnerable to missing plugins
+	Added MUDColorizer that colorizes mud output (MG style german muds)
+
+2000-06-08  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Main.java: added printjob cancel check
+
+	* doc/tools/relayd.html: doc stub for relayd
+
+2000-06-02  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java:
+	fixed a bug in getChar/getAttributes that did not use the screenBase
+
+2000-05-26  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Socket.java:
+	Shell plugin works now with some programs (newline conversion added)
+
+2000-05-25  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java, de/mud/terminal/VDU.java:
+	removed debug and background color brightening (hilit)
+
+2000-05-24  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* doc/plugins/Timeout.html, doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/ssh.conf, html/template.html, html/users.html, doc/Applet.html, doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/ButtonBar.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, index.html:
+	moved on to RC4 - one step before final
+
+	* de/mud/terminal/vt320.java, html/ssh.conf, de/mud/jta/Applet.java, de/mud/jta/plugin/SSH.java, de/mud/ssh/SshIO.java, de/mud/terminal/VDU.java, de/mud/terminal/keyCodes.conf:
+	debugging info removed
+
+2000-05-24  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/SSH.java:
+	vt320 is sending us 10 (\n), but we send only \r apparently. transpose them.
+
+	* de/mud/ssh/SshMisc.java:
+	(char) cast was breaking all characters > 127, fixed.
+
+2000-05-12  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java:
+	Moved towards unix bsxclient 3.8s5 with object positioning and ordering.
+
+2000-05-12  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* index.html:
+	added status, the tab key has been changed to work again on the terminal
+
+	* de/mud/jta/Applet.java, de/mud/jta/Main.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	Printing: VDU prints now black on white (except for ANSI-colored text)
+	          The Application allows printing now from the File menu.
+		  Removed the requestFocus() from vt320 to remove the strange
+		  popup of the terminal window when displaying a dialog.
+
+2000-05-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/plugin/Terminal.java, html/users.db:
+	Made fixed in the behaviour of the applet if used with the button so it
+	does not try to connect invisible.
+
+2000-05-04  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/SSH.java, html/ssh.conf:
+	The login window now appears in the middle of the screen.
+
+	* de/mud/jta/plugin/SSH.java:
+	no good, empty passwords may be useful, so comment out SSH.password if
+	you want to pop-up the login box.
+
+	* de/mud/jta/Applet.java, de/mud/jta/plugin/SSH.java, index.html:
+	disconnect.closeWindow was not imeplemented
+	fixed bug SSH.java, the login box opens now on empty passwords
+
+2000-05-03  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java, de/mud/ssh/SshPacket.java:
+	fix disconnect/reconnect problem [by dave@candata.com]
+
+	* de/mud/jta/plugin/SSH.java:
+	on offline, disconnect and reset auth state [by dave@candata.com]
+
+	* de/mud/jta/Applet.java:
+	fixed detach behaviour [submitted by dave@candata.com]
+
+2000-04-29  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/plugins/Terminal.html: added BACKSPACE and ESCAPE
+
+	* de/mud/terminal/vt320.java:
+	Make escape and backspace defineable by keycodes.
+	submitted by Alex Russell of APAK Systems Ltd <alex.russell@apakgroup.com>
+
+2000-04-20  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* index.html: updated the status report
+
+	* html/users.html, doc/Applet.html, doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/ButtonBar.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, doc/plugins/Timeout.html, doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/template.html, index.html:
+	patched to RC3
+
+	* de/mud/jta/Applet.java, doc/Applet.html:
+	added documentation for menuBar switch
+
+	* de/mud/jta/Applet.java, de/mud/jta/default.conf:
+	made a change to switch the menu bar in a detached window on or off
+
+2000-04-18  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/jta/plugin/BSX.java:
+	fixed Bug in "00" (Empty BSX Graphic) handling
+
+2000-04-15  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java: Bug fixes from Dave Smith <dave@candata.com>:
+	- Do not use the String class for full bytes. Strings.getBytes() somehow
+	  includes a locale transfer (for IE)
+	- Restructured handleSSH to try to reduce hangs after long transmissions.
+
+2000-04-10  marcus  <marcus@zalure.first.gmd.de>
+
+	* tools/relayd.c: added SO_REUSEADDR ...
+
+2000-04-08  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	- The state change handling now uses a different method of changing the state.
+	  We set term_state back to TSTATE_DATA by default and just set all others.
+	  This saves like 400 bytes of code.
+
+	- Added all printing controls and escapes. As comments/debug outputs only.
+
+2000-04-06  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetWrapper.java:
+	added empty notifyEndOfRecord function
+
+2000-04-04  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* doc/plugins/Terminal.html, doc/plugins/keyCodes.at386:
+	Added a key codes file for AT-386 terminals,
+	thanks to Selwyn Rosenstein (SelwynR@scas.com)
+
+	* doc/plugins/Socket.html: corrected link to the download section
+
+2000-04-03  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Terminal.java:
+	Thanks to Michel Hours we avoid a bug in the Hotspot VM:
+	# HotSpot Virtual Machine Error, EXCEPTION_ACCESS_VIOLATION
+	# Error ID: 4F533F57494E13120E43505002BE
+
+2000-03-30  marcus  <marcus@zalure.first.gmd.de>
+
+	* html/ssh.conf: removed ,Telnet, plugin. SSH is not Telnet.
+
+2000-03-20  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* html/download.html: changed BSX plugin license and link to RegenBogen
+
+2000-03-19  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	actually call notifyEdnOfRecord
+
+2000-03-19  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Telnet.java, de/mud/telnet/TelnetProtocolHandler.java:
+	EndOfRecord -> notifyEndOfRecord
+
+2000-03-19  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	added Ctrl-/Alt-/Shift UP/DOWN/LEFT/RIGHT keycode cap.
+
+	* doc/plugins/Terminal.html: added NUMPADx line
+
+	* de/mud/terminal/vt320.java: added NUMPAD handling
+
+	* de/mud/jta/plugin/.cvsignore: no *.class
+
+2000-03-17  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	do not echo function keys to the terminal (hmm, not sure this is good)
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	Contributed by Brad Clements <bkc@murkworks.com>:
+		added SGA handling (and sending it on startup).
+	Added EOR broadcast
+
+	* de/mud/jta/plugin/Telnet.java: added EOR handler
+
+	* de/mud/jta/event/EndOfRecordListener.java, de/mud/jta/event/EndOfRecordRequest.java:
+	End Of Record (EOR) stuff from Telnet
+
+2000-03-17  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java, contrib/de/mud/jta/plugin/BSX.java:
+	released under GPL as "may be part of The Java Telnet Application"
+
+2000-03-17  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Script.java:
+	fixed a bug that prevented Script from working.
+	HINT: listen to your teacher and put { and } even around if statements
+	      that only have one statement enclosed.
+
+2000-03-16  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/default.conf, doc/Applet.html:
+	implemented Applet.disconnect.closeWindow to close the detached window
+	on disconnection from the remote host
+
+	* de/mud/jta/plugin/Terminal.java:
+	fixed colorSet bug that produced an exception if you used non-name-colors
+
+2000-03-14  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/Applet.java, de/mud/jta/default.conf, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/Socket.java, de/mud/terminal/vt320.java, doc/Applet.html, html/AppletEnhanced.html, html/applet.conf:
+	reimplemented the detaching using a button
+
+	* de/mud/terminal/vt320.java: disabled CAPSLOCK handling
+
+2000-03-11  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, bin/telnet, jta.manifest:
+	added manifest to allow java -jar jta20.jar direct execution
+
+	* de/mud/jta/default.conf, de/mud/jta/plugin/Script.java, de/mud/terminal/vt320.java:
+	added a reset to script if it does not match inbetween
+	the script will repeat after disconnect/connect cycle
+
+2000-03-09  was Thomas Neustupny  <thomas@zalure.first.gmd.de>
+
+	* contrib/de/mud/jta/plugin/BSX.java:
+	Removed imagecache for scenes. Corrupt BSX Data are ignored from now on.
+
+	* contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java:
+	Removed imagecache for scenes. Some cosmetic changes.
+
+2000-03-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf, de/mud/terminal/colorSet.conf, doc/plugins/Terminal.html:
+	updated documentation for colorset
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, html/applet.conf:
+	implemented the colorSet configuration file
+
+	* Makefile, de/mud/jta/default.conf, de/mud/jta/plugin/ButtonBar.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/keyCodes.conf, html/AppletEnhanced.html, html/applet.conf:
+	fixed bugs regarding jar/url file loading
+
+2000-03-08  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/Common.java, de/mud/jta/Version.java:
+	added interface Version for online versioning
+
+	* de/mud/jta/plugin/ButtonBar.java, doc/plugins/ButtonBar.html:
+	added clearFields option for ButtonBar and implemented reading the
+	setup file from jar.
+
+2000-03-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/Common.java, doc/Applet.html, index.html:
+	added build date into startup messages
+
+	* de/mud/terminal/VDU.java: update screen when color set is changed
+
+2000-03-04  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/event/LocalEchoRequest.java:
+	slightly reworded to avoid this.echo = echo;
+	also initialise echo to false.
+
+	* de/mud/ssh/SshIO.java: Fixed the unknown command 15 bug messages.
+	(on DEBUG with last==USER, send AUTH instead of REQUEST_PTY)
+
+	Send vt320 instead of dump as terminal type. (should use the terminal id from
+	the config file!)
+
+2000-03-01  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java:
+	fixed a screen buffer resize bug and implemented speedups
+
+2000-02-29  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* html/applet.conf: *** empty log message ***
+
+	* doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/template.html, html/users.html, doc/Applet.html, doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/ButtonBar.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, doc/plugins/Timeout.html, index.html:
+	moved toward RC2 as the major problem is fixed
+
+	* index.html: updated the status
+
+	* de/mud/terminal/VDU.java:
+	implemented double buffering for VDU - Java 2 ist now _fast_
+
+	* de/mud/jta/Applet.java, index.html:
+	Removed WindowListener code from applet as this seems to trigger
+	a compatibility problem on some browsers.
+	To speed up Java 1.2 and the terminal, use JAVA2D_PLATFORMFONT=1
+
+2000-02-25  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/default.conf: *** empty log message ***
+
+	* html/AppletEnhanced.html, de/mud/jta/Applet.java, de/mud/jta/Main.java, de/mud/jta/default.conf, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/URLFilter.java, doc/Applet.html, doc/Main.html, doc/plugins/index.html, index.html:
+	Finished a first version of the MudConnector module.
+	Documentation has been added and changed.
+
+2000-02-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/terminal/vt320.java:
+	added a Reset entry to the application menu.
+	enhanced terminal reset at ESCc time (also reset character sets)
+
+	Code snippet supplied by david@mirrabooka.com
+
+	* tools/mrelayd.c: removed bzero prototype , not used anyway
+
+	* tools/relayd.c: we do not use bzero
+
+2000-02-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/event/AppletListener.java, de/mud/jta/event/AppletRequest.java, de/mud/jta/plugin/URLFilter.java:
+	First implementation of an URL filter.
+
+	* index.html: let's be part of the open source java webring
+
+	* de/mud/jta/Applet.java:
+	fixed bug that prevented config urls from load
+
+2000-02-21  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile: *** empty log message ***
+
+	* Makefile: added doc creation for contributed software
+
+	* doc/plugins/index.html, html/download.html, contrib/Makefile, contrib/de/mud/bsx/BSXCache.java, contrib/de/mud/bsx/BSXDisplay.java, contrib/de/mud/bsx/BSXObject.java, contrib/de/mud/bsx/BSXScene.java, contrib/de/mud/jta/plugin/BSX.java, de/mud/jta/plugin/ButtonBar.java, doc/index.html:
+	Fixed a java-spec-related bug in the ButtonBar parser and added the BSX
+	plugin including the download.
+
+2000-02-11  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java, doc/FAQ.html:
+	reduce flicker on current typing line
+	adjusted FAQ for Swing questions
+
+2000-02-10  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/ButtonBar.java, doc/plugins/ButtonBar.html, html/b1.conf:
+	Corrected the buttonbar so that input fields can now take commands
+	to send its contents
+
+	* Makefile, html/download.html:
+	changed makefile to create the contrib.jar and put a comment in the
+	download section
+
+	* Makefile, contrib/Makefile, contrib/README, contrib/hc/net/TelnetClient.java, html/download.html:
+	added a contributed section so people can send us their work
+
+2000-02-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/Common.java, de/mud/jta/PluginLoader.java, de/mud/jta/default.conf, html/users.db:
+	With support from David Conlan (david@mirrabooka.com) the pluginPath
+	is now implemented so plugins may be written within their own package.
+	Added the default path to default.conf and added a MUD to the users db.
+
+2000-01-27  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/SSH.java, de/mud/ssh/SshIO.java, doc/Applet.html, html/ssh.conf:
+	*** empty log message ***
+
+	* de/mud/ssh/SshIO.java:
+	ssh accounts without password broke the ssh handler: any ssh_debug message
+	could do that. fixed, after help from gschaden@edu.uni-klu.ac.at
+
+2000-01-26  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* index.html: *** empty log message ***
+
+	* index.html: Updated the status page.
+
+	* de/mud/jta/Applet.java, de/mud/jta/Common.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginConfig.java, de/mud/jta/PluginLoader.java, de/mud/jta/default.conf, de/mud/jta/defaults.opt, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/plugin/ButtonBar.java, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/OldButtonBar.java, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Script.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/plugin/Timeout.java, doc/Applet.html, doc/plugins/ButtonBar.html, doc/plugins/index.html, html/applet.conf, html/b1.conf, html/b2.conf, html/users.db, index.html:
+	A big change in the handling of plugin configuration. It is now possible
+	to use two or more plugins of the same name and configure each separately.
+	The ButtonBar plugin is another piece for the plugin list.
+	Be warned: I have changed the file defaults.opt to default.conf
+
+2000-01-25  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/OldButtonBar.java:
+	Port of the old button bar functionality
+
+2000-01-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/Shell.java:
+	Small changes to the mud connector plugin.
+
+2000-01-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetProtocolHandler.java: reversed
+
+2000-01-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	Small optimization for transpose()
+
+2000-01-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	moved \r,\n translation to telnet protocolhandler
+
+	* de/mud/telnet/TelnetProtocolHandler.java:
+	added output transposing (IAC -> IAC IAC, \n -> CRLF, \r -> CRNULL)
+
+2000-01-22  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Telnet.java, de/mud/telnet/TelnetProtocolHandler.java:
+	Implemented stub for transposing data -> telnet -> socket characters.
+
+2000-01-21  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/defaults.opt, de/mud/jta/plugin/MudConnector.java, de/mud/jta/plugin/Socket.java:
+	Add a first step toward the MudConnector plugin.
+
+	* de/mud/jta/defaults.opt: removed test settings
+
+	* de/mud/jta/event/FocusStatus.java, de/mud/jta/event/FocusStatusListener.java, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, bin/ssh, de/mud/jta/Main.java, de/mud/jta/defaults.opt:
+	Handling of input plugins is now cleaned up. If they get the focus they
+	now broadcast a Focus event.
+
+2000-01-20  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/defaults.opt: removed timeout from the defaults
+
+	* doc/Applet.html, doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, doc/plugins/Timeout.html, doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/template.html, html/users.html:
+	corrected wrong link to the license file
+
+	* doc/plugins/Timeout.html: grr, netscape compose is so lousy
+
+	* doc/plugins/Timeout.html: *** empty log message ***
+
+	* doc/plugins/Timeout.html: Corrected spelling errors and wrong link.
+
+	* html/applet.conf, html/simple.conf, html/ssh.conf:
+	Added the config files for the example pages.
+
+	* applet.conf: the conf files are now in html/
+
+	* doc/Main.html, doc/index.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, doc/plugins/Timeout.html, doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/template.html, html/users.html, doc/Applet.html, doc/FAQ.html, index.html:
+	Release Candidate 1 - not alpha ...
+
+	* html/users.db, index.html: marked the software alpha
+
+	* de/mud/jta/defaults.opt, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Timeout.java, doc/plugins/Timeout.html, doc/plugins/index.html, de/mud/jta/Applet.java:
+	Timeout plugin added for applet providers
+
+2000-01-19  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/ssh/SshIO.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, doc/plugins/Terminal.html:
+	Escape codes have to use two backslashes (except \n,\r,\t)
+
+2000-01-18  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* html/AppletTest.html, html/SSHTest.html, de/mud/jta/Applet.java, de/mud/jta/plugin/Terminal.java, de/mud/ssh/SshPacket.java, html/AppletEnhanced.html:
+	added the Applet.detach configuration options to detach the applet window
+
+	* Makefile, de/mud/jta/Common.java, de/mud/jta/Main.java, de/mud/jta/plugin/Terminal.java, de/mud/telnet/TelnetWrapper.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, doc/Applet.html, doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html, doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/download.html, html/index.html, html/template.html, html/users.db, html/users.html, index.html:
+	changed the copyright notice to include year 2000
+	the video display unit (VDU) is now a lighweight component
+	which should resolve some of the Java 2 problems.
+
+2000-01-16  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	changed POS1/HOME and END from ESCOH to ESC[H resp. F
+
+2000-01-12  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: sendcrlf seems to be the default.
+	however, this should most likely not be here, but in the telnet plugin
+
+2000-01-11  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Socket.java:
+	Display Error message if the connection could not be established.
+
+	* de/mud/jta/defaults.opt, de/mud/ssh/SshIO.java, de/mud/ssh/SshPacket.java:
+	ssh debugging information ...
+	defaults corrected
+
+2000-01-04  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/telnet/ScriptHandler.java, de/mud/telnet/TelnetWrapper.java, doc/Applet.html:
+	Added TelnetWrapper for easy use of the TelnetProtocolHandler
+
+2000-01-03  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java: should recompile before checking in ...
+
+	* applet.conf, de/mud/jta/Applet.java, html/users.db:
+	fixed the host problem if it is not code base host
+
+1999-12-18  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/jta/plugin/Telnet.java:
+	broadcast localecho=true (default for telnet) on going online
+
+	* de/mud/terminal/.cvsignore: i
+
+	* de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	slightly updated redraw logic, make paint sync again
+	default localecho to false again
+
+1999-12-14  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java: fixed the annoying redraw problem.
+	it probably does not enough updates right now ... *snief*
+
+	* de/mud/terminal/VDU.java:
+	it really helps not to mark everything for redrawing on just a mouseclick, Hate..
+
+1999-12-11  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: decrease debugging output.
+	fix <return>
+
+	* de/mud/terminal/vt320.java: added localecho back ... :)
+
+	* de/mud/terminal/VDU.java:
+	fixed bug in cut&paste (found by Jonathan L Lester)
+
+1999-11-29  marcus  <marcus@zalure.first.gmd.de>
+
+	* doc/rfc854.txt: added primary TELNET RFC
+
+1999-11-06  marcus  <marcus@zalure.first.gmd.de>
+
+	* tools/mrelayd.c: just doc changes
+
+1999-11-05  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* bin/users.pl, html/users.db: user url checking ...
+
+	* Makefile, bin/users.pl: Checking the user urls ...
+
+	* Makefile, bin/users.pl, html/users.db, html/users.html:
+	Userlist added
+
+	* Makefile, html/download.html, jar/README, tools/README:
+	Adjusted Makefile to create the additional tools package.
+	The download page now contains the file size as well.
+
+	* tools/mrelayd.exe: NT binary of the mrelayd added to the repository
+
+	* Makefile, de/mud/jta/plugin/Socket.java, doc/plugins/Socket.html, html/download.html, index.html, tools/mrelayd.c, tools/relayd.c, tools/relayd.exe:
+	Added relay daemon to the package.
+
+1999-11-01  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, applet.conf, de/mud/jta/Main.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, doc/Applet.html, doc/plugins/Status.html, index.html:
+	printable programmers docs added
+
+	* de/mud/jta/Main.java, de/mud/jta/plugin/Terminal.java:
+	some additions for Personal Java Environment
+
+1999-10-31  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: handle delete key correctly (send ESC[3~)
+
+1999-10-22  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* index.html: changed the status of the ssh plugin
+
+1999-10-09  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	do not overwrite functionkeys/ make alt/shift/ctrl keys useable (reported
+	by William Havanas <bhavanas@lucent.com>)
+
+1999-10-06  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Main.java, de/mud/terminal/vt320.java, index.html:
+	Fixed the double-cr problem in telnet _and_ ssh.
+	The about box in the program is now closable.
+
+1999-09-27  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/VisualTransferPlugin.java: Tagged to version 2.0
+
+	* de/mud/jta/VisualTransferPlugin.java: *** empty log message ***
+
+	* applet.conf, de/mud/terminal/vt320.java:
+	fixed a bug regarding Terminal.id in config file.
+
+	* de/mud/terminal/VDU.java:
+	Implemented printing (java 1.1) for Control-Right-Click
+
+	* index.html: Status updated.
+
+	* de/mud/jta/Common.java, de/mud/jta/Main.java, de/mud/jta/plugin/Terminal.java, de/mud/terminal/VDU.java, doc/Applet.html, doc/plugins/SSH.html:
+	Working on copy&paste ... works within the applet
+
+1999-09-23  marcus  <marcus@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java: reset tabulators on ESCc
+
+1999-09-23  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* doc/Applet.html: Corrected the Applet documentation.
+
+	* de/mud/jta/Common.java, doc/Applet.html:
+	Fixed a bug that occurs if no plugins are specified.
+	Added documentation for a netscape workaround and the Applet.
+
+	* applet.conf, de/mud/jta/Applet.java, de/mud/jta/defaults.opt, html/AppletEnhanced.html:
+	Removed the Script.script property from the defaults file.
+	Added config applet parameter (all others are deprecated now).
+	AppletEnhanced.html now uses the new config parameter.
+	applet.conf added.
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/terminal/vt320.java, doc/plugins/Terminal.html, Makefile, de/mud/jta/defaults.opt:
+	Added a realclean target to the Makefile
+	Added keyCode definition files implementation.
+	Added keyCode Terminal documentation.
+
+1999-09-21  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile: Added ssh license to jar file
+
+	* doc/plugins/SSH.html, doc/plugins/Script.html, doc/plugins/Socket.html, doc/plugins/Status.html, doc/plugins/Telnet.html, doc/plugins/Terminal.html:
+	plugin documentation added
+
+	* doc/Applet.html, doc/FAQ.html, doc/Main.html, doc/index.html, doc/plugins/index.html, html/AppletEnhanced.html, html/AppletTest.html, html/download.html, html/index.html, de/mud/jta/plugin/Terminal.java, de/mud/ssh/license.txt, de/mud/terminal/VDU.java, index.html:
+	bugfix in terminal for borderStyle
+	added a lot of documentation
+
+1999-09-20  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/VDU.java, doc/index.html: link to test was wrong
+
+	* html/index.html: text correction
+
+	* doc/Main.html, index.html:
+	Documentation for Main extended -> additional programming needed :-)
+
+	* doc/Main.html: documentation for the main program
+
+1999-09-19  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/terminal/VDU.java, doc/Main.html:
+	Documentation for de.mud.jta.Main
+
+1999-09-17  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/jta/Applet.java, de/mud/jta/defaults.opt, de/mud/jta/plugin/SSH.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/terminal/VDU.java, html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html, html/index.html, index.html:
+	Removed some jdk1.1 hacks by using different Java statements.
+	Updated the tests and applets.
+
+1999-09-16  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* html/index.html, index.html: corrected links
+
+	* html/AppletEnhanced.html, html/AppletTest.html, html/SSHTest.html:
+	New look ...
+
+	* Makefile, doc/index.html, html/AppletTest.html, html/template.html, index.html:
+	New description, test and documentation added.
+
+	* index.html: Added timestamp.
+
+	* bin/ssh, html/SSHTest.html, html/download.html, html/index.html:
+	ssh script added for easy testing
+	SSH test page for applet created
+
+	* Makefile, de/mud/jta/Applet.java, de/mud/jta/Main.java, de/mud/jta/defaults.opt, html/AppletTest.html, index.html:
+	Adapted the makefile to new index and download pages
+	Applet now understands "plugins" and "port" parameters.
+
+	* index.html: Changed quite a bit, download is now extra.
+
+	* de/mud/jta/Main.java, de/mud/jta/plugin/SSH.java, de/mud/ssh/SshIO.java, de/mud/ssh/SshMisc.java, de/mud/ssh/SshPacket.java:
+	Plugin menus are now added directly to the main Menubar
+	Debugged the Ssh adaption so it works now :-)
+
+1999-09-15  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile, de/mud/jta/defaults.opt, de/mud/jta/plugin/SSH.java, de/mud/ssh/SshCrypto.java, de/mud/ssh/SshIO.java, de/mud/ssh/SshMisc.java, de/mud/ssh/SshPacket.java:
+	Incorporated Cedric Gourio´s Java SSH code.
+	Build a plugin for ssh.
+
+1999-09-14  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile: The package will now contain the time and date
+
+	* index.html: Small link problem with the packages.
+
+	* index.html, jar/README:
+	Download will now alway be done from the original home page.
+	Changed the README in the dists directory to match new version.
+
+	* Makefile, de/mud/terminal/vt320.java, index.html:
+	There is still an unsolved problem with the Applet. I cannot read a file
+	out of the class path without signing the applet in Netscape.
+	Removed the necessity to compile for 1.2 or 1.1.x by using keyTyped()
+
+	* index.html: added absolute link to homepage
+
+	* index.html: path correction for license
+
+	* index.html: index for web added
+
+	* de/mud/jta/Applet.java, de/mud/jta/defaults.opt, de/mud/jta/plugin/Terminal.java, html/AppletTest.html:
+	Added first Applet implementation
+	Removed property setup bug from Terminal
+
+1999-09-13  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* Makefile: *** empty log message ***
+
+	* bin/telnet: small script to start telnet
+
+	* license/COPYING, license/COPYING.LIB: License files in text format
+
+1999-09-11  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* jar/README, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/Main.java, de/mud/jta/defaults.opt:
+	*** empty log message ***
+
+	* Makefile, README:
+	The makefile now creates tagged archives for different versions of the
+	JDK.
+	A readme was added.
+
+1999-09-09  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	In Java 2 unprintable characters show up as '?'. We have to blend those
+	out.
+
+	* de/mud/terminal/VDU.java:
+	The font resizing did not remember font styles
+
+	* de/mud/jta/defaults.opt: Sensible defaults for host
+
+	* de/mud/jta/plugin/Script.java, de/mud/jta/plugin/Terminal.java:
+	Script plugin added
+
+	* de/mud/jta/defaults.opt: Sample script setup added
+
+	* Makefile:
+	The documentation is now copied to the distribution as well.
+
+1999-09-08  Matthias L. Jugel  <leo@zalure.first.gmd.de>
+
+	* de/mud/terminal/vt320.java:
+	Fixed a problem with showing ^@ characters when pressing shift and control
+
+	* de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Terminal.java:
+	Socket sends a disconnect when it cannot connect
+
+	* de/mud/jta/Common.java, de/mud/jta/Main.java, de/mud/jta/defaults.opt:
+	An information and copyright string is printed in Common
+	The Main program now understands host and port parameters and the
+	-addplugin parameter, stupid though.
+	The defaults have some useful values now.
+
+	* Makefile: documentation needs to build the package first
+
+	* Makefile: *** empty log message ***
+
+	* de/mud/jta/plugin/Terminal.java, de/mud/jta/Common.java, de/mud/jta/Main.java, de/mud/jta/defaults.opt:
+	Standard messages are printed to stdout
+
+	* Makefile: Distribution target
+
+	* de/mud/terminal/SoftFont.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java, de/mud/telnet/TelnetProtocolHandler.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/jta/event/LocalEchoListener.java, de/mud/jta/event/LocalEchoRequest.java, de/mud/jta/event/OnlineStatus.java, de/mud/jta/event/OnlineStatusListener.java, de/mud/jta/event/SocketListener.java, de/mud/jta/event/SocketRequest.java, de/mud/jta/event/TerminalTypeListener.java, de/mud/jta/event/TerminalTypeRequest.java, de/mud/jta/event/WindowSizeListener.java, de/mud/jta/event/WindowSizeRequest.java, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/PluginMessage.java, de/mud/jta/VisualPlugin.java, de/mud/jta/defaults.opt, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginBus.java, de/mud/jta/PluginListener.java, de/mud/jta/PluginLoader.java, Makefile:
+	Changed to v2.0
+
+	* Makefile, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginBus.java, de/mud/jta/PluginListener.java, de/mud/jta/PluginLoader.java, de/mud/jta/PluginMessage.java, de/mud/jta/VisualPlugin.java, de/mud/jta/defaults.opt, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/event/LocalEchoListener.java, de/mud/jta/event/LocalEchoRequest.java, de/mud/jta/event/OnlineStatus.java, de/mud/jta/event/OnlineStatusListener.java, de/mud/jta/event/SocketListener.java, de/mud/jta/event/SocketRequest.java, de/mud/jta/event/TerminalTypeListener.java, de/mud/jta/event/TerminalTypeRequest.java, de/mud/jta/event/WindowSizeListener.java, de/mud/jta/event/WindowSizeRequest.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/telnet/TelnetProtocolHandler.java, de/mud/terminal/SoftFont.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	New file.
+
+	* Makefile, de/mud/jta/Common.java, de/mud/jta/FilterPlugin.java, de/mud/jta/Main.java, de/mud/jta/Plugin.java, de/mud/jta/PluginBus.java, de/mud/jta/PluginListener.java, de/mud/jta/PluginLoader.java, de/mud/jta/PluginMessage.java, de/mud/jta/VisualPlugin.java, de/mud/jta/defaults.opt, de/mud/jta/event/ConfigurationListener.java, de/mud/jta/event/ConfigurationRequest.java, de/mud/jta/event/LocalEchoListener.java, de/mud/jta/event/LocalEchoRequest.java, de/mud/jta/event/OnlineStatus.java, de/mud/jta/event/OnlineStatusListener.java, de/mud/jta/event/SocketListener.java, de/mud/jta/event/SocketRequest.java, de/mud/jta/event/TerminalTypeListener.java, de/mud/jta/event/TerminalTypeRequest.java, de/mud/jta/event/WindowSizeListener.java, de/mud/jta/event/WindowSizeRequest.java, de/mud/jta/plugin/Shell.java, de/mud/jta/plugin/Socket.java, de/mud/jta/plugin/Status.java, de/mud/jta/plugin/Telnet.java, de/mud/jta/plugin/Terminal.java, de/mud/telnet/TelnetProtocolHandler.java, de/mud/terminal/SoftFont.java, de/mud/terminal/VDU.java, de/mud/terminal/vt320.java:
+	The Java Telnet Application v2.0
+

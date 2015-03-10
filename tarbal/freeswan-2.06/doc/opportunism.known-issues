@@ -1,0 +1,336 @@
+Known issues with Opportunistic Encryption                     Claudia Schmeing
+------------------------------------------
+
+
+This is an overview of known issues with OE, which includes a fair bit of
+technical detail on each issue.
+
+
+This document supplements:
+
+
+FreeS/WAN Quickstart Guide        doc/quickstart.html
+
+Opportunism HOWTO                 doc/opportunism.howto
+
+Opportunism spec                  doc/opportunism.spec
+
+Internet Draft                    doc/draft-richardson-ipsec-opportunistic.txt
+
+
+
+* Use the most recent Linux FreeS/WAN 2.x release from ftp.xs4all.nl 
+  to try OE.
+
+
+DESIGN LIMITATIONS
+
+
+* Because Opportunistic Encryption relies on DNS:
+  - to authenticate one FreeS/WAN to another, and
+  - to prove that we have the right to protect traffic for a given IP,
+  this authentication/authorization is only as strong as your DNS is 
+  secure.
+
+  Without secure DNS, OE protects against passive snooping only.
+  Because the public key and gateway information that FreeS/WAN gets from 
+  DNS is not authenticated, a man-in-the-middle attack is still possible.  
+  We hope that as DNSsec is widely adopted, OE with strong authentication
+  will become more widespread.
+
+  However, our software does not yet distinguish between strongly and weakly 
+  authenticated OE. This information might be useful for defining local 
+  security policy.
+
+
+* Denial of service attacks are possible against OE. If you rely on OE rather 
+  than statically configured tunnels to connect several offices, a determined 
+  attacker could prevent you from communicating securely.
+
+  Michael Richardson adds:
+
+     DoS is possible against VPNs as well.
+     To make OE as strong as VPNs, run a local caching name server.
+     Better, make the caching name server a secondary for the reverse zones
+     in question.
+
+     (http://lists.freeswan.org/archives/design/2003-October/msg00001.html)
+
+
+* OE challenges the notion that all IPsec peers are "friends". With OE, 
+  strangers can potentially tunnel IPsec packets _through_ your defenses 
+  against cleartext packets. This may call for a re-visit to firewall policy.
+
+
+* Some of our known issues described here involve possible packet leaks. 
+  We recommend that you co-ordinate any IPsec use, including OE, with 
+  firewall rules, to prevent unwanted transmission of cleartext packets. 
+  FreeS/WAN provide a script (_updown) to help with this.
+
+
+* In theory, FreeS/WAN can create OE connections at need, eg. when either
+  incoming or outgoing traffic occurs. In practise, FreeS/WAN is only 
+  triggered to create an OE connection when it traps an outbound packet. 
+
+  Normally this is not a problem: Most types of traffic involves packets 
+  travelling in both directions, even if the return traffic is a simple ACK. 
+  Therefore, for most traffic, FreeS/WAN will soon trap an outgoing packet 
+  and create an IPsec connection. However, we could imagine a case where a 
+  local FreeS/WAN box accepts inbound packets from a remote peer but transmits 
+  ZERO outbound packets in response. In that case, the local FreeS/WAN will 
+  never initiate OE. Of course, the peer could initiate OE upon trapping its 
+  own outbound packets.
+
+
+* OE is only as reliable as your DNS is.
+  
+  If your DNS service is flaky, you will not be able to reliably establish 
+  OE connections to known OE-capable peers.
+  
+  If you ping a peer, but your FreeS/WAN does not find a TXT record signifying 
+  the peer's ability to respond to OE negotiation), FreeS/WAN will not try to 
+  opportunistically initiate, and communication will fall back to clear.
+
+  For more secure and reliable DNS, we recommend that you run DNS
+  within your security perimeter, either on your security gateway, or
+  on a machine to which you have a VPN connection. It is also possible
+  to have your DNS server located elsewhere on your LAN, though this may
+  cause lag on startup.
+
+  For one analysis of DNS difficulties, see:
+  https://lists.freeswan.org/archives/design/2003-October/msg00005.html                                                                             
+  This mailing list message explains how to run a local caching name server:
+  http://lists.freeswan.org/pipermail/design/2003-January/004205.html
+ 
+  We recommend against running a local, non-forwarding name server with OE
+  at this time; there can be a number of problems, as outlined here:
+  http://lists.freeswan.org/archives/design/2003-October/msg00013.html
+
+  See also "Getting DNS through" in opportunism.howto
+  http://lists.freeswan.org/pipermail/design/2002-April/002285.html .
+
+
+
+CURRENT ISSUES
+
+* There are several special issues re: using OE when running FreeS/WAN with
+  kernel native IPsec, introduced in the 2.6 kernel. Please see 
+  doc/2.6.known-issues.
+
+
+* Too many requests will kill OE. Paul Wouters reports that:
+
+      Running it on my nameserver's IP will cause /proc/net/ipsec_eroute 
+      to get corrupted within seconds. This is doing a very distributed 
+      40kb/sec DNS traffic.
+
+      (http://lists.freeswan.org/archives/design/2003-October/msg00010.html)
+
+  The problem seems to be caused by reading the /proc filesystem during one
+  of the many writes to it.
+
+
+* If A and B have an OE connection, but A reboots without an orderly 
+  FreeS/WAN shutdown, normally A will try to re-connect to B and (if it 
+  has no DNS-related failures) it will succeed. However, if A is set up for 
+  responder-only OE, it never initiates, and you will have a connection that 
+  is encrypted in one direction and plaintext in the other, until B notices 
+  that its original tunnel has expired.
+
+  This is very bad. If you are running OE, you may wish to add firewall
+  rules to your _updown script as a protective measure against any plaintext
+  packets going out over a connection which you expect to be encrypted.
+
+  The problem used to occur with any FreeS/WAN shutdown. As of FreeS/WAN 2.0, 
+  FreeS/WAN sends delete/notify messages on an orderly shutdown, so we now
+  expect this problem only if there is an unclean shutdown or if FreeS/WAN 1.x
+  is in play.
+
+  For details see:
+  http://lists.freeswan.org/pipermail/design/2002-May/002582.html
+  http://lists.freeswan.org/pipermail/design/2002-June/002610.html
+
+  TIP:  If an OE connection isn't behaving, you can recreate it with
+
+      ipsec whack --oppohere sourceIPaddress --oppothere targetIPaddress
+
+
+* There is no good clean facility to delete OE connections.
+  Available are:
+
+      ipsec auto --status to list connections
+      ipsec whack --deletestate to delete by state#.
+   
+
+* You may experience seeming gaps at rekey time. Once you generate traffic,
+  you will find that the OE connection returns.
+
+  By default, OE connections are not rekeyed; if they were we'd have a 
+  mountain of useless connections. As a consequence, if your OE connection is
+  idle at rekey time, it will go down until you generate further traffic.
+  To ensure prompt rekeying, you can run a ping thorough the OE tunnel.
+
+
+* At the moment, you can only run active OE on one physical interface,
+  if you also intend to use FreeS/WAN's policy groups, or %defaultroute
+  (integral to OE's user interface). You can work around this by defining 
+  many IP aliases on that physical interface.
+
+  More detail: Active means --routed, to trap outbound packets.  It is this 
+  route that is a problem. When responding, you can only define one OE 
+  connection (per host or subnet) in ipsec.conf, and that conn will apply to 
+  one interface. Normally this will be the public interface which your 
+  default route uses; it is, however, configurable.
+
+  Theoretically, it might make sense to select between multiple OE conns 
+  based on some criterion, such as address ranges. This might be useful for 
+  local OE, or in a complex routing scenario.
+
+  Currently, Pluto expects only one OE connection. If you add another,
+  Pluto may choose randomly between them, producing unpredictable results.
+
+
+* FreeS/WAN may not correctly follow a CNAME (Canonical Name) trail resulting
+  from reverse DNS delegation.
+
+  Solution: As of 2.03, you can enable "lwdnsq" (Lightweight DNS Queue) 
+  in the FreeS/WAN source tree. It follows CNAMES properly. We expect that
+  it will be turned on by default in a future FreeS/WAN version.
+
+  Alternate solution: Use a recent Bind 9 (we tested with Bind snap-pre9.3) 
+  for the DNS services which the FreeS/WAN box relies on. This Bind correctly 
+  implements "implied helper support" for traditional DNS records, and so can 
+  follow a properly constructed CNAME record trail which ends in a TXT record. 
+  Thus, in cases where a reverse domain has been delegated, FreeS/WAN and 
+  Bind 9 can find a TXT record and create an OE connection.
+
+  For more on the problem, see "OLD ISSUES", below.
+
+
+* To make OE operation smoother, we may need a script that runs and warns 
+  if we have the reverse DNS records, but FreeS/WAN is not running.
+  The reverse records advertise that we can do OE, but when the software is
+  not running this is false advertising. This is, however, somewhat of a
+  chicken and egg problem.
+
+
+
+OLD ISSUES
+
+* Coterminal OE doesn't work in practise. This includes OE-in-WAVEsec.
+  Solved in 2.02.
+
+  Old diagnosis:
+
+  If you have coterminal OE connections (two OE connections which share
+  one endpoint), you should have use of one of the encrypted links, but it 
+  is not clear which one KLIPS will prefer. In particular, the behaviour 
+  may not be symmetrical.
+
+  Worse yet, it just seems to trip over itself and be generally
+  unworkable.
+
+  Weird but predictable:
+
+  If you have both a gateway and a host who advertise (via DNS) an 
+  ability to do OE you need to be serious about doing host-based
+  OE, or you will be stuck in initiator-only mode. If your host 
+  advertises but does not run OE, then when a peer tries to connect to 
+  your host, it will fail to clear. The peer will then not try to encrypt 
+  traffic bound for that host as it travels to the gateway. To remedy 
+  the situation, restart ipsec on the peer (or otherwise flush out 
+  the %pass eroute), and ping the peer from your host to initiate 
+  OE.
+
+
+* One-way connection was created on rekey. Solved in 2.0.
+
+  If one side (A) has a shorter _keylife_ than the other,
+  and that side also has _rekey=no_, then when the keylife has 
+  expired, it will expect that its peer (B) will make a new conn to replace 
+  the existing one. Unfortunately, B has no idea. 
+
+  B continues to send out encrypted packets on the original connection,
+  while A passes the return packets along in the clear.
+
+  There is a proposed patch for (A) here:
+      http://lists.freeswan.org/pipermail/design/2002-July/003114.html
+
+
+* Failure to look up own host name is a show stopper.
+  Solved in 1.98 and 1.98b.
+
+  Solution: new setting %dnsondemand. Usage:
+
+      leftrsasigkey=%dnsondemand   # now in sample ipsec.conf
+      rightrsasigkey=%dnsondemand.
+
+  From man ipsec.conf:
+
+      The value  %dnsondemand  means  the key is to fetched from DNS 
+      at the time it is needed.
+
+  If Linux FreeS/WAN can't get the key for your public interface from 
+  DNS, it will not keep trying, and you will not be able to do OE.
+
+  The error message is:
+
+  May 14 09:40:24 road Pluto[21210]: failure to fetch key for 193.110.157.18 
+  from DNS: failure querying DNS for KEY of 18.157.110.193.in-addr.arpa.: 
+  Host name lookup failure
+
+  Workaround: 1 or 2
+  1. Supply a key in the conn. leftrsasigkey=0s...
+  2. Fix the KEY lookup failure and try again.
+
+
+* Assertion failure at OE rekey time. Fixed in 2.0pre0. A patch for 1.98b is
+  at http://lists.freeswan.org/pipermail/design/2002-August/003347.html
+
+
+* 1.91 to 1.94 have serious problems with %trap and %hold bugs. These bugs, 
+  introduced while coding the support structure for OE, affect both OE and
+  statically configured connections.
+
+
+* OE may not work with reverse delegation (CNAMEs). This problem was once 
+  capable of being a show stopper.
+
+  When relying on Bind versions before 9 for local DNS services, FreeS/WAN 
+  could not follow a well constructed CNAME trail that ended in a TXT or KEY 
+  record. Although OE required both record types, in practise we noticed the 
+  problem with the more common TXT lookups, rather than the rarer KEY lookups. 
+  Bind 9 largely solves the problem, by correctly seeking TXT records in 
+  delegated reverse domains. In addition, OE between two FreeS/WAN 2.02 or 
+  later boxes no longer relies on KEY records.
+    
+  Old symptoms:
+
+  When a DNS server queried by Linux FreeS/WAN follows a CNAME, 
+  it seems to forget what record type it is looking for, and it 
+  returns a PTR, despite the fact that another record type was requested.
+
+  Old workaround (see "CURRENT ISSUES" for other approaches):
+
+  Send your provider KEY and TXT records for direct insertion into the 
+  reverse ZONE files, rather than asking your provider to delegate authority 
+  using CNAME.
+
+  People who own IP blocks, rather than leasing them, may not 
+  experience this problem. If you were assigned IPs more than 
+  five years ago, you may own your IPs.
+
+
+* Building OE conns between nodes on a LAN requires extra routes in a 2.4
+  kernel environment, and may not have been possible in earlier kernel 
+  environments.
+
+  Paul Wouters reports that it works in a 2.4 kernel environment,
+  provided you add cut-in-half routes for your LAN, like so:
+  http://lists.freeswan.org/pipermail/design/2003-October/msg00026.html
+
+  The difficulty here resulted from conflicts between ARP entries in the 
+  rt_cache and FreeS/WAN's "stupid routing tricks". These tricks are an 
+  ongoing issue, and are discussed further here:
+  http://lists.freeswan.org/pipermail/design/2002-April/002285.html
+  http://lists.freeswan.org/pipermail/design/2002-August/003249.html

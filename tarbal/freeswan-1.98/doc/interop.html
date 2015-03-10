@@ -1,0 +1,2188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>Introduction to FreeS/WAN</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=iso-8859-1">
+<STYLE TYPE="text/css"><!--
+BODY { font-family: serif }
+H1 { font-family: sans-serif }
+H2 { font-family: sans-serif }
+H3 { font-family: sans-serif }
+H4 { font-family: sans-serif }
+H5 { font-family: sans-serif }
+H6 { font-family: sans-serif }
+SUB { font-size: smaller }
+SUP { font-size: smaller }
+PRE { font-family: monospace }
+--></STYLE>
+</HEAD>
+<BODY>
+<A HREF="toc.html">Contents</A>
+<A HREF="compat.html">Previous</A>
+<A HREF="performance.html">Next</A>
+<HR>
+<H1><A name="interop">Interoperation with other IPsec implementations</A>
+</H1>
+<P>The IPsec protocols are designed to allow interoperation between
+ different implementations. Other sections of this documentation have
+ more detail on:</P>
+<UL>
+<LI>the IPsec<A href="ipsec.html"> protocol specifications</A></LI>
+<LI>parts of the protocols<A href="compat.html#spec"> implemented or
+ omitted</A> in FreeS/WAN</LI>
+<LI><A href="web.html#implement">other implementations</A></LI>
+</UL>
+<P>FreeS/WAN does interoperate successfully with many other
+ implementations. The ones we know about are listed<A href="#mail.interop">
+ below</A>.</P>
+<P>Of course &quot;the devil is in the details&quot; and the IPsec protocols have
+ a lot of details. At least one<A href="http://www.counterpane.com/ipsec.pdf">
+ critique</A> has argued that the protocols should be simplified.
+ Various of those details can and do cause difficulties for
+ interoperation. Should you encounter such problems, please let us know
+ via the<A href="mail.html"> mailing list</A>. We will likely be able to
+ help you, and your report may be useful both to other users and to the
+ implementation teams.</P>
+<P><STRONG>Note:</STRONG> This file is updated often, whenever I notice
+ an interesting interop report on the mailing list. If you are reading
+ the version that ships with a FreeS/WAN release or is posted on the
+ web, and what you need isn't here, consider downloading the latest
+ snapshot to get the latest version of the doc. Perhaps I've added what
+ you need since the last release.</P>
+<P>There is additional information on interoperability testing in our<A href="web.html#interop.web">
+ web links</A> section.</P>
+<H2><A name="interop.problem">Interoperability problems</A></H2>
+<P>The IPsec RFCs are complex and include a number of optional features.
+ There is considerable opportunity for even two correct,
+ standard-conforming, implementations to disagree on details in a way
+ that blocks interoperation. Errors in either implementation -- either
+ misinterpretations of the standards or just bugs -- can also foul
+ things up.</P>
+<P>The commonest cause of problems, however, seems to be configuration
+ errors. Any IPsec implementation is somewhat complex. It has to be;
+ neither the networks it runs on nor the protocols it implements are
+ simple. When you have two of them to deal with, the problem you face is
+ not trivial.</P>
+<P>That said, FreeS/WAN interoperates successfully with many other
+ implementations. There is a<A href="#mail.interop"> list</A> below,
+ with configuration details provided by various users who have already
+ solved these problems.</P>
+<H3><A name="req.features">Possible problem areas</A></H3>
+<P>Known areas where problems may appear are:</P>
+<UL>
+<LI><STRONG>FreeS/WAN does not implement single DES</STRONG> because<A href="politics.html#desnotsecure">
+ DES is insecure</A>. Suggestions on what to do if the device you want
+ to talk to has only DES are<A href="#noDES"> below</A>.</LI>
+<LI><STRONG>FreeS/WAN does not implement Diffie-Hellman group 1
+ (768-bit)</STRONG> because it is not clear that this is secure.</LI>
+<LI>The RFCs define two modes for IKE negotiations -- main mode and
+ aggressive mode. Aggressive mode is slightly faster, but reveals more
+ information to an eavesdropper. Specifically, it lets an eavesdropper
+ know what identities are in use.<STRONG> FreeS/WAN does not implement
+ aggressive mode</STRONG>, so any negotiation another implementation
+ tries that way will fail.</LI>
+<P>In principle this should not be a problem since main mode support is
+ required in all implementations and aggressive mode is optional. In
+ practice, it is sometimes a problem. Some implementations default to
+ aggressive mode unless you configure them for main mode.</P>
+<LI>For automatic keying,<STRONG> the FreeS/WAN default is to provide<A href="glossary.html#PFS">
+ perfect forward secrecy</A></STRONG>. We see no reason not to; this is
+ more secure and costs little. Some other implementations, however, turn
+ PFS off by default.</LI>
+<P><STRONG>The PFS settings on the two ends must match</STRONG>. There
+ is no provision in the protocol for negotiating whether to use PFS; you
+ need to either set both ends to use it or set them both not to. For
+ communication between FreeS/WAN and an implementation that has PFS off
+ by default, you will have to change the setting on one end.</P>
+<P>You can turn PFS off in FreeS/WAN with the<VAR> pfs=no</VAR> setting
+ in<A href="manpage.d/ipsec.conf.5.html"> ipsec.conf(5)</A>, but if
+ possible we suggest you enable PFS on the other end instead. That is
+ more secure.</P>
+<LI>The IKE protocol allows several types of optional message. Two
+ things happen which are allowed by the RFCs:
+<UL>
+<LI>Some implementations send various optional messages.</LI>
+<LI>FreeS/WAN ignores them.</LI>
+</UL>
+ However, problems may arise if the other end relies on some expected
+ effect of these messages. There are two FAQ questions dealing with
+ this, one on the<A href="faq.html#ignore"> log message</A> FreeS/WAN
+ gives when ignoring optional payloads and one on the<A href="faq.html#deadtunnel">
+ delete SA</A> payload.</LI>
+<LI>IKE also allows an optional &quot;commit bit&quot; to be set on some messages.
+ Some uses of this, especially by Windows 2000, have caused
+ interoperation problems with FreeS/WAN. As of version 1.92, we have
+ changed our handling of this -- we now ignore the bit instead of
+ dropping the packet -- which should reduce such problems.</LI>
+</UL>
+<P>The general rule is that to interoperate with FreeS/WAN, the other
+ implementation should be configured for:</P>
+<UL>
+<LI>main mode</LI>
+<LI>triple DES encryption</LI>
+<LI>Diffie-Hellman Group 2 (1024-bit) or Group 5 (1536-bit)</LI>
+<LI>Perfect Forward Secrecy</LI>
+</UL>
+<P>This is possible for most implementations.</P>
+<P>For a more detailed discussion of which parts of the IPsec
+ specification FreeS/WAN implements, and reasons for that, see our<A href="compat.html#spec">
+ compatibility document</A>.</P>
+<H3><A NAME="10_1_2">Documentation and terminology problems</A></H3>
+<P>Documentation can also pose problems for interoperation. The two
+ implementations may use different terms for the same thing, or one may
+ have features that the other does not support and therefore does not
+ document. This can be quite confusing for the poor user who has to deal
+ with both.</P>
+<P>Known examples are:</P>
+<UL>
+<LI>What I call a &quot;shared secret&quot; (e.g. in<A href="adv_config.html#prodsecrets">
+ this section</A>), the documentation for another implementation might
+ call a &quot;passphrase&quot; or&nbsp;&quot;pre-shared key&quot;.</LI>
+<LI>Some implementations specify a subnet as a range of IP addresses,
+ for example 192.168.1.0-192.168.1.255 where we would use a subnet mask,
+ e.g. 192.168.1.0/24 or 192.168.1.0/255.255.255.0. See our<A href="adv_config.html#subnet.size">
+ discussion of subnets</A>.</LI>
+</UL>
+<P>If you encounter such problems, please report them to the<A href="mail.html">
+ users mailing list</A> and I'll try to add some clarifying text on the
+ FreeS/WAN side.</P>
+<H3><A name="one-way">If it only works in one direction</A></H3>
+<P>A few users have encountered situations in which interoperation is
+ fine when one end initiates, but fails if the other end starts the
+ negotiation.</P>
+<P>In such cases, you can set<VAR> rekey=no</VAR> in the FreeS/WAN
+ connection description. This prevents FreeS/WAN from initiating
+ re-keying of that connection, but it will still respond if the partner
+ initiates.</P>
+<P>Even if that trick solves your problem, please report the difficulty
+ to the<A href="mail.html"> users mailing list</A>. It is definitely
+ supposed to work no matter who initiates.</P>
+<H3><A name="client.server">&quot;Clients&quot; and &quot;servers&quot;</A></H3>
+ IPsec is not a client/server protocol. In a client/server protocol, the
+ two ends have quite different roles. For example, consider the web. The
+ client runs a browser and mostly does display. The server runs
+ completely different software and does no display at all. Similarly, in
+ a database application, the client and server play quite different
+ roles and often run completely different software.
+<P>IPsec is a peer-to-peer protocol. The gateways on the two ends of an
+ IPsec connection are peers, both doing the same thing. They could use
+ identical software.</P>
+<P>Despite this, various vendors produce products they call &quot;clients&quot;
+ and others they call &quot;servers&quot;. Typically, the &quot;clients&quot; do not support
+ a subnet behind them. They are designed only to let a single remote
+ machine connect. To get full IPsec with subnet support, you pay more
+ for the &quot;server version&quot;.</P>
+<P>For example, the free version of<A href="#pgpnet"> PGPnet</A> is only
+ a &quot;client&quot;; for subnet support you need to purchase the product. Also,
+ Windows 2000 Professional has only &quot;client&quot; IPsec. For subnet support
+ you need to purchase the server version, or put Linux and FreeS/WAN on
+ your gateways.</P>
+<P>This difference does not cause interoperation problems as such.
+ FreeS/WAN will happily interoperate with either a &quot;client&quot; or a
+ &quot;server&quot; product, and will happily play either role itself, depending
+ on how it is configured. In their marketing terms, FreeS/WAN acts as a
+ &quot;server&quot; if you define a subnet behind the gateway, and as a &quot;client&quot;
+ if you do not.</P>
+<P>It does, however, often complicate things when users discover that
+ the product they have will not do what they need because it is &quot;only a
+ client&quot;. Usually the only solutions are to upgrade to the &quot;sever
+ version&quot; or to switch to a different product.</P>
+<H3><A name="noDES">Systems that want to use single DES</A></H3>
+<P>Linux FreeS/WAN does not support single DES transforms. Neither
+ Pluto's IKE connections nor KLIPS' IPsec connections can use DES. Since<A
+href="politics.html#desnotsecure"> DES is insecure</A> we do not, and
+ will not at any future time, provide it.</P>
+<P>DES is, unfortunately, a mandatory part of the<A href="glossary.html#IPsec">
+ IPsec</A> standard. Despite that, we will not implement DES. We believe
+ it is more important to provide security than to comply with a standard
+ which has been<A href="politics.html#weak"> subverted</A> into allowing
+ weak algorithms. See our<A href="politics.html"> history and politics</A>
+ section for discussion.</P>
+<P>Some implementations may offer DES as the default. In such cases we
+ urge you to change them to<A href="glossary.html#3DES"> Triple DES</A>.
+ If this is not possible, for example because<A href="politics.html#exlaw">
+ export laws</A> prevent your vendor from offerring you adequate
+ crytography, we urge you to complain vigorously to one or more of:</P>
+<UL>
+<LI>your government, especially any department concerned with protecting
+ citizens' privacy or your nation's communication infrastructure</LI>
+<LI>the vendor</LI>
+<LI>the embassy of the nation whose laws are problematic for you</LI>
+</UL>
+<P>Consider using FreeS/WAN instead. PCs are cheap and we deliver 3DES
+ now.</P>
+<P>FreeS/WAN does have<A href="glossary.html#DES"> DES</A> code in it as
+ a sort of historical accident, since we need it to implement our
+ default (currently, our only) block cipher,<A href="glossary.html#3DES">
+ Triple DES</A>. However, since<A href="politics.html#desnotsecure"> DES
+ is insecure</A>, we do not provide any interface to that code.</P>
+<P>As a matter of project policy, we will not help anyone subvert
+ FreeS/WAN to provide<A href="politics.html#desnotsecure"> insecure DES
+ encryption</A>.</P>
+<H2><A name="patch.interop">Patches to extend interoperability</A></H2>
+<P>Sometimes interoperation requires user-contributed patches or add-ons
+ on the FreeS/WAN end. See this<A href="web.html#patch"> list of
+ available patches</A>.</P>
+<P>In many cases, no patches to the actual IPsec code are required. The
+ problem is to make FreeS/WAN recognise RSA keys stored in formats other
+ than ours. Each such format needs either a patch to make FreeS/WAN
+ understand that format or a utility to translate it to the FreeS/WAN
+ format. For example, unmodified FreeS/WAN cannot use RSA keys generated
+ by<A href="glossary.html#PGP"> PGP</A> or keys stored in<A href="glossary.html#X.509">
+ X.509</A> certificates, but patches or utilities are available for both
+ those formats.</P>
+<P>Other patches do change the IPsec code, for example to add the<A href="glossary.html">
+ AES</A> cipher. Likely this patch will be incorporated into FreeS/WAN
+ long before AES becomes important as an interoperaibility issue.</P>
+<P>Note that with some patches, you might be giving up some security in
+ exchange for interoperability. There are a number of &quot;features&quot; of
+ IPsec which we do not implement (<A href="compat.html#dropped">details</A>
+) either because they directly reduce security or because they
+ unnecessarily complicate things, thereby adding to security risks.
+ Adding these &quot;features&quot; is not recommended..</P>
+<H2><A name="otherpub">Interop HowTo documents</A></H2>
+<P>The FreeS/WAN team does not have the resources to test with anything
+ like the full range of<A href="web.html#implement"> other IPsec
+ implementations</A> out there. Fortunately, some of our users are doing
+ a fine job of filling the gap by providing HowTo information:</P>
+<UL>
+<LI>Hans-Jorg Hoxer's<A href="http://www.rommel.stw.uni-erlangen.de/~hshoexer/ipsec-howto/HOWTO.html">
+ HowTo</A> covering interoperation between any two of:
+<UL>
+<LI>FreeS/WAN</LI>
+<LI>Open BSD IPsec</LI>
+<LI>Windows 98 with PGPnet</LI>
+</UL>
+</LI>
+<LI>Jean-Francois Nadeau's<A href="http://jixen.tripod.com/"> practical
+ configurations</A> document covers FreeS/WAN interoperation with
+<UL>
+<LI>Windows 2000 IPsec</LI>
+<LI>NAI PGPnet</LI>
+<LI>IRE Safenet SoftPK.</LI>
+</UL>
+</LI>
+<LI>Oscar Delgado's<A href="http://tirnanog.ls.fi.upm.es/CriptoLab/Biblioteca/InfTech/InfTech_CriptoLab.htm">
+ page</A> has a PDF document covering interop using X.509 certificates
+ between FreeS/WAN and:
+<UL>
+<LI>Windows 2000</LI>
+<LI>PGPnet</LI>
+</UL>
+</LI>
+<LI><A href="http://suigres.bei.t-online.de/Freeswan-Clients_1.0/Freeswan-Clients_1.0.tar">
+HowTo in German</A> covering interoperation with:
+<UL>
+<LI>Windows 2000</LI>
+<LI>PGPnet</LI>
+<LI>SSH Sentinel</LI>
+</UL>
+</LI>
+<LI>Terrandon Communications provide a<A href="http://www.terradoncommunications.com/security/whitepapers/safe_net-to-free_swan.pdf">
+ PDF HowTO</A> on using FreeS/WAN with IRE SafeNet</LI>
+<LI>Telenor provide a HowTo on<A href="http://security.nta.no/freeswan-w2k.html">
+ FreeS/WAN and Windows 2000</A></LI>
+<LI>ForSite Solutions have a document in their<A href="http://www.forsitesolutions.com/Techstuff/freeswan/freeswan.html">
+ GRIP</A> (Guide for reasonably intelligent people) series covering
+ FreeS/WAN, IRE on 98, and Windows 2000 IPsec. When I looked at it (July
+ 2001), it was seriously incomplete, but had some good stuff.</LI>
+<LI>Ryan's<A href="http://www-ec.njit.edu/~rxt1077/Howto.txt"> HowTo</A>
+ for getting PGPnet to connect with FreeS/WAN using x509 certs through a
+ Linksys router, with IPSec passthru enabled</LI>
+<LI>Nate Carlson has a HowTo document for<A href="http://www.natecarlson.com/include/showpage.php?cat=linux&amp;page=ipsec-x509">
+ FreeS/WAN with X.509 patch and Windows 2000</A></LI>
+</UL>
+<P>See also our lists of:</P>
+<UL>
+<LI>available<A href="web.html#patch"> patches and add-ons</A>.</LI>
+<LI>user-writtten<A href="intro.html#howto"> FreeS/WAN-to-FreeS/WAN
+ HowTo</A> documents</LI>
+</UL>
+<H3><A name="ipsec.2001"></A>Interop info from the IPsec 2001 conference</H3>
+<P>From a mailing list report:</P>
+<PRE>     Subject: IPsec 2001 interop demo data available
+        Date: Tue, 13 Nov 2001
+        From: Ghislaine Labouret &lt;Ghislaine.Labouret@hsc.fr&gt;
+Organization: HSC (Herve Schauer Consultants)
+
+During the IPsec 2001 conference held in Paris last month, an
+interoperability demonstration including FreeS/WAN was set up.
+
+FreeS/WAN 1.91 + X.509 patch 0.9.3 was tested with the following
+devices: 6WINDGate, Cisco IOS, Cisco PIX, Cisco VPN 3000, Netasq F100,
+Netcelo VPN gateway, NetScreen NS100, Nortel Contivity, OpenBSD 3.0.
+
+The results and configuration files are now available online:
+http://www.hsc.fr/ipsec/ipsec2001/</PRE>
+<H2><A name="mail.interop">Interoperation with specific products</A></H2>
+<P>Most of the information in this section is gleaned from the mailing
+ list. For additional information, search one of the list<A href="mail.html#archives">
+ archives</A>.</P>
+<P>A large thank you is in order to all the list contributors. This
+ document would not exist without you.</P>
+<P><STRONG>Anyone who has tested with an implementation not listed here,
+ please report results</STRONG> to the<A href="mail.html"> mailing list</A>
+. I generally include the sender's email address when I quote list
+ messages here; &quot;credit where credit is due&quot;. If you would prefer that I
+ not do that with yours, please mention that.</P>
+<H3><A name="oldswan">Older versions of FreeS/WAN</A></H3>
+ Any two versions of FreeS/WAN should interoperate, and many
+ combinations have been tested doing so successfully. In particular,
+ every release is tested against its predecessor before it goes out.
+<P>However, if you do encounter a problem involving an older version, we
+ are likely to suggest you upgrade. We do not have the resources to
+ support multiple versions.</P>
+<H4><A name="config.old">Using your old config files</A></H4>
+<P>In general, new versions will use existing configuration files, at
+ least until the next major version number change. For example, 1.8 can
+ use files created for 1.7, 1.6, even back to 1.0, but not from 0.92.
+ This behaviour will continue until we release 2.0.</P>
+<P>As of 1.8, however, conf file checking has become stricter, so that
+ an error that may have slipped past the checks in an earlier version
+ may be caught in a later one. From 1.8's doc/CHANGES:</P>
+<PRE>      The internal configuration-file reader is progressively getting 
+      fussier about what it will accept, which may cause problems for 
+      illegal ipsec.conf files whose sins previously passed unnoticed.  
+      IN PARTICULAR, the &quot;auto&quot; parameter's values are now checked for 
+      legality everywhere.</PRE>
+<H3><A name="OpenBSD">OpenBSD</A></H3>
+<P>Two user-written HowTos we know of cover interoperation between
+ FreeS/WAN and Open BSD IPsec:</P>
+<UL>
+<LI>Hans-Jorg Hoxer's<A href="http://www.rommel.stw.uni-erlangen.de/~hshoexer/ipsec-howto/HOWTO.html">
+ HowTo</A></LI>
+<LI>Skyper's<A href="http://www.segfault.net/ipsec/"> guide</A></LI>
+</UL>
+<P>The<A href="http://www.openbsd.org/faq/faq13.html"> OpenBSD FAQ</A>
+ includes information on their IPsec implementation.</P>
+<P>This report is from one of the OpenBSD IPsec developers, a regular
+ participant on our mailing list:</P>
+<PRE>Subject: spi.c bug
+   Date: Tue, 23 Feb 1999
+   From: Niklas Hallqvist &lt;niklas@appli.se&gt;
+
+PS.  I don't know if you have an interop list anywhere, but you should
+know FreeS/WAN interops with OpenBSD both at the IPSec level and at
+the IKE level.</PRE>
+<P>There is one known problem with FreeS/WAN-OpenBSD IKE interoperation.
+ Here is a mailing message from our Pluto implementer, discussing that
+ with the user who discovered it:</P>
+<PRE>Subject: Re: [Bugs] Interoperability with OpenBSD
+   Date: Sun, 30 Sep 2001
+
+| Yes, the problem was the pre-shared key.  It seems that it cannot be
+| more than 64 characters long.  I was using a longer key.
+|
+| Is this documented behaviour for either FreeS/WAN or isakmpd?  (Anyway
+| a reasonable error message would not hurt.)
+
+The limit is not in FreeS/WAN, so we don't document it :-)
+
+I guess we could mention this on our interop pages.  Claudia?
+
+The error message from isakmpd was not very helpful (I realize that
+I'm in a glass house when I throw this stone).
+
+- isamkpd documentation should state the limit
+
+- isakmpd should diagnose that the PSK was too long
+
+- isakmpd should suggest that this type of problem (undigestable
+  message) might be caused by mis-matched PSK
+
+I hope that you would have gotten a better message from Pluto.  So if
+you had initiated from the isakmpd side, the resulting diagnostic from
+Pluto might have lead you to the problem more quickly.
+
+When Pluto cannot parse the first encrypted IKE message, it prints a
+diagnosis of the parse failure (just like isakmpd did), but it prefixes it
+with
+        probable authentication (preshared secret) failure:
+
+I just noticed that it will print this even if authentication is via
+RSA Sig -- I will fix that.  I'll reword the prefix too:
+        probable authentication failure (mismatch of preshared secrets?):</PRE>
+<H3><A name="FreeBSD">FreeBSD</A></H3>
+<P><A href="http://www.freebsd.org">FreeBSD</A> uses the<A href="http://www.kame.net">
+ KAME</A> IPsec and IPv6 code.</P>
+<P>Here is a mailing list message on FreeBSD interoperation:</P>
+<PRE>Subject: Re: Interop with [Free|Open|Net]BSD
+   Date: Fri, 29 Dec 2000
+   From: Ghislaine Labouret &lt;Ghislaine.Labouret@hsc.fr&gt;
+
+On Thu, 28 Dec 2000 13:53:01 -0500, Sandy Harris wrote:
+
+&gt; FreeBSD:
+&gt; 
+&gt; For FreeBSD, I find list discussion of 3DES key formats, presumably for manual
+&gt; keying. We have 192-bit, 3 64-bit keys including parity bits, while FreeBSD 4.0
+&gt; used 168-bit, 3 56-bit keys without the parity bits. Has FreeBSD changed this?
+
+I still don't understand what made Spike Gronim say that KAME wants a
+168 bits key; I have always been using 192 bits keys with KAME and had
+no interoperability problem between KAME and FreeS/WAN using manual
+keying.
+
+&gt; For auto keying, I find reports of sucessful use of pre-shared secrets, but
+&gt; nothing on RSA authentication.
+
+I had KAME (20001023 snapshot) and FreeS/WAN 1.6 successfully
+interoperate using both PSK and RSA-sig authentication. The config
+files, certificates and test keys used are available online:
+http://www.hsc.fr/ipsec/ipsec2000/kame/
+http://www.hsc.fr/ipsec/ipsec2000/freeswan/
+Not much details though, as this is just a report and not a how-to. Will
+improve it if I can find spare time.
+
+&gt; Does FreeBSD support that? 
+
+KAME can use RSA-sig and can either exchange certificates online or get
+them from a file. I tested the latter. No test with the X.509 patch for
+FreeS/WAN yet, though that's in my short term plans too.
+
+&gt; Are the key formats compatible, or has anyone written translation code?
+
+KAME wants the keys inside certificates, in PEM format. To extract the
+keys for FreeS/WAN I used the fswcert utility, but it can be done &quot;by
+hand&quot; using openssl.</PRE>
+<H3><A name="NetBSD">NetBSD</A></H3>
+<P>NetBSD has an IPsec implementation based on<A href="http://www.kame.net">
+ KAME</A>. It is described in this<A href="http://www.netbsd.org/Documentation/network/ipsec/">
+ FAQ</A>.</P>
+<H3><A name="Cisco">Cisco Routers</A></H3>
+<H4><A name="cisco.info">Information from Cisco</A></H4>
+<P>Useful pages on Cisco sites include:</P>
+<UL>
+<LI><A href="http://www.cisco.com/warp/public/471/top_issues/vpn/vpn_index.shtml">
+VPN support</A></LI>
+<LI><A href="http://www.ieng.com/warp/public/707/index.shtml#ipsec">
+IPsec</A></LI>
+</UL>
+<P>To work with FreeS/WAN, a Cisco router must have 3DES software. A<A href="http://www.cisco.com/univercd/cc/td/doc/product/software/ios120/120newft/120t/120t2/3desips.htm">
+ page</A> on Cisco's site gives this list:</P>
+<PRE>| Triple DES Encryption for IPSec
+|
+| ...
+|
+| This feature is supported only on the following platforms:
+|
+|     1720
+|     2600 Series
+|     3600 Series
+|     4000 Series
+|     4500 Series
+|     AS5300 Series
+|     7200 Series
+|     7500 Series</PRE>
+<H4><A name="cisco.list">From our mailing list</A></H4>
+<P>Our first Cisco interop success reports were from Ian Calderbank in
+ 1999. They included configuration information for his Cisco 3640. These
+ messages can be found in the mailing list<A href="mail.html#archive">
+ archives</A> or in older versions of this document, still available<A href="http://www.freeswan.org/doc.html">
+ on the web</A>. We no longer include them here.</P>
+<P>Several other pages have possibly useful information:</P>
+<UL>
+<LI><A href="http://www.diverdown.cc/vpn/">configuration files</A> for
+ FreeS/WAN 1.91, Cisco PIX and Cisco 2611 router</LI>
+<LI>mailing list<A href="http://www.sandelman.ottawa.on.ca/linux-ipsec/html/2000/11/msg00578.html">
+ message</A> with subject &quot;FreeS/WAN and Cisco 3030 VPN Concentrator&quot;
+ with an attached MS-Word document on the setup.</LI>
+<LI>A sample FreeS/WAN configuration, used in testing with Cisco at an
+ interop conference, is in another list<A href="http://www.sandelman.ottawa.on.ca/linux-ipsec/html/2001/01/msg00095.html">
+ message</A>. Unfortunately, it does not give the matching Cisco
+ configuration.</LI>
+<LI>a short<A href="http://www.worldbank.ro/IPSEC/cisco-linux.txt">
+ HowTo</A> for interop between a Cisco 3360 and FreeS/WAN, using shared
+ secrets</LI>
+</UL>
+<H4><A name="cisco.psk">Shared secrets work</A></H4>
+<P>Several users report successful interoperation using shared secrets.
+ Here is one such message:</P>
+<PRE>Subject: [Users] cisco - freeswan summary
+   Date: Fri, 31 Aug 2001 
+   From: mcferren@colltech.com
+
+I finally got a vpn linked up between a 3000 series cisco router and a
+redhat linux box using shared secrets.  The linux box is running 2.2.19 with
+freeswan 1.9. The shared secret has no spaces in it, as I read somewhere
+that it might break the connection.
+
+Several people have asked me the configuration that I have used to
+make this happen, so I thought I should publish it here.  
+
+Here is the network...
+
+          host 172.11.251.34
+             |
+           -------------------  172.11.251.0/24
+                   |
+                linux router
+                   |
+           -------------------  172.11.252.0/24
+                   |
+                   |    172.11.252.2
+              freeswan linux
+                   |    xxx.xxx.xxx.85
+                   |
+                   |    xxx.xxx.xxx.1
+                router
+                   |
+                INTERNET
+                   |.
+                router
+                   |    yyy.yyy.yyy.1
+                   |
+                   |    yyy.yyy.yyy.21
+               cisco router
+                   |    10.25.5.1
+                   |
+           -------------------   10.25.5.0
+             |
+           host 10.25.5.44
+           
+
+My ipsec.conf looks like this...
+
+config setup
+        # THIS SETTING MUST BE CORRECT or almost nothing will work;
+        # %defaultroute is okay for most simple cases.
+        interfaces=&quot;ipsec0=eth0&quot;
+        # Debug-logging controls:  &quot;none&quot; for (almost) none, &quot;all&quot; for lots.
+        klipsdebug=all
+        plutodebug=none
+        plutoload=%search
+        plutostart=%search
+        # Close down old connection when new one using same ID shows up.
+        uniqueids=yes
+ 
+# defaults for subsequent connection descriptions
+conn %default
+        # How persistent to be in (re)keying negotiations (0 means very).
+        keyingtries=0
+ 
+conn cisco1
+        left=xxx.xxx.xxx.85
+        leftnexthop=xxx.xxx.xxx.1
+        leftsubnet=172.11.251.0/24
+        right=yyy.yyy.yyy.21
+        rightnexthop=yyy.yyy.yyy.1
+        rightsubnet=10.25.5.0/24
+        lifetime=8h
+        auto=start
+
+My cisco configuration looks like this...
+
+
+crypto map VPN 30 ipsec-isakmp   
+ set peer xxx.xxx.xxx.85
+ set transform-set 3des-md5 
+ match address 130
+
+crypto ipsec transform-set 3des-md5 esp-3des esp-md5-hmac 
+
+crypto isakmp key ******** address xxx.xxx.xxx.85 
+
+
+crypto isakmp policy 3
+ encr 3des
+ hash md5
+ authentication pre-share
+ group 2
+
+access-list 130 permit ip 10.25.5.0 0.0.0.255 172.11.251.0 0.0.0.255
+
+Sorry it took so long to send this out, but there is apparently an ipchains
+firewall on the host behind the cisco, and it took some time to get
+these rules straight.
+
+I hope this helps someone....</PRE>
+ Another similar post:
+<PRE>Subject: [Users] freeswan &lt;--$gt; Cisco: success!
+   Date: Thu, 20 Sep 2001
+   From: &quot;Wolfgang Tremmel&quot; &lt;w.tremmel@vianetworks.de&gt;
+
+I have seen several requests on the list for example
+configurations for connection of Freeswan to Cisco, since
+about 1 hour ago I had success, here my example configuration.
+
+Background: My router is a 80486, connecting to the internet using
+                PPPoE via DSL. Kernel is 2.4.9, Freeswan is snap2001sep13b
+                And yes, I get a dynamic IP address
+
+                Router is a Cisco 4700, running IOS 12.2(2)T1 with 3DES
+
+ipsec.conf:
+config setup
+        interfaces=&quot;ipsec0=ppp0&quot;
+        klipsdebug=none
+        plutodebug=none
+        plutoload=%search
+        plutostart=%search
+        uniqueids=yes
+
+conn %default
+        keyingtries=0
+        disablearrivalcheck=no
+
+conn cisco
+        type=tunnel
+        left=%defaultroute
+        leftsubnet=my.net.work.athome/29
+        right=x.x.x.x                   # fastEthernet0 of ciscorouter
+        rightnexthop=1.2.3.4            # next hop of ppp0
+        rightsubnet=0.0.0.0/0           # defaultroute via ipsec
+        keyexchange=ike
+        authby=secret
+        lifetime=8h
+        pfs=yes
+
+ipsec.secret:
+%any x.x.x.x: PSK &quot;thisisatestkey&quot;
+
+- ---- thats all on the linux router
+- ---- now for the Cisco:
+
+crypto isakmp policy 100
+ encr 3des
+ authentication pre-share
+ group 2
+ lifetime 3600
+crypto isakmp key diesisteintest address y.y.0.0 255.255.0.0  !
+network and mask of any possible address your ppp0 can have
+
+crypto ipsec transform-set linuxbox esp-3des esp-sha-hmac
+
+crypto dynamic-map linuxbox 100
+ set transform-set linuxbox
+ match address linuxbox
+
+crypto map linuxbox local-address FastEthernet0
+crypto map linuxbox isakmp authorization list linuxbox          ! not sure if
+that is really needed
+crypto map linuxbox 100 ipsec-isakmp dynamic linuxbox discover
+
+interface FastEthernet0
+ ip address x.x.x.x 255.255.255.192
+ full-duplex
+ crypto map linuxbox
+
+ip access-list extended wtremmel
+ permit ip host x.x.x.x my.net.work.athome mask
+
+
+Wolfgang</PRE>
+<H4><A name="cisco.rsa">RSA keys are tricky</A></H4>
+<P>A message from another user about using RSA keys with Cisco:</P>
+<PRE>From: jrussi@uol.com.br
+Subject: Re: [Users] RSA public key and Cisco (3640)
+Date: Sat, 2 Jun 2001
+
+We use Cisco IOS 12.1.5(T) and freeswan 1.8
+
+Here an example on how I copied the key from cisco:
+
+Key Data:
+  117C311E 16192D86 8886C71D 11111115 11138B11 31881241 11C7E23B D6DB22 
+  18DEC1BD....
+
+Will become
+
+0x117C311E16192D868886C71D1111111511138B113188124111C7E23BD6DB2218DEC1BD...  
+
+We used at least 1024 bits long keys.
+
+But it doesn&acute;t matter. The problem is that cisco doesn&acute;t agree with the RSA
+schema from freeswan, I think. In Cisco, rsasig is to use with a CA, and
+rsaencript did not work as well. 
+
+My case is worse than it. My first intention was to use freeswan in a road
+warrior config. I really need to use CA, as Cisco needs a fix address to
+use rsa public key. The public key to cisco is always associated to an IP
+address ou FQDN. I quit. Will try the X509 patch and the Open CA software.
+
+Deyvi
+&gt;&gt;(off list)
+&gt;
+&gt;Yes, I was just going to mention that the Cisco's key should be in
+&gt;ipsec.conf (just received your correction).
+&gt;
+&gt;I think that I have the Cisco side configured correctly ( I can't be sure
+&gt;because I can't test against the Freeswan).
+&gt;
+&gt;Starting from having the IPsec tunnel working with pre-share, I did the
+&gt;following on the Cisco side:
+&gt;
+&gt;#config t
+&gt;(config)# crypto key pubkey-chain rsa
+&gt;(config-pubkey-chain)# addressed-key 
+<!--ipaddress of freeswan-->
+
+&gt;(config-pubkey-key)# key-string
+&gt;(config-pubkey-key)# 
+<!--paste freeswan key here-->
+
+&gt;(config-pubkey-key)#quit
+&gt;(config-pubkey-chain)#exit
+&gt;
+&gt;# config t
+&gt;(config)# crypto isakmp policy 1
+&gt;(config-isakmp)# no authentication pre-share
+&gt;(config-isakmp)# authentication rsa-sig
+&gt;(config-isakmp)# exit
+&gt;
+&gt;How long is your RSA key that was generated on the Cisco? I tried copying
+&gt;the key out of the 3640 and pasting it into ipsec.conf, removing the spaces
+&gt;and adding a '0x' in the front. I get the 'key too small' error still. What
+&gt;version of freeswan are you using?
+&gt;
+&gt;I'm using Freeswan 1.9 w/ IOS 12.1(6).</PRE>
+<H4><A name="cisco.conc">Cisco VPN Concentrator</A></H4>
+<P>Another mailing list thread discussed using FreeS/WAN with the Cisco
+ VPN Concentrator. Here is one user describing his problem:</P>
+<PRE>Subject: [Users] FreeSWAN and Cisco VPN CONCENTRATOR
+   Date: Thu, 25 Oct 2001
+   From: &quot;M. Sticki&quot; &lt;msticki@web.de&gt;
+
+i have to establish a vpn tunnel between two companies.
+one of the company is using the cisco vpn concentrator
+and the other company is using redhat 7.1 and freeswan.
+
+it is no a problem to estblish the tunnel between two freeswan
+gateways or between a cisco vpn-client and the concentrator.
+
+but the companies don't want to change their equipment.
+and with this constellation i can't establish the tunnel.
+
+the responce from cisco is: &quot;THAT IS NOT SUPPORTED&quot;
+
+so this mailing list is my last chance, because i don't know how to go on</PRE>
+<P>and another user's answer:</P>
+<PRE>Subject: Re: [Users] FreeSWAN and Cisco VPN CONCENTRATOR
+   Date: Thu, 25 Oct 2001 14:21:17 +0200
+   From: Ghislaine Labouret &lt;Ghislaine.Labouret@hsc.fr&gt;
+
+&gt; i have to establish a vpn tunnel between two companies.
+&gt; one of the company is using the cisco vpn concentrator
+&gt; and the other company is using redhat 7.1 and freeswan.
+[...]
+&gt; the responce from cisco is: &quot;THAT IS NOT SUPPORTED&quot;
+
+At the IPsec 2001 conference which is behing held right now, we have
+set up an interop demo platform which includes those two devices.
+They are successfully interoperating using certificates.</PRE>
+<P>Later in the same thread:</P>
+<PRE>Subject: Re: [Users] FreeSWAN and Cisco VPN CONCENTRATOR
+   Date: Thu, 25 Oct 2001
+   From: Ghislaine Labouret &lt;Ghislaine.Labouret@hsc.fr&gt;
+Organization: HSC (Herve Schauer Consultants)
+
+Juri Jensen wrote:
+
+&gt; I've been trying to get those two to interoperate with certificates, but
+&gt; I have only succeeded with PSK. Can you shed some light on how you did
+&gt; it....?
+
+I will put the config files and different tests results from the demo on
+http://www.hsc.fr/ipsec/ipsec2001/ next week.
+
+With VPN3000, we had a problem with the DN comparison because of
+encoding issues. The solution was to specify the VPN 3000 DN in binary
+format in ipsec.conf. I leave it to Andreas Steffen to explain the exact
+issue, as he is the one who solved it.</PRE>
+<H3><A name="bay">Nortel (Bay Networks) Contivity switch</A></H3>
+<P>There is one known issue in FreeS/WAN-to-Contivity interoperation.
+ Recent versions of FreeS/WAN no longer support DH group 1 for key
+ exchange. Older versions of Contivity software support nothing else.
+ Group 2 was added in more recent releases. So:</P>
+<UL>
+<LI>older FreeS/WANs, such as 1.5, will work with any Contivity
+ software. Key exchange will be done using DH Group 1. This may not be
+ secure.</LI>
+<LI>current FreeS/WANs will work only with recent Contivity releases
+ supporting DH Group 2. Contivity 3.5 is one such release.</LI>
+</UL>
+<P>We recommend using a current software on both ends.</P>
+<P>Some messages from the mailing list:</P>
+<PRE>Subject: Contivity Extranet Switch
+   Date: Fri, 11 Jun 1999
+   From: Matthias David Siebler &lt;msiebler@nortelnetworks.com&gt;
+Reply-To: msiebler@alum.mit.edu
+Organization: Nortel Networks
+
+More interoperability results:
+
+I successfully established a tunnel with a Nortel (formerly Bay (formerly New Oak)) Contivity
+Extranet Switch running the latest release versions.
+
+The CES is running V2.50 of the software and the Linux server is running V1.0.0 of the Free/SWAN
+code on a RedHat 5.2 unit with the kernel upgraded to 2.0.36-3
+
+I am using IKE with 3DES-HMAC-MD5
+
+Note however, that tunnels cannot yet be configured as client tunnels since Free/SWAN does not yet
+support aggressive mode.  Hopefully, that will arrive soon, which would allow remote users to
+connect to a CES using the Free/SWAN code as clients.</PRE>
+<P>and apparently Nortel want their product to work with FreeS/WAN:</P>
+<PRE>Subject: Is FreeSwan 3.1 a legitamate ipsec implementation when compared to its commercial competitors?
+   Date: Tue, 02 May 2000
+   From: Bill Stewart &lt;bill.stewart@pobox.com&gt;
+
+Nortel's Contivity IPsec server has a formal policy of interoperability
+with FreeS/WAN.   I was quite pleased to hear it when they last talked to us,
+and it makes sense in their business environment, since they let you use
+their WinXX client software free, so this gives them support for Linux
+clients.</PRE>
+<P>A more recent mailing list report is:</P>
+<PRE>Subject: Nortel Contivity and Free-S/WAN
+   Date: Wed, 7 Mar 2001
+   From:  &quot;JJ Streicher-Bremer&quot; &lt;jj@digisle.net&gt;
+
+OK, here is a very brief nuts and bolts breakdown on how to get this
+combo working.  I want to thank everyone at Free-S/WAN and everyone on
+the list for your help in getting this to work.
+
+Connecting FreeS/WAN to the Nortel Networks Contivity Extranet Switch:
+
+What you need:
+FreeS/WAN v1.5 and Contivity ver 2.5 - 3.5 (might work with earlier
+versions, but I have not tested it with this config)
+or
+FreeS/WAN v1.8 and COntivity ver 3.5 (the 3.5 version supports Diffe
+Hilman group 2 key exchange)
+
+What to do:
+1 - Configure the Contivity:
+   Set up a branch office tunnel group with the following settings:
+        
+        Connectivity:
+        Nailed Up: Disabled
+        Access Hours: Anytime
+        Call Admission Priority: Highest Priority
+        Forwarding Priority: Low Priority
+        Idle Timeout: 00:00:00
+        Forced Logoff: 00:00:00
+        RSVP: Disabled
+        RSVP: Token Bucket Depth: 3000 Bytes
+        RSVP: Token Bucket Rate: 28 Kbps
+        Branch Office Bandwidth Policy: 
+        - Committed Rate: 56 Kbps
+        - Excess Rate: 128 Kbps
+        - Excess Action: Mark
+
+        Encryption: 
+        - ESP - Triple DES with SHA1 Integrity: Enabled
+        - ESP - Triple DES with MD5 Integrity: Enabled
+        - ESP - 56-bit DES with SHA1 Integrity: Disabled
+        - ESP - 56-bit DES with MD5 Integrity: Disabled
+        *IKE Encryption and Diffie-Hellman Group: Triple DES with Group
+2 (1024-bit prime)
+        Vendor ID: Disabled
+        Perfect Forward Secrecy: Enabled
+        Compression: Disabled
+        Rekey Timeout: 08:00:00
+        Rekey Data Count:  (None) 
+        *ISAKMP Retransmission Interval: 16
+        *ISAKMP Retransmission Max Attempts: 4
+
+        Set up a branch office tunnel inside this new group with the
+following settings:
+        
+        Endpoint Addresses
+        Local - Public address of your COntivity
+        Remote - Your Free-S/WAN interface Address
+                Tunnel Type - IPSEC
+        IPSEC Authentication - Text Pre-Shared Key
+                One note here, I have had some trouble trying to use HEX
+or Non alphanumeric chars in this key.
+        
+        Under IP:
+        Static Routing
+        Local - networks you want to be able to access through the
+tunnel
+        Remote - networks that will be allowed through the tunnel
+        NAT - None
+
+   Get routing setup on your office network:
+        You will need to get a routing entry that will point all traffic
+bound for your home network (the one that will be acciessible through
+the tunnel) to the internal interface of the contivity system.
+
+   Configure Free-S/WAN:
+        Install, compile, and test Free-S/WAN
+        Edit ipsec.conf for your new tunnel:
+--------------------------------------------------------        
+ipsec.conf --
+config setup
+        interfaces=&quot;ipsec0=eth1&quot;
+        forwardcontrol=no
+        klipsdebug=none
+        plutodebug=none
+        manualstart=
+        plutoload=%search
+        plutostart=%search
+        plutowait=no
+conn net1
+        type=tunnel
+        auto=start
+        auth=esp
+        authby=secret
+        keyexchange=ike
+        keylife=1h
+        keyingtries=1
+        pfs=yes
+        left=10.0.0.2
+        leftnexthop=10.0.0.1
+        leftsubnet=10.0.1.0/24
+        right=172.16.0.2
+        rightsubnet=172.16.1.0/24
+conn net2
+        type=tunnel
+        auto=start
+        auth=esp
+        authby=secret
+        keyexchange=ike
+        keylife=1h
+        keyingtries=1
+        pfs=yes
+        left=10.0.0.2
+        leftnexthop=10.0.0.1
+        leftsubnet=10.0.1.0/24
+        right=172.16.0.2
+        rightsubnet=172.16.2.0/24
+
+ipsec.secrets --
+10.0.0.2 172.16.0.2 &quot;Your big secret&quot;
+---------------------------------------------
+
+The above config is for this imaginary network:
+
+         +------+
+10.0.1.1 |      |10.0.0.2   10.0.0.1++ Internet  
+---------|      |-------------------++===========
+         +------+            Home Router         
+         Free-S/WAN host
+
+
+Internet ++    172.16.0.2####         172.16.1.0/24 These
+=========++--------------####---------172.16.2.0/24 are here somewhere
+   Office Router       Contivity
+   
+   
+   This has worked for me.  I am still having trouble with the tunnels
+dying after about 30-40 minutes of non-use.  Don't know what that is
+about, but I'll keep you posted.</PRE>
+<H3><A name="Raptor">Raptor Firewall</A></H3>
+<H4><A name="raptorNT">Raptor 5 on NT (old info)</A></H4>
+<PRE>   Subject: Interoperability with Raptor 5 (Success!)
+   Date: Wed, 06 Jan 1999 16:19:27 -0500
+   From: Chuck Bushong &lt;chuckb@chandler-group.com&gt;
+
+I don't know if this is useful information for anyone, but I have
+successfully established a VPN between RedHat 5.1 (kernel 2.0.34) running
+FreeS/WAN 0.91 and NT4 running Raptor 5.  However, Pluto does not appear
+compatible with the Raptor IKE implementation. . . .
+
+Subject: RE: Interoperability with Raptor 5 (Success!)
+Date: Thu, 28 Jan 1999 17:22:55 -0500
+From: Chuck Bushong &lt;chuckb@chandler-group.com&gt; 
+
+... this VPN (at least the klips end) has been up under minimal
+utilization for three weeks plus without interruption.  The
+machine seems very stable.  Pat yourself on the back, gentlemen.
+Your beta release is more stable than certain companies' shipping
+product.
+
+Keep up the good work.</PRE>
+<H4><A name="raptorsun">Raptor 6 on Solaris</A></H4>
+<PRE>Subject: Re: successful interop. with Raptor 6.02 
+   From: &quot;Charles G. Griebel&quot; &lt;cggrieb@biw.com&gt; 
+   Date: Tue, 25 Jul 2000
+
+On Thu, Jul 20, 2000 at 12:04:40PM -0700, Kevin Traas wrote:
+&gt; Great!  I'm just about to start looking into this as well, so any
+&gt; docs/info you can provide would be *greatly* appreciated.  Immortalize
+&gt; yourself!  Get something written and added to the compatibility.html
+&gt; file.  Many will thank you.
+
+Can't be that hard.  I'm just a freeswan newbie who hasn't even done a FS
+<!----->
+FS
+tunnel yet :)
+
+Anyway, I hope you find this helpful.
+
+Chock
+
+-------------------------------------------------------------------------------
+
+Automatically keyed 3DES VPN between Raptor 6.02 on Solaris 2.6 (left) and
+   FreeS/WAN 1.5 on 2.2.16 Intel (right)
+
+FreeS/WAN (right) information:
+-----------------------------
+
+ipsec.conf
+----------
+config setup
+        interfaces=&quot;ipsec0=ppp0&quot;    # change to suite
+        klipsdebug=
+        plutodebug=
+        plutoload=sample
+        plutostart=sample
+
+conn sample
+        left=10.0.0.1
+        leftnexthop=10.0.0.2
+        leftsubnet=192.168.0.0/24
+        right=10.1.1.1
+        rightnexthop=10.1.1.1
+        rightsubnet=172.16.1.0/24
+        auto=add
+        keyexchange=ike
+        pfs=no
+        lifetime=8h
+        esp=3des-md5-96
+
+ipsec.secrets
+-------------
+# note I haven't verified that underscores will actually work
+10.0.0.1 10.1.1.1: PSK &quot;some_long_secret_with_plenty_of_chars&quot;
+
+Raptor 6.02 (left) information:
+------------------------------
+Key Profiles:
+    Name: left-external-kp-dynamic
+    Type: Dynamic
+    Profile Describing: local entity
+    Gateway: 10.1.1.1
+    Identification Type: Address
+    Identification: 10.1.1.1
+    ISAKMP Hash Method: MD5
+    ISAKMP Authentication: Shared_Key
+    Shared Secret: some_long_secret_with_plenty_of_chars
+    Time Expiration: 1080
+
+    Name: right-external-kp-dynamic
+    Type: Dynamic
+    Profile Describing: remote entity
+    Gateway: 10.0.0.1
+    Identification Type: Address
+    Identification: 10.0.0.1
+
+Secure Subnets:
+    Name: left-ss-dynamic
+    Address: 192.168.0.0
+    Netmask: 255.255.255.0
+    Key Profile: left-ss-dynamic
+
+    Name: right-ss-dynamic
+    Address: 172.16.1.0
+    Netmask: 255.255.255.0
+    Key Profile: right-ss-dynamic
+
+Secure Tunnel:
+    Name: left-to-right-tunnel
+    Entity A: right-ss-dynamic
+    Entity B: left-ss-dynamic
+    Encapsulation: ISAKMP
+    Filter: [none]
+    Pass traffic through proxies: [unchecked]
+    Use Authentication Header: [unchecked]
+    Use Encryption Header: [checked]
+    Data Integrity Algorithm: MD5
+    Data Privacy Algorithm: 3DES
+
+    [Advanced settings]
+    Data volume timeout: 2100000
+    Lifetime timeout: 480
+    Inactivity timeout: 0
+    Transport mode: [unchecked]
+    Perfect forward secrecy: [unchecked]
+    Proxy: [checked]
+
+----
+Notes: 
+I made the addresses fictitious RFC1918 addresses.
+I haven't tried PFS.
+I had problems getting an SA with manual keying -- I think it may be with the
+ SPI's.</PRE>
+<H4><A name="raptorman">Raptor manual keying</A></H4>
+<P>A mailing list suggestion from FreeS/WAN technical lead Henry
+ Spencer:</P>
+<PRE>&gt; In the Raptor settings, there are 2 sets of data (1 for each end). Each set
+&gt; contains an SPI, 3 DES Keys and 1 MD5 hash. I only know how to include one
+&gt; set, how do I include the other set? Is the other set needed?
+
+They may be using different keys for each direction, which is a bit
+unusual for manual keying, but not impossible.  The simplest thing is
+probably to just give it two identical sets of data -- that should work.
+FreeS/WAN has provisions for asymmetric keys etc. in manual keying, but
+that stuff is lightly documented and lightly tested.</PRE>
+<H3><A name="gauntlet">Gauntlet firewall GVPN</A></H3>
+<PRE>Subject:  Successful interop: FreeS/WAN 1.7 
+<!----->
+ Gauntlet Firewall GVPN 5.5
+   Date: Tue, 21 Nov 2000
+
+Sending the following to the list, at Hugh's request.
+
+-----Original Message-----
+From: Reiner, Richard 
+Sent: Tuesday, November 21, 2000 11:34 AM
+To: 'hugh@mimosa.com'
+
+Hugh,
+
+&gt; Good.  But we don't think that you should be using our IPCOMP just
+&gt; yet.  It is flaky :-(
+
+I've seen no anomalies, although &quot;allow ipcomp&quot; is on at the Gauntlet 
+end.  Looking at my ipsec.conf I actually find no refereence to ipcomp. 
+ I presume it is disabled by default.  In addition, reviewing my logs 
+both on the Gauntlet end and the Linux end, I see nothing I can 
+interpret as an indication that ipcomp was enabled during negotiation.  
+So I have to correct my previous posting - I believe the link is *not* 
+using ipcomp.
+
+&gt; This is interesting and we'd love a more complete writeup.  It should
+&gt; get incorporated into our interop documentation.
+
+Here are the relevant bits from ipsec.conf:
+
+config setup
+        interfaces=%defaultroute
+        klipsdebug=none
+        plutodebug=none
+        plutoload=%search
+        plutostart=%search
+        uniqueids=yes
+
+conn freeswan17-gauntlet55
+        auto=start
+        type=tunnel
+        left=1.1.1.1
+        leftnexthop=1.1.1.2
+        leftsubnet=10.0.1.0/24
+        right=3.3.3.3
+        rightnexthop=3.3.3.4
+        rightsubnet=10.0.2.0/24
+        authby=secret
+        keyexchange=ike
+        ikelifetime=480m
+        auth=esp
+        esp=3des-md5-96
+        keylife=480m
+        keyingtries=8
+        pfs=no
+        rekeymargin=9m
+        rekeyfuzz=25%
+
+All settings on the Gauntlet side are the same (not shown here, as GUI 
+screenshots are hard to show in ASCII... and the textual format that is 
+generated by the Gauntlet GUI is ugly in the extreme).
+
+Note that ikelifetime is 1440m by default on the Gauntlet end, but 
+freeswan does not support this value (max appears to be 480m), thus the 
+Gauntlet end is also set to 480m to match freeswan's value.
+
+Also worth noting: I am using the excellent Seawall scripts to manage 
+ipchains configuration on the freeswan end.  It automatically generates 
+a correct set of firewall rules for the link (along with doing many 
+other convenient things).</PRE>
+ For more information on Seawall (the Seattle Firewall), see that
+ project's<A href="http://seawall.sourceforge.net/"> home page</A> on
+ Sourceforge.
+<H3><A name="checkpoint">Checkpoint Firewall-1</A></H3>
+<P>A PDF<A href="http://support.checkpoint.com/kb/docs/public/firewall1/4_1/pdf/fw-linuxvpn.pdf">
+ HowTo</A> for connecting FreeS/WAN and this product can be downloaded
+ from the vendor's site or browsed at a VPN mailing list<A href="http://kubarb.phsx.ukans.edu/~tbird/vpn.html">
+ site</A>.</P>
+<P>A<A href="http://www.phoneboy.com/"> resource page</A> full of
+ Firewall-1 information.</P>
+<P>The mailing list reports success with this combination, but also some
+ problems. Search the<A href="mail.html#archive"> archives</A> for the
+ full story.</P>
+<P>Here is one message, about what seems to be the biggest problem:</P>
+<PRE>Subject: Re: Pb establishing connection from FW1/3DES/SP2 with freeswan 1.5 - ACTE 2
+   Date: Tue, 6 Feb 2001
+   From: Claudia Schmeing &lt;claudia@freeswan.org&gt;
+ 
+&gt; Thanx to Michael and Claudia, but this doesn't work from VPN1 to linux (as
+&gt; linux to VPN1 is OK).
+...
+
+&gt; I think that VPN1 doesn't send &quot;192.168.1.0/24&quot; but &quot;192.168.1.20/32&quot; and,
+&gt; as Claudia said, IPSEC SA need to match Exactly. 
+
+I don't know about the rules on the VPN-1. You'll have to rely on people 
+with applicable experience there...
+
+&gt; Is it possible that freeswan doesn't do the inclusion process (ie if he
+&gt; receive 192.168.1.20/32, i doesn't match that this is include in
+&gt; 192.168.1.0/24) ?
+
+Yes, that's correct. It needs to match exactly, and inclusion is not
+part of this process.
+ 
+&gt; Btw why VPN/1 send 192.168.1.20/32 and not 192.168.1.20/24 (the value that
+&gt; Freeswan is waiting for)? A bug?
+
+I think Michael may be able to help you with this.
+
+&gt; Have i a way to force Freeswan to do the &quot;inclusion&quot; (ie accept 
+&gt; 192.168.1.20/32 as a part of 192.160.1.20/24, even if the 2 IPSEC Sa 
+&gt; doesn't match exactly) ?
+
+No, but...
+Another strategy is to accept the fact that the Checkpoint 
+proposes separate connections for each machine. If you define 
+and add each of these connections on the Linux FreeS/WAN side, then 
+Linux FreeS/WAN ought to accept the Checkpoint's proposals.
+
+The only possible difficulty with this strategy is that I don't know 
+how Linux FreeS/WAN handles the concept of overlapping tunnels. I
+believe, though, that these tunnels can coexist, and if for any 
+packet there are two options, a more general and a less general, the
+packet will be handled by the more specific tunnel. You would need
+to do a little testing to ensure you understand the behaviour and
+that this does actually solve your problem.
+
+I think it would be simplest to try to get the Checkpoint to propose the 
+more general tunnel. Since I don't recall having seen this problem before, 
+I suspect the simpler solution is doable.</PRE>
+<H3><A name="redcreek">Redcreek Ravlin</A></H3>
+<P>We have reports of successful interoperation at an interop<A href="http://www.opus1.com/vpn/atl99display.html">
+ conference</A>, but there is also a mailing list<A href="http://www.sandelman.ottawa.on.ca/linux-ipsec/html/2000/11/msg00510.html">
+ thread</A> discussing difficulties some users have encountered.</P>
+<H3><A name="sentinel">SSH Sentinel</A></H3>
+<P>The vendor's<A href="http://www.ssh.com/support/sentinel/documents.cfm">
+ web site</A> has configuration examples for use with FreeS/WAN.</P>
+<P>One user reports:</P>
+<PRE>Subject: [Users] Very Useful document, can a link to it be put on the FreeS/WAN web site?
+   Date: Fri, 19 Oct 2001
+   From: Simon Matthews &lt;simon@paxonet.com&gt;
+
+This is a very useful document on getting SSH Sentinel to work with 
+FreeS/WAN using x509 certificates.
+http://www.ssh.com/download_files/openssl_mini-ca.pdf
+
+Perhaps a link to it could be put on the web site.
+
+There is also another document on FreeS/WAN &lt;&gt; SSH Sentinel interoperability: http://www.ssh.com/products/sentinel/SSH_Sentinel_Config_Examples.pdf Simon </PRE>
+<P>The vendor seems serious about interop with us. Here is a message one
+ of their staff posted on our list:</P>
+<PRE>From: Jussi Torhonen &lt;jt@ssh.com&gt;
+Organization: SSH Communications Security Corp - http://www.ssh.com
+Subject: [Users] SSH Sentinel VPN client public beta #3 now available
+Date: Thu, 31 May 2001
+
+Hello, FreeS/WAN community !
+
+SSH Communications Security Corp has released a new public beta #3
+version of SSH Sentinel VPN client for Windows. We've got a lot of
+reports also from FreeS/WAN community and with that feedback we've
+improved interoperability and stability. 
+
+For example PFS (Perfect Forward Secrecy in IKE rekey) can now be used
+between SSH Sentinel and FreeSWAN, and if using that user contributed
+X.509 patch and exporting the certificate from SSH Sentinel, now those
+-----[BEGIN|END] CERTIFICATE----- headers/footers are properly included
+in the exported PEM formatted certificate, so it can be imported to
+FreeSWAN with fswcert utility and OpenSSL tools. 
+
+Thank you a lot for your feedback, colleagues !
+
+You can get that new public beta #3 and PDF formatted User Manual from
+ftp://ftp.ssh.com/pub/sentinel/ or via website
+http://www.ipsec.com/products/sentinel/beta/register.html
+
+For more information about the product, please check our website
+http://www.ipsec.com
+
+We eagerly want to make SSH Sentinel as the best VPN client on the
+market. If you want to contact our support, please send e-mail to
+sentinel-support@ssh.com or fill up our feedback form at
+http://www.ipsec.com/support/sentinel/beta_report.html
+
+Best regards,
+Jussi Torhonen, SSH Sentinel Team
+Kuopio, Finland</PRE>
+<P>There is one known problem withh SSH-FreeS/WAN interoperation,
+ described in this message:</P>
+<PRE>Subject: Re: [Users] Any plans for AES / Rijndael support ?
+   Date: Tue, 11 Dec 2001
+   From: Jussi Torhonen 
+<!--jt@ssh.com-->
+
+Organization: SSH Communications Security Corp - http://www.ssh.com
+
+Markus Weber wrote:
+
+&gt; ... the installation
+&gt; of Sentinel don't let you set 3DES as the default!
+&gt; And when your want to add a connection the first
+&gt; diagnostic-test goes wrong ! :-( ...
+
+In current SSH Sentinel release you can select 'Legacy proposal' option, 
+  when setting up a VPN Connection profile. That causes it to use 3DES 
+as a default cipher and DES as a alternative one. The option was added 
+there just to improve interoperability with legacy systems supporting 
+3DES or even DES only.
+
+If no selecting Legacy Proposal option, SSH Sentinel sends quite a huge 
+proposal list to the responder to find automatically one common cipher 
+supported to be used for the connection. That proposal list is known to 
+be problematic for some VPN gateway implementations like FreeSWAN. 
+Typically the long proposal list itself may the a problem or fragmented 
+packets of the long proposal list may be a probem.
+
+Now we've been living in a world of DES and 3DES, but hopefully in a 
+near future the use of AES/Rijndael will increase. ...</PRE>
+<P>FreeS/WAN does not yet support<A href="glossary.html"> AES</A>.</P>
+<H3><A name="Fsecure">F-Secure VPN for Windows</A></H3>
+<PRE>   Subject: Identification through other than IP number
+   Date: Tue, 13 Apr 1999
+   From: Thomas Bellman &lt;bellman@signum.se&gt;
+
+... Currently we are trying to interop FreeS/WAN
+with F-Secure VPN+ Client 4.0 (for MS Windows), and as long as
+the Windows machine has a fix IP address, and are initiating the
+IKE negotiations, things are working well.  However, when the IP
+address is changing, it doesn't work. ...
+(I'll try to write something up about the problems we are having
+when Pluto is initiatior in another message.)</PRE>
+<H3><A name="watchguard">Watchguard</A></H3>
+<P>Watchguard make a Linux-based firewall product. Ipchains author Rusty
+ Russell thanks them for support and recommends them in one of his<A href="http://www.linuxdoc.org/HOWTO/IPCHAINS-HOWTO-3.html#ss3.2">
+ HowTos</A>. On the other hand, some comments on our mailing list about
+ the Watchguard product have been quite unfavourable. See, for example,
+ this<A href="http://www.sandelman.ottawa.on.ca/linux-ipsec/html/2000/08/msg00474.html">
+ archive message</A>.</P>
+<P>Watchguard do not use FreeS/WAN in their product. They have their own
+ IPsec implementation.</P>
+<P>We have had mailing list reports of successful interoperation between
+ FreeS/WAN and the Watchguard firewall, using manually keyed
+ connections. The user could not get automatically keyed connections to
+ work; the message below explains this.</P>
+<P>Here is some mail from a Watchguard employee about interoperation:</P>
+<PRE>Subject: FreeS/WAN and WatchGuard Firebox interop
+   Date: Mon, 18 Dec 2000
+   From: Max Enders &lt;menders@watchguard.com&gt;
+
+I was recently given the task of testing IPSec interoperability
+with our product, the Firebox. I just wanted to let you know that
+I had success with a manual keyed tunnel. Here's what I used for
+my test:
+
+RedHat Linux 6.2
+Linux 2.2.18 i686 unknown
+Linux FreeS/WAN 1.8
+&quot;Trusted&quot; interface: 192.168.0.1/24
+&quot;External&quot; interface: 192.168.1.1/24
+
+Firebox II FastVPN
+WatchGuard Live Security System v4.5
+Trusted interface: 192.168.2.1/24
+External interface: 192.168.1.2/24
+
+Because FreeS/WAN does not implement single DES, a dynamic keyed
+tunnel will not work. Our product strictly uses DES for main mode.
+We hope to address this in a future release. Here are instructions
+for configuring the Firebox:
+
+Open the Policy Manager and create a new IPSec gateway. Set the Key
+Negotiation Type to manual and enter the FreeS/WAN box's external
+IP address for the Remote Gateway IP. Configure a new tunnel with
+a unique SPI. Select 3DES-CBC for Encryption and MD5-HMAC for
+Authentication. Make an Encryption Key and Authentication Key.
+Copy the values and save them for configuration of the FreeS/WAN box.
+Configure a routing policy and any necessary services as you normally
+would.
+
+Here's how I configured FreeS/WAN:
+
+Modifications to /etc/ipsec.conf:
+
+Under the &quot;config setup&quot; section, add:
+
+manualstart=firebox
+
+At the end of the file, add the following connection:
+
+conn firebox
+left=192.168.1.1
+leftsubnet=192.168.0.0/24
+right=192.168.1.2
+rightsubnet=192.168.2.0/24
+spi=0x101
+esp=3des-md5-96
+espenckey=0x515b0875793e3708517c3d4554012f7c0273375e51572a31
+espauthkey=0x072649041c2c0d452f7c15407576522f
+
+The spi used here should match the Firebox's. Note that the Policy Manager
+expects an SPI in decimal, not hexadecimal. The espenckey value should be
+0x and the Encryption Key you're using on the Firebox. Likewise for
+espauthkey and the Authentication Key on the Firebox.</PRE>
+ A user comments:
+<PRE>Subject: RE: Freeswan
+   Date: Wed, 7 Feb 2001
+   From: &quot;Patrick Poncet&quot; &lt;pponcet@vaxxine.com&gt;
+
+It's working!!!
+
+Voila...  I wish to thank all the FreeS/WAN for putting out such a great
+product out!  And also Philippe PAULEAU who pioneered interoperability
+between FreeS/WAN and Watchguard Firebox II and therefore showed me that my
+efforts would not be wasted!...
+
+Yes indeed FreeS/WAN to WatchGuard Firebox only works in manual keying mode
+and the best way to generate keys is to have the firebox generate the keys,
+then copy and paste into the ipsec.conf file on the FreeS/WAN side (don't
+forget to prefix the keys with '0x' in your ipsec.conf file.
+
+Also keep in mind that the SPI is in decimal on the Firebox side and HEX on
+the FreeS/WAN side!!!  We spent 4 hours on fixing this HEX-DEC issue only :)</PRE>
+<H3><A name="Xedia">Xedia Access Point/QVPN</A></H3>
+<PRE>   Subject: Interoperability result
+   Date: Mon, 15 Mar 1999 18:08:12 -0500
+  From: Paul Koning &lt;pkoning@xedia.com&gt;
+
+Here's another datapoint for the &quot;FreeS/WAN interoperability
+database&quot;.
+
+I tested 0.92 against the Xedia Access Point/QVPN product, using
+dynamic keying (i.e., Pluto at work).
+
+Results: it works fine so long as you ask for 3DES.  DES and no-crypto 
+modes don't work when Pluto is involved.
+
+I did limited data testing, which seemed to be fine.  No performance
+numbers yet, could do that if people are interested.
+
+Any questions, please ask.
+
+        paul</PRE>
+<H3><A name="pgpnet">PGP Mac and Windows IPsec client (PGPnet)</A></H3>
+<H3><A NAME="10_4_16">McAfee VPN Client</A></H3>
+<P>From version 6.5 (1999) on, the<A href="glossary.html#PGP"> PGP</A>
+ products from<A href="http://www.pgp.com/"> PGP Inc.</A> included an
+ IPsec client program called PGPnet.</P>
+<P>The parent company,<A href="glossary.html#NAI"> NAI,</A> have since
+ re-organised their product line. They no longer sell PGP (it was put
+ into maintenance in February 2002) and the IPsec product is now called
+ McAfee VPN Client</P>
+<P>Here is the first message about PGPnet to our mailing list, from a
+ senior PGP employee:</P>
+<PRE>   Subject: PGPnet interoperable with FreeSWAN
+   Date: Mon, 05 Apr 1999 18:06:13 -0700
+   From: Will Price &lt;wprice@cyphers.net&gt;
+
+Network Associates announced PGP 6.5 today.  It includes a new product
+PGPnet which is a full IKE/IPSec client implementation.  This product
+is for Windows and Macintosh.  I just wanted to send a brief note to
+this list that the product was compatibility tested with FreeSWAN
+prior to its release, and the tests were successful!
+[snip]
+- -- 
+Will Price, Architect/Sr. Mgr., PGP Client Products
+Total Network Security Division
+Network Associates, Inc.</PRE>
+<P>One version is downloadable at no cost for non-commercial use. See
+ our<A href="web.html#tools"> links</A>. That version does not support
+ subnets.</P>
+<P>Several of the user-written HowTos mentioned<A href="#otherpub">
+ above</A> cover interoperation between PGPnet and FreeS/WAN.</P>
+<P>A more recent post from the same PGP Inc staff member pointed out:</P>
+<PRE>Make sure you're using PGP 7.0 or later as the key parser was improved
+in that release.  (PGP 7.0.1 was just released)</PRE>
+<P>Various users have reported various successes and problems talking to
+ PGPnet with FreeS/WAN. There has also been a fairly complex discussion
+ of some fine points of RFC interpretation between the implementers of
+ the two systems. Check an archive of our<A href="mail.html"> mailing
+ list</A> for details.</P>
+<P>A post summarising some of this, from our Pluto programmer:</P>
+<PRE>   Subject: PGPnet 6.5 and freeswan
+   Date: Sun, 16 Jan 2000
+   From: &quot;D. Hugh Redelmeier&quot; &lt;hugh@mimosa.com&gt;
+
+| From: Yan Seiner
+|
+| OK, I'm stumped.  I am trying to configure IPSEC to support road
+| warriors using PGPnet 6.5.
+| 
+| I've set up everything as per the man pages on the ipsec side.
+| 
+| I've set up everything on the PGPnet side per the docs for that package.
+| 
+| Pluto fails with this:
+| 
+| Jan 16 08:14:11 aphrodite Pluto[26401]: &quot;homeusers&quot; #8: no acceptable
+| Oakley Transform
+| 
+| and then it terminates the connection.
+
+As far as I can tell/remember, there are three common ways that PGPnet
+and FreeS/WAN don't get along.
+
+1. PGPnet proposes a longer lifetime for an SA than Pluto is willing
+   to accept.
+
+2. After rekeying (i.e. after building a new SA bundle because the old
+   one is about to expire), FreeS/WAN immediately switches to the new
+   one while PGPnet continues using the old
+
+3. FreeS/WAN defaults to expecting Perfect Forward Secrecy and PGPnet
+   does not.
+
+Perhaps you are bumping into the first.  In any case, look back
+in the log to see why Pluto rejected each transform</PRE>
+<P>Some advice from the mailing list:</P>
+<PRE>   Subject: Re: Secure Gate Fails- PGPNet &amp; FreeSwan
+   Date: Wed, 28 Jun 2000
+   From: Andreas Haumer &lt;andreas@xss.co.at&gt;
+
+I have a PGPnet setup running with FreeS/WAN working as secure 
+gateway. It works quite fine, except for a re-negotiation problem 
+I'm currently investigating, and in fact I have it running on some
+test equipment here right now!
+
+As I tried _several_ different non-working configuration settings 
+I think I know the exact _one_ which works... :-)
+
+Here's my short &quot;HOWTO&quot;:
+
+FreeS/WAN version: snap1000jun25b
+PGPnet: PGP Personal Privacy, Version 6.5.3
+Linux: 2.2.16 with some patches
+
+Network setup:
+=============
+
+internal subnet [192.168.x.0/24]
+|
+|        [192.168.x.1]
+secure gateway with FreeS/WAN
+|        [a.b.c.x]
+|
+|        [a.b.c.y]
+router to internet
+|
+|   Internet
+|
+|        [dynamically assigned IP address]
+road-warrior with PGPnet
+
+
+Configuration of FreeS/WAN:
+==========================
+
+a) /etc/ipsec.conf
+
+config setup
+        interfaces=%defaultroute
+        klipsdebug=none
+        plutodebug=none
+        plutoload=%search
+        plutostart=%search
+
+conn %default
+        keyingtries=1
+        authby=secret
+        left=a.b.c.x
+        leftnexthop=a.b.c.y
+
+conn gw-rw
+        right=0.0.0.0
+        auto=add
+
+conn subnet-rw
+        leftsubnet=192.168.x.0/24
+        right=0.0.0.0
+        auto=add                          
+
+
+b) /etc/ipsec.secrets
+
+a.b.c.x 0.0.0.0: &quot;my very secret secret&quot;   
+
+
+Note: If you are running ipchains on your secure gateway,
+you have to open the firewall for all the IPsec packets 
+and also for traffic from your ipsec interface!
+Don't masquerade the IPsec traffic!
+
+Check your logfiles if the firewall is blocking some 
+important packets!
+
+
+Configuration of PGPnet:
+=======================
+
+(note that there is an excellent description, including
+screenshots of PGPnet, on &lt;http://jixen.tripod.com/&gt;)
+
+In short, do the following:
+
+Launch the PGPnet configuration tool and set defaults options
+=============================================================
+
+Start - Program - PGP - PGPnet
+View - Options
+General Panel :
+  Expert Mode
+  Allow communications with unconfigured hosts
+  Require valid authentication key
+  Cache passphrases between logins
+  IKE Duration : 6h
+  IPsec : 6h
+Advanced panel :
+  Selected options :
+    Ciphers : Tripple DES
+    Hashes : MD5
+    Diffie-Hellman : 1024 and 1536
+    Compression : LZS and Deflate
+  Make the IKE proposal :
+    Shared-Key - MD5 - 3DES -1024 bits on top of the list (move up)
+  Make the IPSec proposal :
+    NONE - MD5-TrippleDES -NONE on top of the list (move up)
+  Select Perfect Forward Secrecy = 1024 bits
+Press OK
+
+
+Create the connection's definition.
+==================================
+
+In the Hosts panel, ADD
+  Name : Enter a name for the right gateway
+  IPaddress : Enter its IP address visible to the internet (a.b.c.x)
+  Select Secure Gateway
+  Set shared Paraphrase : enter you preshared key
+  Identity type : select IP address
+  Identity : enter 0.0.0.0
+  Remote Authentication : select Any valid key
+Press Ok
+  Select the newly created entry for the right gateway and click ADD,
+YES
+  Name : Enter a name for the central subnet
+  IP address : Enter its network IP address (192.168.x.0)
+  Select Insecure Subnet
+  Subnet Mask : enter its subnetmask (255.255.255.0)
+Press OK, YES, YES                             
+
+
+This should be it. Note that with this configuration there is
+still this re-keying problem: after 6 hours, the SA is expired
+and the connection fails. You have to re-connect your connection
+with PGPnet.</PRE>
+<P>and a note from the team's tech support person:</P>
+<PRE>Date: Thu, 29 Jun 2000
+From: Claudia Schmeing 
+
+There is a known issue with PGPNet which I don't see mentioned in the docs.
+It's likely related to this one, that you note on the site:
+
+&gt;2. After rekeying (i.e. after building a new SA bundle because the old
+&gt;   one is about to expire), FreeS/WAN immediately switches to the new
+&gt;   one while PGPnet continues using the old
+
+The issue is: When taking down and subsequently recreating a connection, 
+it can appear to come up, but it is unusable because PGPNet continues
+to use an old SA, which Linux FreeS/WAN no longer recognizes. The solution is
+to take down the old connection using PGPNet, so that it will then
+use the most recently generated SA.</PRE>
+<H3><A name="IRE">IRE Safenet/SoftPK</A></H3>
+<P>IRE have an extensive line of IPsec products, including firewall
+ software with IPsec, and hardware encryption devices for LAN or modem
+ links. Their Soft-PK is a Win 98 and NT client. Quite a few people have
+ used this with FreeS/WAN and, judging by mailing list reports, have had
+ good results.</P>
+<P>SoftRemote is newer product integrating the IPsec client with
+ personal firewall software. As yet, we have few reports on this. One is
+ quoted<A href="#softremote"> below</A>.</P>
+<H4><A name="softPK">SoftPK</A></H4>
+<P>Several documents are available:</P>
+<UL>
+<LI><A href="http://www.terradoncommunications.com/security/whitepapers/safe_net-to-free_swan.pdf">
+PDF HowTo</A> titled<CITE> FreeS/WAN 1.8 &lt;--&gt; IRE Safenet SoftPK 5.1.0
+ Road-Warrior VPN Configuration Guide</CITE> from Terradon
+ Communications.</LI>
+<LI><A href="http://www.redbaronconsulting.com/freeswan/fswansafenet.pdf">
+PDF document</A> from Red Baron Consulting.</LI>
+<LI><A href="http://jixen.tripod.com/#Rw-IRE-to-Fwan">IRE-to-FreeS/WAN
+ section</A> of Jean-Francois Nadeau's configuration document</LI>
+</UL>
+<P>Some messages from the mailing list:</P>
+<PRE>Subject: Re: Identification through other than IP number
+Date:  Fri, 23 Apr 1999
+From:  Tim Miller &lt;cerebus+counterpane@haybaler.sackheads.org&gt;
+
+Randy Dees writes:
+
+ &gt; Anyone know of a low-cost MS-Win client that interoperates and does not
+ &gt; require purchasing a server license to get it?  
+
+        SafeNet/Soft-PK from IRE (http://www.ire.com) is a low-cost
+client (though I don't have the exact cost available at the moment).
+I've got it running on an NT4 workstation and it interoperates nicely
+(in transport mode, will try tunnel later) with FreeS/WAN.  It's also
+ICSA IPsec certified.</PRE>
+<P>A later report with some setup details:</P>
+<PRE>Subject: RE: PGPnet and Freeswan one more time...
+   Date: Sat, 16 Dec 2000
+  From: &quot;Tim Wilson&quot; &lt;timwilson@mediaone.net&gt;
+
+Here are some details about using the IRE SafeNet Soft/PK client with a
+FreeSwan gateway.
+
+I applied the x509 patch to Pluto according to the instructions. I use the
+&quot;leftcert&quot; and &quot;rightcert&quot; keywords in the ipsec.conf file. This causes
+FreeSwan to read the public keys and identities from the cert files. The
+identities wanted and used by FreeSwan will then be the DNs in the certs.
+
+I used OpenSSL to generate keys and certs and to sign certs. When generating
+the gateway cert, you should *not* enter an e-mail address because it turns
+out that confuses Soft/PK. Also, Andreas Steffan tells me that you want to
+keep the cert short to avoid fragmentation, so use a 1024-bit RSA key and
+succinct names.
+
+The FreeSwan gateway cert goes in /etc/ipsec.d/, the gateway private key is
+extracted from the key file using fswcert (part of the x509 patch) and
+pasted into /etc/ipsec.secrets, and a DER version of the gateway cert goes
+in /etc/x509cert.der. This is all according to the instructions that
+accompany the x509 patch.
+
+The Windows client is of course running Soft/PK in this case. I generated a
+private key and cert for the client on the Linux machine using OpenSSL. I
+created a pkcs12 file containing the client's private key and cert, which I
+put on a floppy and imported into Soft/PK. I also imported the gateway cert
+into Soft/PK (you can either import a self-signed cert for the gateway or
+the self-signed cert for the CA that signed the gateway cert--either works).
+
+Soft/PK allows you to configure practically everything for the connection.
+Here are the main points to watch for:
+
+On the first panel you have to set the peer identities. The gateway will
+identify itself using the DN in the gateway cert. So of course you have to
+configure Soft/PK to look for the correct DN. There's no problem with this
+as long as you didn't enter an e-mail address in the gateway cert. Just
+check &quot;Connect using Secure Gateway tunnel&quot;, set ID type to &quot;Distinguished
+Name&quot;, and enter the correct info in the dialog box.
+
+In &quot;My identity&quot; just select the client cert that you imported in pcks12
+format. Soft/PK apparently identifies itself with the DN from the cert,
+which is exactly what FreeSwan is looking for.
+
+In &quot;Security Policy&quot;, you want Main mode and make the PFS setting agree with
+whatever FreeSwan is doing (FreeSwan uses PFS by default). If you use PFS I
+believe you must use DH group 2 as FreeSwan doesn't like group 1.
+
+Phase 1 Authentication must be &quot;RSA signatures&quot; and 3DES plus either MD5 or
+SHA-1 (I used MD5 but I believe FreeSwan accepts either). I left the
+lifetime unspecified. Also you must select DH group 2 because I believe that
+FreeSwan will not accept group 1.
+
+Phase 2 also must use 3DES and MD5 or SHA-1. I used no compression and only
+ESP and no AH, haven't tried other choices.
+
+Hope this helps.</PRE>
+<H4><A name="softremote">SoftRemote</A></H4>
+<P>Here is a mailing list message reporting experience with the newer
+ SoftRemote product.</P>
+<PRE>From: Whit Blauvelt &lt;whit@transpect.com&gt;
+Subject: Re: [Users] RE: SafeNet SoftRemote 6.1 - FS 1.91 - HOW?
+Date: Fri, 16 Nov 2001
+
+Things I've learned in getting SoftRemote working with FreeS/WAN:
+
+Using SoftRemote on dial-in, if there is any configuration adjustment for
+which you stop and start FreeS/WAN, SoftRemote is totally lost until you
+disconnect and dial in again. The SoftRemote &quot;Disconnect All&quot; and subsequent
+&quot;Reload Polilcies&quot; options that show when right-clicking its icon in the
+tray do not fix this - the only thing I've found that works is hanging up
+and then redialing. This makes debugging a total pain, especially if you
+think you're testing your changes, because you're not. 
+
+Not sure if this affects fixed IP connections from SoftRemote, or what the
+effective equivalent to hanging up and dialing in again would be to clear
+the problem there if it exists.
+
+Also, as I noted before: In configuring SoftRemote, there are a couple of
+new menu options that Soft-PK didn't have, just in case you're following
+examples given for that. Importantly, in setting the &quot;Remote Party Identity
+and Addressing&quot; choose &quot;IP subnet&quot; rather than &quot;IP&quot;, and be sure to provide
+a mask which matches the subnet mask for that conn in ipsec.conf (e.g.
+255.255.255.0 and /24). </PRE>
+<P>Much of the infornation available<A href="#softPK"> above</A> for the
+ earlier SoftPK product should also apply to SoftRemote.</P>
+<H3><A name="borderware">Borderware</A></H3>
+<H3><A name="freegate">Freegate</A></H3>
+<PRE>Subject: ipsec interoperability FYI
+   Date: Sun, 02 May 1999
+   From: Sean Rooney &lt;sean@coldstream.ca&gt;
+
+we've been doing some basic interoperability testing of the following; 
+
+PGP NT VPN 6.5 and freeswan both seem to work reasonably well with 
+Borderware 6.0 and freegate 1.3 beta. [as well as eachother] 
+
+more details coming soon.</PRE>
+<H3><A name="timestep">Timestep</A></H3>
+<PRE>   Subject: TimeStep Permit/Gate interop works!
+   Date: Thu, 10 Jun 1999
+   From: Derick Cassidy &lt;dcthebrain@geek.com&gt;
+
+Just a quick note of success.  TimeStep Permit/Gate (2520) and
+Free/Swan (June 4th snapshot) interoperate!
+
+I have them working in AUTO mode, with IKE.  IPSec SA's are negotiated
+with 3DES and MD5.
+
+Here are the configs and a diagram for both configs.
+
+left subnet---| Timestep | --- internet --- | Linux box |
+
+The left subnet is defined as the red side of the timestep box.
+ This network definition MUST exist in the Secure Map.
+
+On the Linux box:
+
+ipsec.conf
+
+conn timestep
+        type=tunnel
+        left=209.yyy.xxx.6
+        leftnexthop=209.yyy.xxx.1
+        leftsubnet=209.yyy.xxx.128/25
+        right=24.aaa.bbb.203
+        rightnexthop=24.aaa.bbb.1
+        rightsubnet=24.aaa.bbb.203/32
+        keyexchange=ike
+        keylife=8h
+        keyingtries=0
+
+In the TimeStep permit/gate Secure Map
+
+begin static-map
+        target &quot;209.yyy.xxx.128/255.255.255.128&quot;
+        mode   &quot;ISAKMP-Shared&quot;
+        tunnel &quot;209.yyy.xxx.6&quot;
+end
+
+In the TimeStep Security Descriptor file
+
+begin security-descriptor
+        Name    &quot;High&quot;
+        IPSec   &quot;ESP 3DES MINUTES 300 or ESP 3DES HMAC MD5 MINUTES 300&quot;
+        ISAKMP  &quot;IDENTITY PFS 3DES MD5 MINUTES 1440
+                                or DES MD5 MINUTES 1440&quot;
+end
+
+The timestep has a shared secret for 24.aaa.bbb.203/255.255.255.255
+set in the Shared Secret Authentication tab of Permit/Config.</PRE>
+<H3><A name="shiva">Shiva/Intel LANrover</A></H3>
+<P>A<A href="http://snowcrash.tdyc.com/freeswan/"> web page</A> with
+ Shiva compatibility information.</P>
+<H3><A name="solaris">Sun Solaris</A></H3>
+<PRE>   Subject: Re: FreeS/WAN and Solaris
+   Date: Tue, 11 Jan 2000
+   From: Peter Onion &lt;Peter.Onion@btinternet.com&gt;
+
+Slowaris 8 has a native (in kernel) IPSEC implementation.
+
+I've not done much interop testing yet, but I seem to rememeber we got a manual
+keyed connection between it and FreeSwan a few months ago.</PRE>
+<H3><A name="sonicwall">Sonicwall</A></H3>
+<PRE>Subject: Re: FreeS/WAN and SonicWall
+     Date: Mon, 5 Feb 2001
+     From: &quot;Dilan Arumainathan&quot; &lt;dilan_a@impark.com&gt;
+
+***************************************************
+I know I HAVE TO write the mini-howto - but here is the beginning
+***************************************************
+
+Here is my Sonicwall configuration for my working connection:
+
+conn testauto
+        left=x.x.x.x
+        leftnexthop=x.x.x.x
+        right=y.y.y.y
+        rightnexthop=y.y.y.y
+        rightsubnet=10.1.20.0/24
+#You need to set the Unique Firewall Identifier to the parameter that you
+#use as the rightid. &lt;------IMPORTANT
+        rightid=sw@sonicwall.com
+        authby=secret
+        auth=esp
+        esp=3des-hmac-md5
+        ikelifetime=6h
+        keylife=5h
+
+Your /etc/ipsec.secrets should be like this:
+x.x.x.x y.y.y.y sw@sonicwall.com : PSK &quot;opensesame&quot;
+
+On the Sonicwall create a new connection:
+
+Name: testauto
+IPSec Gateway address: 0.0.0.0
+SA life time: 18000
+Encryption Method: Strong Encrypt and Authenticate( EPS 3DES HMAC MD5)
+Shared Secret: opensesame</PRE>
+<H3><A name="radguard">Radguard</A></H3>
+<P>Here are some mailing list comments from FreeS/WAN tech support
+ person Claudia Schmeing on this:</P>
+<PRE>It certainly has been possible to interop between Radguard VPN gateways and
+past Linux FreeS/WAN versions, as is evidenced by 
+http://www.opus1.com/vpn/atl99display.html, as well as my own interop results
+from San Diego this year. There have been no major changes since SD that 
+I would foresee affecting this.
+
+The Radguard team said that their VPN gateway will not respond to a peer 
+request with PFS (Perfect Forward Secrecy) on, but it *will* successfully 
+establish such a connection with Linux FreeS/WAN when Radguard is the
+initiator. Since PFS is a desirable feature in terms of cryptographic
+security, this asymmetry may frustrate efforts to provide a connection that 
+is both as reliable as secure as possible.
+
+While it's not clear that rekeying will present a problem, I suspect that 
+some fine tuning of the key life parameters may be needed. Unfortunately 
+I was unable to do additional tests on this topic.
+
+Due to the PFS issue, when trying to maintain a connection with PFS,
+you may need to set the rekeying times shorter on the radguard side,
+in order to ensure that it is always the initiator.</PRE>
+<H3><A name="IBM.s390">IBM System 390</A></H3>
+<P>IBM offer IPsec for their big mainframes. See this<A href="http://www-1.ibm.com/servers/eserver/zseries/networking/pdf/GM13-0029-00.pdf">
+ PDF document</A>.</P>
+<P>We do not know of any tests of this with FreeS/WAN. If you do any,
+ please tell us.</P>
+<H3><A name="IBM.as400">IBM AS 400</A></H3>
+<P>From the mailing list:</P>
+<PRE>Subject: [Users] AS/400 &lt;-&gt; FreeS/WAN connection
+   Date: Mon, 24 Sep 2001 10:28:54 -0600
+   From: &quot;Brandon Peterson&quot; &lt;bsp@MCINTOSHSOFTWARE.COM&gt;
+
+All,
+
+FYI, I got a connection working between my Linux box &amp; AS/400. I had to make
+two adjustments to the code...
+
+1) Ignore the commit flag. (There were some patches floating on the list
+last week)
+
+2) Make FreeS/WAN start with proposal # 1
+To do this, I modified connections.c and inserted after line 1006...
+/* Hack to make AS/400 happy */
+if (c-&gt;policy == 0) c-&gt;policy = 1;</PRE>
+<P>Since that was written, FreeS/WAN has been changed to ignore the
+ commit bit, so that adjustment should no longer be necessary.</P>
+<H3><A name="winclient">Windows or Mac clients</A></H3>
+<P>If you have Windows 2000 or XP, then you should be able to use the
+ IPsec built into those systems. As far as we know, for all other
+ Windows versions,, you will need a client program.</P>
+<P>I am a little confused about IPsec for Mac OS X. Before the release,
+ there were reports it would include IPsec, but more recent information
+ seems to indicate that it doesn't. If anyone knows more, please post to
+ our<A href="mail.html"> users mailing list</A>. For other Mac OSs, and
+ perhaps for OS X, you will need a client program.</P>
+<P>Quite a number of client programs for IPsec on Windows are available.
+ Some of the same vendors have Macintosh versions.</P>
+<P>Some of the<A href="#otherpub"> user-written HowTos</A> have details
+ of configuration for particular clients.</P>
+<P>Most of the relevant vendors are listed in this piece of list mail:</P>
+<PRE> Subject: Re: Searching Windows95/98 and NT4.0 Clients for FreeS/WAN 
+    From: Claudia Schmeing &lt;claudia@coldstream.ca&gt; 
+    Date: Wed, 12 Jul 2000
+
+F-Secure VPN+
+-------------
+for Win 95, 98 and NT 4.0
+http://www.datafellows.com/products/vpnplus
+
+
+Checkpoint SecureRemote VPN-1 4.1
+---------------------------------
+for Win 95, 98 and NT
+http://www.checkpoint.com/techsupport/freedownloads.html
+
+
+Raptor Firewall, Raptor MobileNT 5.0
+-------------------------------------
+Mobile NT is a &quot;Client&quot;* for Win 95, 98 (except SE), &amp; First Edition Windows NT 
+up to Service Pack 4. It ships with DES; triple DES may be available as an 
+add-on depending on your location.
+
+Firewall is for Win NT 4.0 or Win 2000.
+http://www.axent.com
+
+
+IRE SafeNet SoftPK
+------------------
+a &quot;Client&quot; for Win 95, 98 and NT 4.0 *
+http://www.ire.com
+
+
+Xedia's AccessPoint QVPN &quot;Client&quot; or &quot;Builder&quot;
+----------------------------------------------
+&quot;Builder&quot; is for NT
+&quot;Client&quot; is for Win 98 *
+http://www.xedia.com
+
+* &quot;Client&quot; in this context indicates software that does not support a subnet
+behind its end of the connection.</PRE>
+<P>That mail omits the<A href="#pgpnet"> PGPnet client</A> because the
+ user asking the question already knew of it. The<A href="#sentinel">
+ SSH Sentinel</A> client, released since the above message, is another
+ possibility. Both of those have members of the vendor's staff active on
+ our mailing list, an excellent sign for both interoperability and
+ support.</P>
+<P>We also know of some other Windows IPsec clients:</P>
+<UL>
+<LI><A href="http://www.lucent.com/ins/products/ipsec/">Lucent</A></LI>
+<LI><A href="http://www.ashleylaurent.com/">Ashleylaurent</A></LI>
+</UL>
+<P>No doubt there are others we don't know of.</P>
+<H3><A name="NTdomain">NT domains vs. tunnels</A></H3>
+<P>There has been some mailing list discussion of making NT domains work
+ across FreeS/WAN tunnels.</P>
+<P>Robert Cotran asked:</P>
+<PRE>&gt; I have a VPN setup between two subnets (192.168.1.x and 192.168.2.x).  I
+&gt; would like to be able to join the NT domain on 192.168.1.x from the
+&gt; 192.168.2.x subnet.  Is this possible?  Do I have to forward specific ports
+&gt; to do this?  I've already set up WINS entries for all the machines, so
+&gt; accessing computers by their NetBIOS names works perfectly.  Please let me
+&gt; know about this domain thing.  Thanks!</PRE>
+ Dilan Arumainathan answered:
+<PRE>All you need to do is to:
+
+1. Enable NetBIOS over TCP.
+2. Create a &quot;lmhosts&quot; file and enter the address of a BDC or a PDC like
+    192.168.1.[x]  [Your PDC/BDC servername] #PRE #DOM:[Your Domain Name]
+    eg. 192.168.1.1 MYOWNPDC #PRE #DOM:DENSI-NT
+
+3. Reboot if necessary.</PRE>
+ and Sebastien Pfieffer provided a slightly different answer:
+<PRE>For a trust relationship to work between NT domains in different
+(sub)nets all domain controllers of the 1st domain have to know about
+all controllers of the other domain.
+Either you use the described LMHOSTS entry for every domain controller
+of both domains or consider setting up WINS service(s).</PRE>
+ We suspect that in some cases it may be more complex than that. See the
+ discussion of<A href="#lin2k"> Linux services and Windows 2000</A>
+ below and the<A href="#otherpub"> Interop HowTo</A> documents listed
+ above.
+<H3><A name="win2k">Windows 2000</A></H3>
+<P>Windows 2000 ships with an IPsec implementation built in.</P>
+<P>There are restrictions. We have had mailing list reports that only
+ the server version will act as a gateway, working with a subnet behind
+ it, and other versions offer only &quot;client&quot; functionality, with no
+ subnet. We have some<A href="#client.server"> comment</A> on this
+ &quot;client/server&quot; distinction in an earlier section.</P>
+<P>Some versions of Windows 2000 ship with only weak encryption. You
+ need to upgrade them with the strong encryption pack, available either
+ via the Windows 2000 update service or from<A href="http://www.microsoft.com/windows2000/downloads/recommended/encryption/default.asp">
+ Microsoft's web site</A>.</P>
+<P>Windows 2000 IPsec sometimes exhibits remarkably odd behaviour. It
+ will allow you to configure it for 3DES only, then ignore your settings
+ and fall back to single DES in some circumstances. Microsoft have said
+ they will fix this. See this<A href="http://www.wired.com/news/technology/0,1282,36336,00.html">
+ Wired article</A>.</P>
+<H4><A name="lin2k">Other Linux services related to Win 2000</A></H4>
+<P>Windows 2000 also uses a number of other security mechanisms which
+ have Linux equivalents. To integrate well with Windows 2000, you may
+ need to look at several open source projects other than FreeS/WAN:</P>
+<UL>
+<LI>Windows 2000 builds L2TP tunnels over (some of?) its IPsec
+ connections. There is some older code for a a Linux<A href="http://www.marko.net/l2tp/">
+ L2TP Daemon</A> and a<A href="http://sourceforge.net/projects/l2tpd">
+ Sourceforge project</A>.</LI>
+<LI>Kerberos authentication is used in Windows 2000.
+<UL>
+<LI><A href="http://web.mit.edu/network/kerberos-form.html">MIT Kerberos
+ site</A></LI>
+<LI><A href="http://www.isi.edu/~brian/security/kerberos.html">&quot;'Moron's
+ Guide&quot;</A></LI>
+<LI>Kerberos<A href="http://alycia.dementia.org/kerberos.html"> links
+ page</A></LI>
+</UL>
+</LI>
+<P>The Windows 2000 Kerberos implementation includes proprietary
+ modifications. This is a security worry since it is by no means clear
+ that the modified version remains secure. It also creates
+ interoperation problems. Microsoft have released documentation on their
+ modifications, but only under a license that hampers attempts either to
+ audit their code for security flaws or to build other implementations
+ that interoperate with it.</P>
+<LI><A href="http://www.samba.org/">Samba</A> is a Linux implementation
+ of the Windows SMB protocol, allowing disk sharing and other network
+ services</LI>
+<LI><A href="http://tipxd.sourceforge.net/">tipxd</A>, the Tunelling IPX
+ Daemon, encapsulates IPX for transport over IP.</LI>
+</UL>
+<P>Here is a mailing list message, from FreeS/WAN team tech support
+ person Claudia Schmeing, discussing Windows 2000 and L2TP:</P>
+<PRE>You write,
+
+&gt; I want some information about IPsec with L2TP.
+&gt; I'm going to build the IPsec tunnel on the L2TP tunnel.
+&gt; Is it strange?
+&gt; Is there any case like this already implemented?
+
+It's used, but rarely. In many cases, IPSec alone is sufficient. 
+
+In this thread, Timo Teras reports that he configured the L2TP/IPSec 
+hybrid with Win2k. He gives some pointers.
+http://www.sandelman.ottawa.on.ca/linux-ipsec/html/2000/11/msg00545.html
+
+See also John P. Eisenmenger's report on his own experiences at:
+http://www.sandelman.ottawa.on.ca/linux-ipsec/html/2001/02/msg00195.html</PRE>
+<H4><A name="interop.win2k">FreeS/WAN-to-Win2000 interop</A></H4>
+<P>As for IPsec interoperation between Windows 2000 and FreeS/WAN, there
+ are several web sites listed under<A href="#otherpub"> Interop HowTo</A>
+ documents above.</P>
+<P>This<A href="http://support.microsoft.com/support/kb/articles/Q257/2/25.ASP">
+ Microsoft page</A> on Windows 2000 IPsec troubleshooting may also be
+ helpful.</P>
+<P>One user has written a tool to simplify the setup. Here is his
+ description from the mailing list:</P>
+<PRE>Subject: [Users] Win2K
+   Date: Tue, 2 Oct 2001
+   From: Marcus M&uuml;ller &lt;marcus@ebootis.de&gt;
+
+I've written a small Tool for freeswan-win2k Interaction.
+Using this tool you can use a roadwarrior running Win2K
+to connect to Freeswan 1.91 with X509 patch.
+
+The tool has the following features:
+
+- FreeSwan like Configuration File
+- It sets up the complete Win2k configuration
+- It reads dynamic RAS/DHCP adresses and updates the IPSec Config
+
+You only need the following items:
+1. Win2k Client
+2. Win2k Service Pack 2 (for high encryption)
+3. Microsoft ipsecpol tool (included in the resource kit / Downloadable
+from Microsoft)
+4. FreeSwan with working X.509 Patch and X.509 Certificates for your
+Clients
+5. FreeSwan like Config-File
+6. The small &quot;ipsec.exe&quot; Tool
+
+I have tested it on several Client PCs in different environment
+
+I am planning to offer it as Open Source. Right now I don't know the
+right way of distributing my work. Because of the widespread interest,
+I would like to place it on the FreeSwan homepage.
+
+Rightnow anyone interested should mail me for a Copy, so I get some
+more testers.
+
+Thank you for the great FreeSwan System !!!</PRE>
+<P>This tool is now available from the author's<A href="http://vpn.ebootis.de/">
+ web page</A>.</P>
+<HR>
+<A HREF="toc.html">Contents</A>
+<A HREF="compat.html">Previous</A>
+<A HREF="performance.html">Next</A>
+</BODY>
+</HTML>

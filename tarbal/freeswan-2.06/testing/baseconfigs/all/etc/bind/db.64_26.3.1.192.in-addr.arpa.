@@ -1,0 +1,23 @@
+;
+; BIND reverse data file for untrusted net
+;
+$TTL	604800
+@	IN	SOA	64_26.3.1.192.in-addr.arpa. root.freeswan.org. (
+			200310021	; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+	IN	NS	nic.uml.freeswan.org.
+$ORIGIN 64_26.3.1.192.in-addr.arpa.
+$INCLUDE K64_26.3.1.192.in-addr.arpa.+001+23704.key
+
+;
+; $Log: db.64_26.3.1.192.in-addr.arpa.,v $
+; Revision 1.1  2003/12/11 20:11:33  mcr
+; 	create 2314 sub-zone in reverse map for testing purposes.
+;
+;
+;
+
+

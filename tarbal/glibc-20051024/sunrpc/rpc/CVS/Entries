@@ -1,0 +1,18 @@
+/auth.h/1.18/Sat Aug 30 19:39:01 2003//
+/auth_des.h/1.11/Fri Jul  6 04:55:42 2001//
+/auth_unix.h/1.8/Sat Oct  9 21:25:16 1999//
+/clnt.h/1.15/Sat Aug 30 21:52:27 2003//
+/des_crypt.h/1.2/Sat Oct  9 21:25:25 1999//
+/key_prot.h/1.2/Fri Mar 27 22:56:06 1998//
+/netdb.h/1.8/Sat Oct  9 21:25:29 1999//
+/pmap_clnt.h/1.12/Sat Oct  9 21:25:34 1999//
+/pmap_prot.h/1.4/Sat Oct  9 21:25:38 1999//
+/pmap_rmt.h/1.7/Sat Oct  9 21:25:43 1999//
+/rpc.h/1.6/Mon Jun 11 07:41:59 2001//
+/rpc_des.h/1.2/Sun Jan 23 08:52:00 2000//
+/rpc_msg.h/1.10/Sat Oct  9 21:25:48 1999//
+/svc.h/1.17/Wed Aug  2 06:59:15 2000//
+/svc_auth.h/1.5/Sat Oct  9 21:25:58 1999//
+/types.h/1.9/Fri Aug  2 01:33:29 2002//
+/xdr.h/1.29/Tue Sep 28 02:56:46 2004//
+D

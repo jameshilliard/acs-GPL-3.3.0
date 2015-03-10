@@ -1,0 +1,18 @@
+/.cvsignore/1.2/Tue May 14 18:16:26 1996//
+/Makefile/1.10/Fri Jul  6 04:56:24 2001//
+/Versions/1.2/Sat Jul  4 10:37:58 1998//
+/iswctype.c/1.7/Sun Aug  4 09:20:20 2002//
+/iswctype_l.c/1.6/Tue Aug 27 23:36:05 2002//
+/test_wcfuncs.c/1.4/Fri Jul  6 04:56:24 2001//
+/test_wctype.c/1.7/Fri Jul  6 04:56:24 2001//
+/towctrans.c/1.8/Fri Mar  5 10:53:01 2004//
+/towctrans_l.c/1.5/Tue Aug  6 08:39:56 2002//
+/wcfuncs.c/1.20/Mon Oct 17 15:48:30 2005//
+/wcfuncs_l.c/1.13/Mon Oct 17 15:47:52 2005//
+/wchar-lookup.h/1.4/Fri Jun 13 21:04:36 2003//
+/wctrans.c/1.14/Mon Feb  9 10:01:55 2004//
+/wctrans_l.c/1.6/Tue Aug  6 08:39:56 2002//
+/wctype.c/1.11/Fri Aug  2 21:04:05 2002//
+/wctype.h/1.37/Sat Sep 17 15:45:42 2005//
+/wctype_l.c/1.7/Tue Aug  6 08:39:56 2002//
+D

@@ -1,0 +1,22 @@
+/a.out.h/1.1/Fri Jul 25 09:04:57 2003//
+/dirent.h/1.3/Fri Jul  6 04:56:13 2001//
+/elfclass.h/1.1/Tue Jul 27 05:47:28 1999//
+/errno.h/1.1/Wed Aug 28 23:58:00 2002//
+/fcntl.h/1.19/Thu May 26 18:49:14 2005//
+/ioctls.h/1.6/Fri Jul  6 04:56:13 2001//
+/ipc.h/1.8/Fri Jul  6 04:56:13 2001//
+/mman.h/1.8/Thu Sep 25 16:39:39 2003//
+/msq.h/1.5/Fri Jul  6 04:56:13 2001//
+/netdb.h/1.2/Fri Jul  6 04:56:13 2001//
+/resource.h/1.8/Tue Jun 21 18:38:49 2005//
+/sem.h/1.3/Fri Jul  6 04:56:13 2001//
+/shm.h/1.7/Thu Aug 12 17:27:20 2004//
+/sigaction.h/1.10/Fri Jul  6 04:56:13 2001//
+/siginfo.h/1.9/Mon Apr 21 07:27:10 2003//
+/signum.h/1.8/Tue Apr  1 06:15:15 2003//
+/sigstack.h/1.2/Fri Jul  6 04:56:13 2001//
+/stat.h/1.10/Thu Mar 11 02:58:44 2004//
+/statfs.h/1.3/Sat Jul 12 19:30:54 2003//
+/termios.h/1.8/Sun Mar 20 04:30:28 2005//
+/typesizes.h/1.3/Thu Jul 31 19:34:16 2003//
+D

@@ -1,0 +1,16 @@
+/fclrexcpt.c/1.5/Fri Jul  6 04:56:04 2001//
+/fedisblxcpt.c/1.2/Fri Jul  6 04:56:04 2001//
+/feenablxcpt.c/1.2/Fri Jul  6 04:56:04 2001//
+/fegetenv.c/1.6/Fri Jul  6 04:56:04 2001//
+/fegetexcept.c/1.2/Fri Jul  6 04:56:04 2001//
+/fegetround.c/1.2/Fri Jul  6 04:56:04 2001//
+/feholdexcpt.c/1.5/Fri Jul  8 18:52:46 2005//
+/fesetenv.c/1.6/Tue Sep 10 01:26:37 2002//
+/fesetround.c/1.4/Fri Jul  8 18:52:46 2005//
+/feupdateenv.c/1.5/Fri Jul  6 04:56:04 2001//
+/fgetexcptflg.c/1.5/Fri Jul  6 04:56:04 2001//
+/fpu_control.h/1.2/Fri Jul  6 04:56:04 2001//
+/fraiseexcpt.c/1.8/Tue Sep 10 01:26:37 2002//
+/fsetexcptflg.c/1.5/Fri Jul  6 04:56:04 2001//
+/ftestexcept.c/1.3/Fri Jul  6 04:56:04 2001//
+D/bits////

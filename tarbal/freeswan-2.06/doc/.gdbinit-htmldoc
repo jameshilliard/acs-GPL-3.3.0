@@ -1,0 +1,2 @@
+set args  -f HowTo.ps src/intro.html src/upgrading.html src/quickstart.html src/policygroups.html src/faq.html src/manpages.html src/firewall.html src/trouble.html src/compat.html src/interop.html src/performance.html src/testing.html src/kernel.html src/adv_config.html src/install.html src/config.html src/background.html src/user_examples.html src/makecheck.html src/umltesting.html  src/politics.html src/ipsec.html src/mail.html src/web.html src/glossary.html src/biblio.html src/rfc.html src/roadmap.html src/umltesting.html src/makecheck.html src/nightly.html
+
